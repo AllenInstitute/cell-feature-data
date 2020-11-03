@@ -1,0 +1,38 @@
+{
+  "name": "cell-feature-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "8"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest --env node --forceExit",
+    "copy-jsons": "node scripts/upload-data-from-jsons-v1.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AllenInstitute/cell-feature-data.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AllenInstitute/cell-feature-data/issues"
+  },
+  "homepage": "https://github.com/AllenInstitute/cell-feature-data#readme",
+  "dependencies": {
+    "@google-cloud/firestore": "^2.6.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.3",
+    "firebase-admin": "^8.7.0",
+    "firebase-functions": "^3.7.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
