@@ -1,0 +1,40 @@
+{
+  "name": "cell-feature-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "8"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest --env node --forceExit",
+    "process-dataset": "node process-dataset"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allen-cell-animated/cell-feature-data.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allen-cell-animated/cell-feature-data/issues"
+  },
+  "homepage": "https://github.com/allen-cell-animated/cell-feature-data#readme",
+  "dependencies": {
+    "@google-cloud/firestore": "^2.6.1",
+    "ajv": "^7.1.0",
+    "aws-sdk": "^2.846.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.3",
+    "firebase-admin": "^8.7.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "prompt": "^1.1.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
