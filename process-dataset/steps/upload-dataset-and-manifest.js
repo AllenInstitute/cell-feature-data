@@ -14,9 +14,9 @@ const uploadDatasetAndManifest = async (firebaseHandler, datasetJson, readFolder
 
     const manifest = dataPrep.initialize(datasetJson, schemas.manifestSchema)
     // will be updated when the data is uploaded
-    manifest.cellLineData = "";
+    manifest.cellLineDataPath = "";
     manifest.albumPath = "";
-    manifest.featuresData = "";
+    manifest.featuresDataPath = "";
 
     manifest.featuresDisplayOrder = featureData.map(ele => ele.key)
     const datasetCheck = dataPrep.validate(dataset, schemas.dataset)

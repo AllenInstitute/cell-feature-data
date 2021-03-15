@@ -41,9 +41,9 @@ const processDataset = async () => {
     console.log("Dataset id:", id)
     const firebaseHandler = new FirebaseHandler(id);
     const fileNames = {
-        featureDefs: datasetJson.featureDefs,
-        featuresData: datasetJson.featuresData,
-        cellLineData: datasetJson.cellLineData,
+        featureDefs: datasetJson.featureDefsPath,
+        featuresData: datasetJson.featuresDataPath,
+        cellLineData: datasetJson.cellLineDataPath,
     }
     for (const key in fileNames) {
         if (Object.hasOwnProperty.call(fileNames, key)) {

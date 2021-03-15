@@ -52,7 +52,8 @@ const uploadFileInfo = async (firebaseHandler, readFolder, uploadFileInfo) => {
     await writeBatch();
     console.log("uploading file info complete")
     return {
-        cellLineData: `cell-data/${firebaseHandler.id}/cell-line-def`
+        cellLineDataPath: firebaseHandler.cellRef.collection(firebaseHandler.cellLineDefEndpoint).path,
+        fileInfoPath: firebaseHandler.cellRef.collection(firebaseHandler.cellFileInfoEndpoint).path,
     }
 }
 

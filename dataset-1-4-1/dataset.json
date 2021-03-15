@@ -11,14 +11,25 @@
     "totalFOVs": 11023,
     "totalTaggedStructures": 20
   },
-  "featureDefs": "feature_defs.json",
-  "featuresData": "features.json",
-  "cellLineData": "cell_line_defs.json",
+  "featureDefsPath": "feature_defs.json",
+  "featuresDataPath": "features.json",
+  "cellLineDataPath": "cell_line_defs.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v1.4.0/Cell-Viewer_Thumbnails",
   "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellviewer-1-4",
   "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v1.4.0/Cell-Viewer_Thumbnails",
   "defaultXAxis": "cellular-volume",
   "defaultYAxis": "nuclear-volume",
-  "featuresDisplayOrder": []
+  "featuresDisplayOrder": [],
+  "featuresDataOrder": [
+            "apical-proximity",
+            "anaphase-segmentation-complete",
+            "cell-surface-area",
+            "cellular-volume",
+            "interphase-or-mitosis",
+            "interphase-and-mitotic-stages",
+            "nuclear-surface-area",
+            "nuclear-volume",
+            "radial-proximity"
+  ]
 }

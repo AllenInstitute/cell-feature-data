@@ -11,14 +11,34 @@
     "totalFOVs": 18186,
     "totalTaggedStructures": 25
   },
-  "featureDefs": "feature_defs.json",
-  "featuresData": "cell_feature_analysis.json",
-  "cellLineData": "cell_line_def.json",
+  "featureDefsPath": "feature_defs.json",
+  "featuresDataPath": "cell_feature_analysis.json",
+  "cellLineDataPath": "cell_line_def.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
   "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellviewer-2-0",
   "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
   "defaultXAxis": "cell-volume",
   "defaultYAxis": "dna-volume",
-  "featuresDisplayOrder": []
+  "featuresDisplayOrder": [],
+  "featuresDataOrder": [
+    "cell-height",
+    "cell-volume",
+    "cell-surface-area",
+    "dna-height",
+    "dna-volume",
+    "dna-surface-area",
+    "intracellular-structure-volume",
+    "anaphase-segmentation-complete",
+    "interphase-or-mitosis",
+    "interphase-and-mitotic-stages",
+    "shape-mode-1",
+    "shape-mode-2",
+    "shape-mode-3",
+    "shape-mode-4",
+    "shape-mode-5",
+    "shape-mode-6",
+    "shape-mode-7",
+    "shape-mode-8"
+  ]
 }

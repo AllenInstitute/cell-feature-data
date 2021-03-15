@@ -34,7 +34,7 @@ const uploadFileToS3 = async (id, tmpFolder) => {
     return upload(params)
         .then((location) => {
             return {
-                featuresData: location
+                featuresDataPath: location
             }
         })
         .catch((err) => {

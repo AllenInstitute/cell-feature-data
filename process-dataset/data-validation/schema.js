@@ -56,11 +56,11 @@ const manifestSchema = {
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "featuresData": {
+        "featuresDataPath": {
             "description": "url to the per cell data json",
             "type": "string"
         },
-        "cellLineData": {
+        "cellLineDataPath": {
             "description": "collection name of the cell line data",
             "type": "string",
         },
@@ -89,20 +89,25 @@ const manifestSchema = {
             "type": "string",
         },
         "featuresDisplayOrder": {
-            "description": "Ordered array of feature keys",
+            "description": "Ordered array of feature keys for display on front end",
             "type": "array",
         },
+        "featuresDataOrder": {
+            "description": "Ordered array of feature keys for packing and unpacking data",
+            "type": "array",
+        }
     },
     "required": [
-        "featuresData",
-        "cellLineData",
+        "featuresDataPath",
+        "cellLineDataPath",
         "albumPath",
         "thumbnailRoot",
         "downloadRoot",
         "volumeViewerDataRoot",
         "defaultXAxis",
         "defaultYAxis",
-        "featuresDisplayOrder"
+        "featuresDisplayOrder",
+        "featuresDataOrder"
     ],
 }
 
