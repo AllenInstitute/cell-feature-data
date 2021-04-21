@@ -117,15 +117,15 @@
       },
       "2": {
         "color": "#fed98e",
-        "name": "Prometaphase"
+        "name": "Early prometaphase"
       },
       "3": {
         "color": "#66c2a4",
-        "name": "Metaphase"
+        "name": "Prometaphase/metaphase"
       },
       "4": {
         "color": "#7f48f3",
-        "name": "Anaphase"
+        "name": "Anaphase/telophase"
       },
       "NaN": {
         "color": "#838383",

@@ -44,7 +44,7 @@ const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFile
                     console.error("No matching cell line for this cell in the dataset", fileInfo)
                     process.exit(1)
                 }
-                const dirPath = `/${cellLine.CellLineId_Name}/${cellLine.CellLineId_Name}_${fileInfo[FOV_ID_KEY]}`
+                const dirPath = `${cellLine.CellLineId_Name}/${cellLine.CellLineId_Name}_${fileInfo[FOV_ID_KEY]}`
                 if (!fileInfo.thumbnailPath) {
                     fileInfo.thumbnailPath = `${dirPath}_${fileInfo[CELL_ID_KEY]}.png`;
                 }
@@ -52,10 +52,10 @@ const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFile
                     fileInfo.fovThumbnailPath = `${dirPath}.png`;
                 }
                 if (!fileInfo.volumeviewerPath) {
-                    fileInfo.volumeviewerPath = `${dirPath}_${fileInfo[CELL_ID_KEY]}.json`;
+                    fileInfo.volumeviewerPath = `${dirPath}_${fileInfo[CELL_ID_KEY]}_atlas.json`;
                 }
                 if (!fileInfo.fovVolumeviewerPath) {
-                    fileInfo.fovVolumeviewerPath = `${dirPath}.json`;
+                    fileInfo.fovVolumeviewerPath = `${dirPath}_atlas.json`;
                 }
                 fileInfoJson[index] = fileInfo;
 
