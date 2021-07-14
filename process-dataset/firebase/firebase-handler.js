@@ -85,7 +85,14 @@ class FirebaseHandler {
     }
 
     uploadArrayUsingKeys(array, collectionName, docKey) {
-        return Promise.all(array.map((ele) => firestore.collection(collectionName).doc(ele[docKey]).set(ele)))
+        return Promise.all(array.map( async(ele) => {
+            const doc = await firestore.collection(collectionName).doc(ele[docKey]).get()
+            if (doc.exists) {
+                return firestore.collection(collectionName).doc(ele[docKey]).update(ele)
+            } else {
+                return firestore.collection(collectionName).doc(ele[docKey]).set(ele)
+            }
+        }))
     }
 }
 
