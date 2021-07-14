@@ -1,0 +1,42 @@
+[
+    {
+        "GenePairName": "MYH6-MYH7",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "HPRT1-COL2A1",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "ATP2A2-H19",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "TCAP-BAG3",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "NKX25-CNTN5",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "MEF2C-MYL7",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "PLN-PRSS35",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "BMPER-VCAN",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "ACTN2-TTN",
+        "Channels": "561-638"
+    },
+    {
+        "GenePairName": "TTN-ACTN2",
+        "Channels": "561-638"
+    }
+]
