@@ -1,0 +1,160 @@
+[
+  {
+    "displayName": "Cell age",
+    "description": "hiPSC-derived cardiomyocyte cell age in days.",
+    "tooltip": "hiPSC-derived cardiomyocyte cell age in days.",
+    "unit": "day",
+    "key": "cell-age",
+    "discrete": true,
+    "options": {
+        "18": {
+            "color": "#0098EA",
+            "name": "D18"
+        },
+        "25": {
+            "color": "#FFB2FF",
+            "name": "D25"
+        },
+        "32": {
+            "color": "#9D02D7",
+            "name": "D32"
+        }
+    }
+  },
+  {
+    "displayName": "Expert score mean",
+    "description": "Mean expert score of level of sarcomeric z-disk organization of each cell (1 is least organized; 5 is most organized).",
+    "tooltip": "Mean expert score of level of sarcomeric z-disk organization of each cell (1 is least organized; 5 is most organized).",
+    "unit": "",
+    "key": "expert-score",
+    "discrete": false
+  },
+  {
+    "displayName": "Combined organizational score",
+    "description": "Sarcomeric z-disk organizational score calculated using linear regression of expert scores as a function of 11 cell features fit on training dataset of expert scored cells.",
+    "tooltip": "Sarcomeric z-disk organizational score calculated using linear regression of expert scores as a function of 11 cell features fit on training dataset of expert scored cells.",
+    "unit": "",
+    "key": "cos",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area organized z-disks",
+    "description": "Fraction of cell area covered by organized z-disks, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by organized z-disks, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-zdisk",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area organized puncta",
+    "description": "Fraction of cell area covered by organized puncta, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by organized puncta, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-orgpuncta",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area disorganized puncta",
+    "description": "Fraction of cell area covered by disorganized puncta, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by disorganized puncta, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-disorgpuncta",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area fibers",
+    "description": "Fraction of cell area covered by fibers, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by fibers, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-fibers",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area diffuse/other",
+    "description": "Fraction of cell area covered by diffuse/other, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by diffuse/other, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-diffuse",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area background",
+    "description": "Fraction of cell area covered by background, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by background, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-background",
+    "discrete": false
+  },
+  {
+    "displayName": "Max coefficient of variation",
+    "description": "Maximum coefficient of variation is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "tooltip": "Maximum coefficient of variation is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "unit": "",
+    "key": "max-cov",
+    "discrete": false
+  },
+  {
+    "displayName": "Peak height",
+    "description": "Peak height is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "tooltip": "Peak height is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "unit": "",
+    "key": "peak-height",
+    "discrete": false
+  },
+  {
+    "displayName": "Peak distance",
+    "description": "Peak distance is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "tooltip": "Peak distance is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "unit": "\u00b5m",
+    "key": "peak-distance",
+    "discrete": false
+  },
+  {
+    "displayName": "Alpha-actinin-2 protein density",
+    "description": "Alpha-actinin-2 protein density in 2D segmented cell.",
+    "tooltip": "Alpha-actinin-2 protein density in 2D segmented cell.",
+    "unit": "a.u. x10\u00b6",
+    "key": "protein-density",
+    "discrete": false
+  },
+  {
+    "displayName": "Cell area",
+    "description": "2D segmented cell area.",
+    "tooltip": "2D segmented cell area.",
+    "unit": "\u00b5m\u00b2",
+    "key": "cell-area",
+    "discrete": false
+  },
+  {
+    "displayName": "Cell aspect ratio",
+    "description": "2D segmented cell aspect ratio.",
+    "tooltip": "2D segmented cell aspect ratio.",
+    "unit": "",
+    "key": "cell-aspect",
+    "discrete": false
+  },
+  {
+    "displayName": "Experiment",
+    "description": "Differentiation experiment encompassing all plates and wells setup and replated on a given day.",
+    "tooltip": "Differentiation experiment encompassing all plates and wells setup and replated on a given day.",
+    "unit": "",
+    "key": "diff-exp",
+    "discrete": true
+  },
+  {
+    "displayName": "Plate",
+    "description": "Differentiation plate barcode.",
+    "tooltip": "Differentiation plate barcode.",
+    "unit": "barcode",
+    "key": "plate-barcode",
+    "discrete": true
+  },
+  {
+    "displayName": "Well",
+    "description": "Differentiation well",
+    "tooltip": "Differentiation well.",
+    "unit": "well",
+    "key": "well",
+    "discrete": true
+  }
+]
