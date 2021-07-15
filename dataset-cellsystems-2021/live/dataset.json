@@ -16,7 +16,7 @@
   "cellLineDataPath": "cell_line_def.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
-  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellviewer-2-0",
+  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-live.1",
   "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
   "defaultXAxis": "expert-score",
   "defaultYAxis": "cos",
