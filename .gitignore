@@ -6,3 +6,4 @@ data/cell-feature-analysis.json
 data/file-info.json
 dataset-*/cell_feature_analysis.json
 dataset-*/cell-feature-analysis.json
+*.log
