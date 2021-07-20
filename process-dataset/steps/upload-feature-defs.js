@@ -24,7 +24,7 @@ const uploadFeatureDefs = async (firebaseHandler, readFolder, featureDefFileName
             for (const key in diffToDatabase) {
                 if (Object.hasOwnProperty.call(diffToDatabase, key)) {
                     const element = diffToDatabase[key];
-                    console.log(`${key} DB VALUE: ${element}, NEW VALUE: ${featureData[key]}`)
+                    console.log(`${key} DB VALUE: ${JSON.stringify(element)}, NEW VALUE: ${JSON.stringify(featureData[key])}`)
                 }
             }
             console.log("Do you want to over write what is in the DB? (Y/N)")

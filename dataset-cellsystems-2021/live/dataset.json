@@ -1,7 +1,7 @@
 {
   "name": "hiPSC-derived cardiomyocyte live image dataset",
   "version": "v2021.1",
-  "id": "cellsystems-2021-live.1",
+  "id": "cellsystems_live_v2021.1",
   "image": "",
   "description": "This dataset contains images of live hiPSC-derived cardiomyocytes from our recent article in <a href='https://doi.org/10.1016/j.cels.2021.05.001'>Cell Systems</a> that developed a quantitative, imaging-based platform for the systematic and automated classification of sarcomeric z-disk organization using alpha-actinin-2.",
   "userData": {
@@ -13,7 +13,7 @@
   },
   "featureDefsPath": "feature_defs.json",
   "featuresDataPath": "cell_feature_analysis_live.json",
-  "cellLineDataPath": "cell_line_def.json",
+  "cellLineDataPath": "cell_lines.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-live.1/Cell-Viewer_Thumbnails",
   "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-live.1",

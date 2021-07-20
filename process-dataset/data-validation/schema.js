@@ -37,6 +37,10 @@ const datasetSchema = {
             "description": "Optional display data",
             "type": "object",
         },
+        "production": {
+            "description": "Whether this dataset should only be shown in production",
+            "type": "boolean",
+        }
     },
     "required": [
         "name",
@@ -95,7 +99,7 @@ const manifestSchema = {
         "featuresDataOrder": {
             "description": "Ordered array of feature keys for packing and unpacking data",
             "type": "array",
-        }
+        },
     },
     "required": [
         "featuresDataPath",
@@ -171,11 +175,11 @@ const fileInfoSchema = {
         "properties": {
             "CellId": {
                 "description": "unique id for segmented cell",
-                "type": "number"
+                "type": ["number", "string"]
             },
             "FOVId": {
                 "description": "Field of view cell came from",
-                "type": "number",
+                "type": ["number", "string"]
             },
             "CellLineName": {
                 "description": "Id of cell line",
@@ -184,22 +188,18 @@ const fileInfoSchema = {
             "thumbnailPath": {
                 "description": "Path to thumbnail image for cell",
                 "type": "string",
-                "pattern": "(.)+(\.png)"
             },
             "volumeviewerPath": {
                 "description": "path to 3d data for cell",
                 "type": "string",
-                "pattern": "(.)+\.json"
             },
             "fovThumbnailPath": {
                 "description": "Path to fov thumbnail",
                 "type": "string",
-                "pattern": "(.)+\.png"
             },
             "fovVolumeviewerPath": {
                 "description": "Path to the fov 3d data",
                 "type": "string",
-                "pattern": "(.)+\.json"
             },
 
         },
@@ -207,10 +207,7 @@ const fileInfoSchema = {
             "CellId",
             "FOVId",
             "CellLineName",
-            "thumbnailPath",
             "volumeviewerPath",
-            "fovThumbnailPath",
-            "fovVolumeviewerPath"
         ],
     }
 }

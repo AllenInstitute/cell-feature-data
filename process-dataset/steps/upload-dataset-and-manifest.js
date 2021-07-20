@@ -11,7 +11,7 @@ const uploadDatasetAndManifest = async (firebaseHandler, datasetJson, readFolder
 
     const featureData = await readFeatureData();
     const dataset = dataPrep.initialize(datasetJson, schemas.datasetSchema)
-
+    dataset.production = false; // by default upload all datasets as a staging set
     const manifest = dataPrep.initialize(datasetJson, schemas.manifestSchema)
     // will be updated when the data is uploaded
     manifest.cellLineDataPath = "";
