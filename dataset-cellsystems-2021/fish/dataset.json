@@ -16,7 +16,7 @@
   "cellLineDataPath": "gene_pairs.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-fish.1/Cell-Viewer_Thumbnails",
-  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-fish.1",
+  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-fish_1",
   "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-fish.1/Cell-Viewer_Thumbnails",
   "defaultXAxis": "cos",
   "defaultYAxis": "myh7-density",
