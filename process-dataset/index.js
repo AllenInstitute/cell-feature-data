@@ -57,7 +57,7 @@ const processDataset = async () => {
     // 1. upload dataset description and manifest
     const manifestRef = await uploadDatasetAndManifest(firebaseHandler, datasetJson, datasetReadFolder, fileNames.featureDefs);
     // 2. check dataset feature defs for new features, upload them if needed
-    await uploadFeatureDefs(firebaseHandler, datasetReadFolder, fileNames.featureDefs);
+    const featureDefRef = await uploadFeatureDefs(firebaseHandler, datasetReadFolder, fileNames.featureDefs);
     // 3. upload cell lines TODO: add check if cell line is already there
     const formattedCellLines = await uploadCellLines(firebaseHandler, datasetReadFolder, fileNames.cellLineData);
     // 4. format file info, write to json locally
@@ -70,6 +70,7 @@ const processDataset = async () => {
     const awsLocation = await uploadFileToS3(id, TEMP_FOLDER);
     // 8. update dataset manifest with location for data
     const updateToManifest = {
+        ...featureDefRef,
         ...fileInfoLocation, 
         ...awsLocation
     }

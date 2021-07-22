@@ -68,6 +68,10 @@ const manifestSchema = {
             "description": "collection name of the cell line data",
             "type": "string",
         },
+        "featureDefsPath": {
+            "description": "path to the feature def collection",
+            "type": "string",
+        },
         "albumPath": {
             "description": "collection name of the album data",
             "type": "string",

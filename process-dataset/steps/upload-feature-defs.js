@@ -40,11 +40,12 @@ const uploadFeatureDefs = async (firebaseHandler, readFolder, featureDefFileName
         } else if (featureCheck.valid) {
             await firebaseHandler.addFeature(feature)
         }
-
+        
     }
     console.log("uploading feature defs complete")
-
-
+    return {
+        featureDefsPath: `${firebaseHandler.featureDefEndpoint}`
+    }
 }
 
 module.exports = uploadFeatureDefs
