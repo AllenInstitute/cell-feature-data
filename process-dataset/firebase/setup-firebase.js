@@ -10,11 +10,11 @@ var app = admin.initializeApp(
     {
         credential: admin.credential.cert({
             type: "service_account",
-            projectId: testing ? process.env.TESTING_PROJECT_ID : process.env.FIREBASE_ID,
-            clientEmail: testing ? process.env.TESTING_CLIENT_EMAIL : process.env.FIREBASE_EMAIL,
+            projectId: testing ? process.env.TESTING_FIREBASE_ID : process.env.FIREBASE_ID,
+            clientEmail: testing ? process.env.TESTING_FIREBASE_EMAIL : process.env.FIREBASE_EMAIL,
             privateKey: firebasekey
         }),
-        databaseURL: testing ? process.env.TESTING_DATABASE_URL : process.env.FIREBASE_DB_URL
+        databaseURL: testing ? process.env.TESTING_FIREBASE_DB_URL : process.env.FIREBASE_DB_URL
     }
 );
 

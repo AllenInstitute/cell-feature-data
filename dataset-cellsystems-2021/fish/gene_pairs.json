@@ -1,0 +1,92 @@
+[
+    {
+        "StructureId/Name": "MYH6-MYH7",
+        "ProteinId/DisplayName": "MYH6-MYH7",
+        "CellLineId/Name": "MYH6-MYH7",
+        "GeneId/Name": "MYH6-MYH7",
+        "GeneId/FullName": "MYH6-MYH7",
+        "ProteinId/Name": "MYH6-MYH7",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "HPRT1-COL2A1",
+        "ProteinId/DisplayName": "HPRT1-COL2A1",
+        "CellLineId/Name": "HPRT1-COL2A1",
+        "GeneId/Name": "HPRT1-COL2A1",
+        "GeneId/FullName": "HPRT1-COL2A1",
+        "ProteinId/Name": "HPRT1-COL2A1",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "ATP2A2-H19",
+        "ProteinId/DisplayName": "ATP2A2-H19",
+        "CellLineId/Name": "ATP2A2-H19",
+        "GeneId/Name": "ATP2A2-H19",
+        "GeneId/FullName": "ATP2A2-H19",
+        "ProteinId/Name": "ATP2A2-H19",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "TCAP-BAG3",
+        "ProteinId/DisplayName": "TCAP-BAG3",
+        "CellLineId/Name": "TCAP-BAG3",
+        "GeneId/Name": "TCAP-BAG3",
+        "GeneId/FullName": "TCAP-BAG3",
+        "ProteinId/Name": "TCAP-BAG3",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "NKX25-CNTN5",
+        "ProteinId/DisplayName": "NKX25-CNTN5",
+        "CellLineId/Name": "NKX25-CNTN5",
+        "GeneId/Name": "NKX25-CNTN5",
+        "GeneId/FullName": "NKX25-CNTN5",
+        "ProteinId/Name": "NKX25-CNTN5",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "MEF2C-MYL7",
+        "ProteinId/DisplayName": "MEF2C-MYL7",
+        "CellLineId/Name": "MEF2C-MYL7",
+        "GeneId/Name": "MEF2C-MYL7",
+        "GeneId/FullName": "MEF2C-MYL7",
+        "ProteinId/Name": "MEF2C-MYL7",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "PLN-PRSS35",
+        "ProteinId/DisplayName": "PLN-PRSS35",
+        "CellLineId/Name": "PLN-PRSS35",
+        "GeneId/Name": "PLN-PRSS35",
+        "GeneId/FullName": "PLN-PRSS35",
+        "ProteinId/Name": "PLN-PRSS35",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "BMPER-VCAN",
+        "ProteinId/DisplayName": "BMPER-VCAN",
+        "CellLineId/Name": "BMPER-VCAN",
+        "GeneId/Name": "BMPER-VCAN",
+        "GeneId/FullName": "BMPER-VCAN",
+        "ProteinId/Name": "BMPER-VCAN",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "ACTN2-TTN",
+        "ProteinId/DisplayName": "ACTN2-TTN",
+        "CellLineId/Name": "ACTN2-TTN",
+        "GeneId/Name": "ACTN2-TTN",
+        "GeneId/FullName": "ACTN2-TTN",
+        "ProteinId/Name": "ACTN2-TTN",
+        "Channels": "561-638"
+    },
+    {
+        "StructureId/Name": "TTN-ACTN2",
+        "ProteinId/DisplayName": "TTN-ACTN2",
+        "CellLineId/Name": "TTN-ACTN2",
+        "GeneId/Name": "TTN-ACTN2",
+        "GeneId/FullName": "TTN-ACTN2",
+        "ProteinId/Name": "TTN-ACTN2",
+        "Channels": "561-638"
+    }
+]
