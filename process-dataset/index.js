@@ -8,7 +8,7 @@ const uploadCellCountsPerCellLine = require("./steps/upload-cell-counts");
 const uploadFileInfo = require("./steps/upload-file-info");
 const uploadFileToS3 = require("./steps/upload-to-aws");
 
-const FirebaseHandler = require('./firebase/firebase-handler');
+const FirebaseHandler = require('../firebase/firebase-handler');
 
 const TEMP_FOLDER = "./data";
 const args = process.argv.slice(2);
