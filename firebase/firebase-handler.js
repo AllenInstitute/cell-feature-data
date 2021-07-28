@@ -7,7 +7,8 @@ const {
 class FirebaseHandler {
     constructor(id) {
         this.id = id;
-        this.featureDefEndpoint = "feature-definitions";
+        this.datasetName = id.split("_v")[0]
+        this.featureDefEndpoint = `dataset-data/feature-definitions/${this.datasetName}`;
         this.manifestEndpoint = "manifests";
         this.datasetDescriptionEndpoint = "dataset-descriptions";
         this.cellLineDefEndpoint = "cell-line-def";
@@ -15,11 +16,30 @@ class FirebaseHandler {
         this.cellRef = firestore.collection('cell-data').doc(id);
     }
 
-    uploadDatasetDoc(data) {
-        return firestore.collection(this.datasetDescriptionEndpoint).doc(data.id).set(data)
+    docExists(ref) {
+        return ref.get().then(snap => snap.exists)
     }
 
-    uploadManifest(data) {
+    uploadDatasetDoc(data) {
+        return firestore.collection(this.datasetDescriptionEndpoint).doc(data.id).set(data, {merge: true})
+    }
+
+    async uploadManifest(data) {
+        
+        const ref = firestore.collection(this.manifestEndpoint).doc(this.id)
+        const manifestExists = await this.docExists(ref)
+        if (manifestExists) {
+            /**
+             * Remove these fields if just updating a manifest, don't want to clear out
+             * the pointers if we're just updating some data
+             */
+            delete data.cellLineDataPath 
+            delete data.albumPath
+            delete data.featuresDataPath
+            delete data.featureDefsPath
+            return firestore.collection(this.manifestEndpoint).doc(this.id).update(data)
+
+        }
         return firestore.collection(this.manifestEndpoint).doc(this.id).set(data)
     }
 
