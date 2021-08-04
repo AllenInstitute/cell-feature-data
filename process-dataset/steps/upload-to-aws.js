@@ -1,25 +1,7 @@
 const fsPromises = require('fs').promises;
-const AWS = require('aws-sdk');
+const upload = require("../aws");
 
 const { TEMP_LOCAL_CELL_FEATURE_JSON } = require("../constants");
-
-const s3 = new AWS.S3({
-    accessKeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_SECRET
-});
-
-
-const upload = (params) => {
-    return new Promise((resolve, reject) => {
-        s3.upload(params, function (err, data) {
-            if (err) {
-                return reject(err)
-            }
-            console.log(`File uploaded successfully. ${data.Location}`);
-            resolve(data.Location)
-        });
-    })
-}
 
 const uploadFileToS3 = async (id, tmpFolder) => {
     console.log("uploading json to s3...");

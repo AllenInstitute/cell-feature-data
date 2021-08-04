@@ -1,4 +1,7 @@
-const { isEmpty, isEqual } = require('lodash');
+const {
+    isEmpty,
+    isEqual
+} = require('lodash');
 const {
     firestore
 } = require('./setup-firebase');
@@ -21,11 +24,13 @@ class FirebaseHandler {
     }
 
     uploadDatasetDoc(data) {
-        return firestore.collection(this.datasetDescriptionEndpoint).doc(data.id).set(data, {merge: true})
+        return firestore.collection(this.datasetDescriptionEndpoint).doc(data.id).set(data, {
+            merge: true
+        })
     }
 
     async uploadManifest(data) {
-        
+
         const ref = firestore.collection(this.manifestEndpoint).doc(this.id)
         const manifestExists = await this.docExists(ref)
         if (manifestExists) {
@@ -33,7 +38,7 @@ class FirebaseHandler {
              * Remove these fields if just updating a manifest, don't want to clear out
              * the pointers if we're just updating some data
              */
-            delete data.cellLineDataPath 
+            delete data.cellLineDataPath
             delete data.albumPath
             delete data.featuresDataPath
             delete data.featureDefsPath
@@ -57,11 +62,11 @@ class FirebaseHandler {
 
     getCellLineDefs() {
         return firestore.collection(this.cellLineDefEndpoint).get()
-         .then(snapshot => {
-             const data = {}
-             snapshot.forEach((doc) => data[doc.id] = doc.data());
-             return data
-         })
+            .then(snapshot => {
+                const data = {}
+                snapshot.forEach((doc) => data[doc.id] = doc.data());
+                return data
+            })
     }
 
     checkCellLineInDataset(id) {
@@ -78,13 +83,13 @@ class FirebaseHandler {
     checkFeatureExists(feature) {
         return firestore.collection(this.featureDefEndpoint).doc(feature.key).get()
             .then(snapshot => {
-                if (snapshot.exists ) {
+                if (snapshot.exists) {
                     const changedFeatures = {}
                     const dbFeature = snapshot.data();
                     for (const key in feature) {
                         if (Object.hasOwnProperty.call(feature, key)) {
                             const newValue = feature[key];
-                            if (!isEqual( dbFeature[key], newValue)) {
+                            if (!isEqual(dbFeature[key], newValue)) {
                                 changedFeatures[key] = dbFeature[key]
                             }
                         }
@@ -105,7 +110,7 @@ class FirebaseHandler {
     }
 
     uploadArrayUsingKeys(array, collectionName, docKey) {
-        return Promise.all(array.map( async(ele) => {
+        return Promise.all(array.map(async (ele) => {
             const doc = await firestore.collection(collectionName).doc(ele[docKey]).get()
             if (doc.exists) {
                 return firestore.collection(collectionName).doc(ele[docKey]).update(ele)
