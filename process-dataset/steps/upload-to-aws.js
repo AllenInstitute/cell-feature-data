@@ -1,5 +1,5 @@
 const fsPromises = require('fs').promises;
-const upload = require("../aws");
+const upload = require("../../aws");
 
 const { TEMP_LOCAL_CELL_FEATURE_JSON } = require("../constants");
 
