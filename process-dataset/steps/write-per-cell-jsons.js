@@ -12,8 +12,6 @@ const {
     CELL_LINE_DEF_PROTEIN_KEY,
     TEMP_LOCAL_CELL_FEATURE_JSON,
     TEMP_LOCAL_FILE_INFO_JSON,
-    FOV_ID_KEY,
-    CELL_ID_KEY
 } = require("../constants");
 
 

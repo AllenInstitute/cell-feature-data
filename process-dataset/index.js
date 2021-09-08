@@ -7,6 +7,7 @@ const formatAndWritePerCellJsons = require("./steps/write-per-cell-jsons");
 const uploadCellCountsPerCellLine = require("./steps/upload-cell-counts");
 const uploadFileInfo = require("./steps/upload-file-info");
 const uploadFileToS3 = require("./steps/upload-to-aws");
+const uploadDatasetImage = require("./steps/upload-dataset-image")
 
 const FirebaseHandler = require('../firebase/firebase-handler');
 
@@ -68,11 +69,14 @@ const processDataset = async () => {
     await uploadCellCountsPerCellLine(TEMP_FOLDER, firebaseHandler);
     // 7. upload json to aws
     const awsLocation = await uploadFileToS3(id, TEMP_FOLDER);
-    // 8. update dataset manifest with location for data
+    // 8. upload card image
+    const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image)
+    // 9. update dataset manifest with location for data
     const updateToManifest = {
         ...featureDefRef,
         ...fileInfoLocation, 
-        ...awsLocation
+        ...awsLocation,
+        ...awsImageLocation
     }
     console.log("updating manifest", updateToManifest)
     await firebaseHandler.updateDatasetDoc(manifestRef)
