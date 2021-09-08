@@ -30,11 +30,12 @@ const uploadDatasetImage = async () => {
 
     const datasetJson = await readDatasetInfo();
     const {
-        id,
+        name,
+        version,
         image
     } = datasetJson;
 
-    const firebaseHandler = new FirebaseHandler(id);
+    const firebaseHandler = new FirebaseHandler(name, version);
     console.log("Dataset name:", firebaseHandler.datasetName, image)
 
     console.log("uploading image to s3...");
@@ -61,7 +62,7 @@ const uploadDatasetImage = async () => {
 
 
 
-    console.log(`${id} has ${image} uploaded`)
+    console.log(`${firebaseHandler.id} has ${image} uploaded`)
     process.exit(0)
 
 }

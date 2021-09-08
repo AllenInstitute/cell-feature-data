@@ -26,10 +26,12 @@ const releaseDataset = async () => {
 
     const datasetJson = await readDatasetInfo()
     const {
-        id
+        name, 
+        version,
     } = datasetJson;
+    const firebaseHandler = new FirebaseHandler(name, version);
+    const { id } = firebaseHandler;
     console.log("Dataset id:", id)
-    const firebaseHandler = new FirebaseHandler(id);
     await firebaseHandler.updateDatasetDoc({
         production: true
     })

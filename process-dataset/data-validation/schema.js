@@ -9,12 +9,12 @@ const datasetSchema = {
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "name": {
-            "description": "Name of the dataset",
+        "title": {
+            "description": "Display name of the dataset",
             "type": "string"
         },
-        "id": {
-            "description": "Id for the dataset",
+        "name": {
+            "description": "Name of the dataset (no version number)",
             "type": "string"
         },
         "version": {
@@ -43,9 +43,9 @@ const datasetSchema = {
         }
     },
     "required": [
-        "name",
+        "title",
         "version",
-        "id",
+        "name",
         "image",
         "description",
 

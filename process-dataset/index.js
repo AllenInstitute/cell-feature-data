@@ -37,10 +37,11 @@ const processDataset = async () => {
     
     const datasetJson = await readDatasetInfo()
     const {
-        id
+        name,
+        version,
     } = datasetJson;
-    console.log("Dataset id:", id)
-    const firebaseHandler = new FirebaseHandler(id);
+    const firebaseHandler = new FirebaseHandler(name, version);
+    console.log("Dataset id:", firebaseHandler.id)
     const fileNames = {
         featureDefs: datasetJson.featureDefsPath,
         featuresData: datasetJson.featuresDataPath,
@@ -68,18 +69,20 @@ const processDataset = async () => {
     // 6. upload cell line subtotals
     await uploadCellCountsPerCellLine(TEMP_FOLDER, firebaseHandler);
     // 7. upload json to aws
-    const awsLocation = await uploadFileToS3(id, TEMP_FOLDER);
+    const awsLocation = await uploadFileToS3(firebaseHandler.id, TEMP_FOLDER);
     // 8. upload card image
-    const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image)
+    const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image);
     // 9. update dataset manifest with location for data
     const updateToManifest = {
         ...featureDefRef,
         ...fileInfoLocation, 
         ...awsLocation,
-        ...awsImageLocation
     }
     console.log("updating manifest", updateToManifest)
-    await firebaseHandler.updateDatasetDoc(manifestRef)
+    await firebaseHandler.updateDatasetDoc({
+        ...manifestRef,
+        ...awsImageLocation,
+    })
     await firebaseHandler.updateManifest(updateToManifest)
     process.exit(0)
 }    

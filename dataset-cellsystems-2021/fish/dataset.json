@@ -1,7 +1,7 @@
 {
-  "name": "hiPSC-derived cardiomyocyte RNA FISH image dataset",
-  "version": "v2021.1",
-  "id": "cellsystems_fish_v2021.1",
+  "title": "hiPSC-derived cardiomyocyte RNA FISH dataset",
+  "version": "2021.1",
+  "name": "cellsystems_fish",
   "image": "thumb_rnafish.png",
   "description": "This dataset contains images of fixed hiPSC-derived cardiomyocytes from our recent article in <a href='https://doi.org/10.1016/j.cels.2021.05.001'>Cell Systems.</a> This dataset integrates analysis of gene expression by RNA FISH with automated image-based classification of sarcomeric z-disk organization to classify cell states.",
   "userData": {

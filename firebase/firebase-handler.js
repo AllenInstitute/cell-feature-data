@@ -8,15 +8,15 @@ const {
 
 
 class FirebaseHandler {
-    constructor(id) {
-        this.id = id;
-        this.datasetName = id.split("_v")[0]
+    constructor(name, version) {
+        this.id = `${name}_v${version}`;
+        this.datasetName = name;
         this.featureDefEndpoint = `dataset-data/feature-definitions/${this.datasetName}`;
         this.manifestEndpoint = "manifests";
         this.datasetDescriptionEndpoint = "dataset-descriptions";
         this.cellLineDefEndpoint = "cell-line-def";
         this.cellFileInfoEndpoint = "cell-file-info";
-        this.cellRef = firestore.collection('cell-data').doc(id);
+        this.cellRef = firestore.collection('cell-data').doc(this.id);
     }
 
     docExists(ref) {
@@ -24,7 +24,7 @@ class FirebaseHandler {
     }
 
     uploadDatasetDoc(data) {
-        return firestore.collection(this.datasetDescriptionEndpoint).doc(data.id).set(data, {
+        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.id).set(data, {
             merge: true
         })
     }
