@@ -96,6 +96,10 @@ const manifestSchema = {
             "description": "Default feature to plot on y axis",
             "type": "string",
         },
+        "defaultColorBy": {
+            "description": "Default feature to color the data by",
+            "type": "string",
+        },
         "featuresDisplayOrder": {
             "description": "Ordered array of feature keys for display on front end",
             "type": "array",
