@@ -1,5 +1,5 @@
 {
-  "title": "hiPSC-derived cardiomyocyte RNA FISH dataset",
+  "title": "hiPSC-derived Cardiomyocyte RNA FISH Dataset",
   "version": "2021.1",
   "name": "cellsystems_fish",
   "image": "thumb_rnafish.png",
