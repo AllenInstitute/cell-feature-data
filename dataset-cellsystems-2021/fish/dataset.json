@@ -20,6 +20,7 @@
   "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-fish.1/Cell-Viewer_Thumbnails",
   "defaultXAxis": "cos",
   "defaultYAxis": "myh7-density",
+  "defaultColorBy": "cell-age",
   "featuresDisplayOrder": [
     "cell-age",
     "expert-score",
