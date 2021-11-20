@@ -43,3 +43,9 @@ or
 To skip the fileInfo upload but run all the other steps (fileInfo upload takes a long time because firebase limits to 500 uploads per request):
 
 `node process-dataset [PATH/TO/DATASET] true`
+
+## Upload a dataset card image after the data has been uploaded
+`npm run upload-image [PATH/TO/DATASET]`
+
+## Release dataset to production
+`npm run release-dataset [PATH/TO/DATASET]`
