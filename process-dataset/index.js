@@ -1,4 +1,7 @@
 const fsPromises = require('fs').promises;
+const {
+    firestore
+} = require('../firebase/setup-firebase');
 
 const uploadDatasetAndManifest = require("./steps/upload-dataset-and-manifest");
 const uploadFeatureDefs = require("./steps/upload-feature-defs");
@@ -39,7 +42,7 @@ const processDataset = async () => {
         })
     
     const datasetJson = await readDatasetInfo()
-    const megasetInfo = {
+    let megasetInfo = {
         title: "",
         name: "",
         publications: [],
@@ -48,16 +51,20 @@ const processDataset = async () => {
     };
         
     if (datasetJson.datasets) {
-        megasetInfo = {...datasetJson};
-        megasetInfo.datasets = megasetInfo.datasets.map(dataset => {
-            const data = await fsPromises.readFile(`${datasetReadFolder}/${dataset}`)
-            const jsonData = JSON.parse(data);
-            
-            const dataset = dataPrep.initialize(jsonData, schemas.datasetSchema)
-            dataset.production = false; // by default upload all datasets as a staging set
+        megasetInfo = {...datasetJson, production: false};
 
-            return dataset;
-        })
+        const dataArray = await Promise.all(
+            megasetInfo.datasets.map(async (datasetName) => {
+                const data = await fsPromises.readFile(`${datasetReadFolder}/${datasetName}`)
+                const jsonData = JSON.parse(data);
+                const dataset = dataPrep.initialize(jsonData, schemas.datasetSchema)
+                dataset.production = false; // by default upload all datasets as a staging set
+
+                return dataset;
+            })
+        )
+
+        megasetInfo.datasets = dataArray;
 
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
             merge: true
@@ -75,6 +82,8 @@ const processDataset = async () => {
             merge: true
         });
     }
+
+    return process.exit(0);
 
     const {
         name,
