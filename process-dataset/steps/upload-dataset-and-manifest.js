@@ -10,8 +10,6 @@ const uploadDatasetAndManifest = async (firebaseHandler, datasetJson, readFolder
     }
 
     const featureData = await readFeatureData();
-    const dataset = dataPrep.initialize(datasetJson, schemas.datasetSchema)
-    dataset.production = false; // by default upload all datasets as a staging set
     const manifest = dataPrep.initialize(datasetJson, schemas.manifestSchema)
     // will be updated when the data is uploaded
     manifest.cellLineDataPath = "";
@@ -19,15 +17,7 @@ const uploadDatasetAndManifest = async (firebaseHandler, datasetJson, readFolder
     manifest.featuresDataPath = "";
     manifest.featureDefsPath = "";
     manifest.featuresDisplayOrder = featureData.map(ele => ele.key)
-    const datasetCheck = dataPrep.validate(dataset, schemas.dataset)
     const manifestCheck = dataPrep.validate(manifest, schemas.manifest)
-    if (datasetCheck.valid) {
-        // upload dataset
-        await firebaseHandler.uploadDatasetDoc(dataset)
-    } else {
-        console.log(datasetCheck.error);
-        process.exit(1);
-    }
     if (manifestCheck.valid) {
         // upload manifest
         await firebaseHandler.uploadManifest(manifest)
