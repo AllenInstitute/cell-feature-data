@@ -54,11 +54,12 @@ const processDataset = async () => {
         megasetInfo = {...datasetJson, production: false};
 
         const dataArray = await Promise.all(
-            megasetInfo.datasets.map(async (datasetName) => {
-                const data = await fsPromises.readFile(`${datasetReadFolder}/${datasetName}`)
+            megasetInfo.datasets.map(async (datasetPath) => {
+                const data = await fsPromises.readFile(`${datasetReadFolder}/${datasetPath}`)
                 const jsonData = JSON.parse(data);
                 const dataset = dataPrep.initialize(jsonData, schemas.datasetSchema)
                 dataset.production = false; // by default upload all datasets as a staging set
+                dataset.id = `${dataset.name}_v${dataset.version}`;
 
                 return dataset;
             })
@@ -76,6 +77,7 @@ const processDataset = async () => {
         // TODO: factor out below so it doesn't repeat in above block too
         const dataset = dataPrep.initialize(datasetJson, schemas.datasetSchema)
         dataset.production = false; // by default upload all datasets as a staging set
+        dataset.id = `${dataset.name}_v${dataset.version}`;
         megasetInfo.datasets = [dataset]
 
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
@@ -84,56 +86,6 @@ const processDataset = async () => {
     }
 
     return process.exit(0);
+}
 
-    const {
-        name,
-        version,
-    } = datasetJson;
-    const firebaseHandler = new FirebaseHandler(name, version);
-    console.log("Dataset id:", firebaseHandler.id)
-    const fileNames = {
-        featureDefs: datasetJson.featureDefsPath,
-        featuresData: datasetJson.featuresDataPath,
-        cellLineData: datasetJson.cellLineDataPath,
-    }
-    for (const key in fileNames) {
-        if (Object.hasOwnProperty.call(fileNames, key)) {
-            if (!fileNames[key]) {
-                console.error("Missing file name:", key);
-                process.exit(1);
-            }
-        }
-    }
-
-    // 1. upload dataset description and manifest
-    const manifestRef = await uploadDatasetAndManifest(firebaseHandler, datasetJson, datasetReadFolder, fileNames.featureDefs);
-    // 2. check dataset feature defs for new features, upload them if needed
-    const featureDefRef = await uploadFeatureDefs(firebaseHandler, datasetReadFolder, fileNames.featureDefs);
-    // 3. upload cell lines TODO: add check if cell line is already there
-    const formattedCellLines = await uploadCellLines(firebaseHandler, datasetReadFolder, fileNames.cellLineData);
-    // 4. format file info, write to json locally
-    await formatAndWritePerCellJsons(datasetReadFolder, TEMP_FOLDER, fileNames.featuresData, formattedCellLines);
-    // 5. upload file info per cell
-    const fileInfoLocation = await uploadFileInfo(firebaseHandler, TEMP_FOLDER, skipFileInfoUpload === "true");
-    // 6. upload cell line subtotals
-    await uploadCellCountsPerCellLine(TEMP_FOLDER, firebaseHandler);
-    // 7. upload json to aws
-    const awsLocation = await uploadFileToS3(firebaseHandler.id, TEMP_FOLDER);
-    // 8. upload card image
-    const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image);
-    // 9. update dataset manifest with location for data
-    const updateToManifest = {
-        ...featureDefRef,
-        ...fileInfoLocation, 
-        ...awsLocation,
-    }
-    console.log("updating manifest", updateToManifest)
-    await firebaseHandler.updateDatasetDoc({
-        ...manifestRef,
-        ...awsImageLocation,
-    })
-    await firebaseHandler.updateManifest(updateToManifest)
-    process.exit(0)
-}    
-
-processDataset()
+processDataset();
