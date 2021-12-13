@@ -8,12 +8,13 @@ const {
 
 
 class FirebaseHandler {
-    constructor(id, name) {
+    constructor(id, name, megasetName="") {
         this.id = id;
         this.datasetName = name;
+        this.megasetName = megasetName;
         this.featureDefEndpoint = `dataset-data/feature-definitions/${this.datasetName}`;
         this.manifestEndpoint = "manifests";
-        this.datasetDescriptionEndpoint = `dataset-descriptions.${name}.datasets.${id}`;
+        this.datasetDescriptionEndpoint = "dataset-descriptions";
         this.cellLineDefEndpoint = "cell-line-def";
         this.cellFileInfoEndpoint = "cell-file-info";
         this.cellRef = firestore.collection('cell-data').doc(this.id);
@@ -42,8 +43,13 @@ class FirebaseHandler {
         return firestore.collection(this.manifestEndpoint).doc(this.id).set(data)
     }
 
-    updateDatasetDoc(data) {
-        return firestore.collection(this.datasetDescriptionEndpoint).update(data)
+    async updateDatasetDoc(data) {
+        const document = await firestore.collection(this.datasetDescriptionEndpoint).doc(this.megasetName).get().then(
+            doc => doc.data()
+        )
+        const datasets = document.datasets;
+        datasets[this.id] = {...datasets[this.id], ...data}
+        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.megasetName).update({datasets})
     }
 
     updateManifest(data) {

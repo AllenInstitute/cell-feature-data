@@ -78,7 +78,7 @@ const processDataset = async () => {
         });
 
         await Promise.all(Object.keys(megasetInfo.datasets).map(async (id) => {
-            await processSingleDataset(id, jsonDocs[id], skipFileInfoUpload)
+            await processSingleDataset(id, jsonDocs[id], skipFileInfoUpload, megasetInfo.name)
         }));
     } else {
         megasetInfo.title = datasetJson.title;

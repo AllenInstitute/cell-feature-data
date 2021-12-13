@@ -11,12 +11,12 @@ const FirebaseHandler = require('../firebase/firebase-handler');
 
 const TEMP_FOLDER = "./data";
 
-const processSingleDataset = async (id, jsonDoc, skipFileInfoUpload) => {
+const processSingleDataset = async (id, jsonDoc, skipFileInfoUpload, megasetName) => {
     const {
         name,
         datasetReadFolder
     } = jsonDoc;
-    const firebaseHandler = new FirebaseHandler(id, name);
+    const firebaseHandler = new FirebaseHandler(id, name, megasetName);
     console.log("Dataset id:", firebaseHandler.id)
     const fileNames = {
         featureDefs: jsonDoc.featureDefsPath,
