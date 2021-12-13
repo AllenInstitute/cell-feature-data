@@ -4,6 +4,7 @@
     // i.e same number of channels in same order? what if naming is inconsistent?
     "groups": [
         // names must be actual channel names, not display names?
+        // allow regexes?
         {"group":"Observed channels", "names": [
                 "CMDRP",
                 "EGFP",
@@ -20,7 +21,7 @@
             {"group":"Contour channels", "names": ["CON_Memb", "CON_DNA"]}
     ],
     "channelSettings":{
-        // by index or by name???
+        // by index or by name??? (allow regexes?)
             "0": { "color": "ffffff", "enabled":true, "displayName":"", "lut":["0", "255"] },
             "1": { "color": "00ffff", "enabled":true, "lut":["p50", "p98"] },
             "2": { "color": "808080", "enabled":true, "lut":["m105", "255"]},
