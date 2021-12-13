@@ -21,11 +21,11 @@
     ],
     "channelSettings":{
         // by index or by name???
-            "0": { color: "ffffff", enabled:true, displayName:"" },
-            "1": { color: "00ffff", enabled:true },
-            "2": { color: "808080", enabled:true },
-            "3": { color: "ff00ff" },
-            "4": { color: "00ff00" }
+            "0": { "color": "ffffff", "enabled":true, "displayName":"", "lut":["0", "255"] },
+            "1": { "color": "00ffff", "enabled":true, "lut":["p50", "p98"] },
+            "2": { "color": "808080", "enabled":true, "lut":["m105", "255"]},
+            "3": { "color": "ff00ff" },
+            "4": { "color": "00ff00" }
 },
     "maskChannelName": "SEG_Memb",
     // list of channel names to simply drop and never display
