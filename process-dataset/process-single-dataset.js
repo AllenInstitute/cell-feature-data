@@ -11,17 +11,17 @@ const FirebaseHandler = require('../firebase/firebase-handler');
 
 const TEMP_FOLDER = "./data";
 
-export const processSingleDataset = async (datasetJson) => {
+const processSingleDataset = async (id, jsonDoc, skipFileInfoUpload) => {
     const {
         name,
-        version,
-    } = datasetJson;
-    const firebaseHandler = new FirebaseHandler(name, version);
+        datasetReadFolder
+    } = jsonDoc;
+    const firebaseHandler = new FirebaseHandler(id, name);
     console.log("Dataset id:", firebaseHandler.id)
     const fileNames = {
-        featureDefs: datasetJson.featureDefsPath,
-        featuresData: datasetJson.featuresDataPath,
-        cellLineData: datasetJson.cellLineDataPath,
+        featureDefs: jsonDoc.featureDefsPath,
+        featuresData: jsonDoc.featuresDataPath,
+        cellLineData: jsonDoc.cellLineDataPath,
     }
     for (const key in fileNames) {
         if (Object.hasOwnProperty.call(fileNames, key)) {
@@ -33,7 +33,7 @@ export const processSingleDataset = async (datasetJson) => {
     }
 
     // 1. upload dataset description and manifest
-    const manifestRef = await uploadDatasetAndManifest(firebaseHandler, datasetJson, datasetReadFolder, fileNames.featureDefs);
+    const manifestRef = await uploadDatasetAndManifest(firebaseHandler, jsonDoc, datasetReadFolder, fileNames.featureDefs);
     // 2. check dataset feature defs for new features, upload them if needed
     const featureDefRef = await uploadFeatureDefs(firebaseHandler, datasetReadFolder, fileNames.featureDefs);
     // 3. upload cell lines TODO: add check if cell line is already there
@@ -41,13 +41,13 @@ export const processSingleDataset = async (datasetJson) => {
     // 4. format file info, write to json locally
     await formatAndWritePerCellJsons(datasetReadFolder, TEMP_FOLDER, fileNames.featuresData, formattedCellLines);
     // 5. upload file info per cell
-    const fileInfoLocation = await uploadFileInfo(firebaseHandler, TEMP_FOLDER, skipFileInfoUpload === "true");
+    const fileInfoLocation = await uploadFileInfo(firebaseHandler, TEMP_FOLDER, skipFileInfoUpload);
     // 6. upload cell line subtotals
     await uploadCellCountsPerCellLine(TEMP_FOLDER, firebaseHandler);
     // 7. upload json to aws
     const awsLocation = await uploadFileToS3(firebaseHandler.id, TEMP_FOLDER);
     // 8. upload card image
-    const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image);
+    const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, jsonDoc.image);
     // 9. update dataset manifest with location for data
     const updateToManifest = {
         ...featureDefRef,
@@ -61,3 +61,5 @@ export const processSingleDataset = async (datasetJson) => {
     })
     await firebaseHandler.updateManifest(updateToManifest)
 }
+
+module.exports = processSingleDataset;

@@ -14,7 +14,7 @@
         }
     ],
     "datasets": [
-        "fish/dataset.json",
-        "live/dataset.json"
+        "fish",
+        "live"
     ]
 }

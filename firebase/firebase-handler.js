@@ -8,12 +8,12 @@ const {
 
 
 class FirebaseHandler {
-    constructor(name, version) {
-        this.id = `${name}_v${version}`;
+    constructor(id, name) {
+        this.id = id;
         this.datasetName = name;
         this.featureDefEndpoint = `dataset-data/feature-definitions/${this.datasetName}`;
         this.manifestEndpoint = "manifests";
-        this.datasetDescriptionEndpoint = "dataset-descriptions";
+        this.datasetDescriptionEndpoint = `dataset-descriptions.${name}.datasets.${id}`;
         this.cellLineDefEndpoint = "cell-line-def";
         this.cellFileInfoEndpoint = "cell-file-info";
         this.cellRef = firestore.collection('cell-data').doc(this.id);
@@ -21,12 +21,6 @@ class FirebaseHandler {
 
     docExists(ref) {
         return ref.get().then(snap => snap.exists)
-    }
-
-    uploadDatasetDoc(data) {
-        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.id).set(data, {
-            merge: true
-        })
     }
 
     async uploadManifest(data) {
@@ -49,7 +43,7 @@ class FirebaseHandler {
     }
 
     updateDatasetDoc(data) {
-        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.id).update(data)
+        return firestore.collection(this.datasetDescriptionEndpoint).update(data)
     }
 
     updateManifest(data) {
