@@ -46,26 +46,28 @@ const processDataset = async () => {
         title: "",
         name: "",
         publications: [],
-        datasets: [],
+        datasets: {},
         production: false,
     };
         
     if (datasetJson.datasets) {
         megasetInfo = {...datasetJson, production: false};
 
-        const dataArray = await Promise.all(
+        megasetInfo.datasets = await Promise.all(
             megasetInfo.datasets.map(async (datasetPath) => {
                 const data = await fsPromises.readFile(`${datasetReadFolder}/${datasetPath}`)
                 const jsonData = JSON.parse(data);
                 const dataset = dataPrep.initialize(jsonData, schemas.datasetSchema)
                 dataset.production = false; // by default upload all datasets as a staging set
-                dataset.id = `${dataset.name}_v${dataset.version}`;
-
                 return dataset;
             })
-        )
-
-        megasetInfo.datasets = dataArray;
+        ).then(unpackedDatasets => {
+            return unpackedDatasets.reduce((acc, dataset) => {
+                const id = `${dataset.name}_v${dataset.version}`;
+                acc[id] = dataset;
+                return acc;
+            }, {})
+        })
 
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
             merge: true
@@ -77,8 +79,10 @@ const processDataset = async () => {
         // TODO: factor out below so it doesn't repeat in above block too
         const dataset = dataPrep.initialize(datasetJson, schemas.datasetSchema)
         dataset.production = false; // by default upload all datasets as a staging set
-        dataset.id = `${dataset.name}_v${dataset.version}`;
-        megasetInfo.datasets = [dataset]
+        const id = `${dataset.name}_v${dataset.version}`;
+        megasetInfo.datasets = {
+            [id]: dataset
+        }
 
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
             merge: true
