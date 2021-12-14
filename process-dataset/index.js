@@ -11,15 +11,14 @@ const args = process.argv.slice(2);
 console.log('Received: ', args);
 
 const inputFolder = args[0];
-const skipFileInfoUpload = args[1] === "true";
+const shouldSkipFileInfoUpload = args[1] === "true";
 
-const readDatasetInfo = async (folder) => {
+const readDatasetJson = async (folder) => {
     const data = await fsPromises.readFile(`${folder}/dataset.json`)
     return JSON.parse(data)
 }
 
-const processDataset = async () => {
-
+const processMegaset = async () => {
     if (!inputFolder) {
         console.log("NEED A DATASET FOLDER TO PROCESS")
         process.exit(1)
@@ -28,9 +27,9 @@ const processDataset = async () => {
     fsPromises.readdir(inputFolder)
         .catch ((error) => {
             console.log("COULDN'T READ DIRECTORY:", error)
-        })
+        }) 
     
-    const datasetJson = await readDatasetInfo(inputFolder)
+    // Top-level megaset data
     let megasetInfo = {
         title: "",
         name: "",
@@ -38,8 +37,10 @@ const processDataset = async () => {
         datasets: {},
         production: false,
     };
-        
-    if (datasetJson.datasets) {
+    
+    const datasetJson = await readDatasetJson(inputFolder);
+
+    if (datasetJson.datasets) { // Datasets are provided as a megaset
         const jsonDocs = {}
         megasetInfo = {...datasetJson, production: false};
 
@@ -66,9 +67,9 @@ const processDataset = async () => {
         });
 
         await Promise.all(Object.keys(megasetInfo.datasets).map(async (id) => {
-            await processSingleDataset(id, jsonDocs[id], skipFileInfoUpload, megasetInfo.name)
+            await processSingleDataset(id, jsonDocs[id], shouldSkipFileInfoUpload, megasetInfo.name)
         }));
-    } else {
+    } else { // A single dataset is provided
         // Make everything DRY
         megasetInfo.title = datasetJson.title;
         megasetInfo.name = datasetJson.name;
@@ -86,10 +87,10 @@ const processDataset = async () => {
             merge: true
         });
 
-        await processSingleDataset(id, datasetJson, skipFileInfoUpload, datasetJson.name);
+        await processSingleDataset(id, datasetJson, shouldSkipFileInfoUpload, datasetJson.name);
     }
 
     return process.exit(0);
 }
 
-processDataset();
+processMegaset();

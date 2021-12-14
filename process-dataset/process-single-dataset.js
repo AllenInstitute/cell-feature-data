@@ -11,7 +11,7 @@ const FirebaseHandler = require('../firebase/firebase-handler');
 
 const TEMP_FOLDER = "./data";
 
-const processSingleDataset = async (id, jsonDoc, skipFileInfoUpload, megasetName) => {
+const processSingleDataset = async (id, jsonDoc, shouldSkipFileInfoUpload, megasetName) => {
     const {
         name,
         datasetReadFolder
@@ -41,7 +41,7 @@ const processSingleDataset = async (id, jsonDoc, skipFileInfoUpload, megasetName
     // 4. format file info, write to json locally
     await formatAndWritePerCellJsons(datasetReadFolder, TEMP_FOLDER, fileNames.featuresData, formattedCellLines);
     // 5. upload file info per cell
-    const fileInfoLocation = await uploadFileInfo(firebaseHandler, TEMP_FOLDER, skipFileInfoUpload);
+    const fileInfoLocation = await uploadFileInfo(firebaseHandler, TEMP_FOLDER, shouldSkipFileInfoUpload);
     // 6. upload cell line subtotals
     await uploadCellCountsPerCellLine(TEMP_FOLDER, firebaseHandler);
     // 7. upload json to aws
