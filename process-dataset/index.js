@@ -3,28 +3,16 @@ const {
     firestore
 } = require('../firebase/setup-firebase');
 
-const uploadDatasetAndManifest = require("./steps/upload-dataset-and-manifest");
-const uploadFeatureDefs = require("./steps/upload-feature-defs");
-const uploadCellLines = require("./steps/upload-cell-lines");
-const formatAndWritePerCellJsons = require("./steps/write-per-cell-jsons");
-const uploadCellCountsPerCellLine = require("./steps/upload-cell-counts");
-const uploadFileInfo = require("./steps/upload-file-info");
-const uploadFileToS3 = require("./steps/upload-to-aws");
-const uploadDatasetImage = require("./steps/upload-dataset-image")
 const dataPrep = require("./data-validation/data-prep");
 const schemas = require("./data-validation/schema");
 const processSingleDataset = require("./process-single-dataset");
 
-const FirebaseHandler = require('../firebase/firebase-handler');
-
-const TEMP_FOLDER = "./data";
 const args = process.argv.slice(2);
 console.log('Received: ', args);
 
 const inputFolder = args[0];
 const skipFileInfoUpload = args[1] === "true";
 
-// TODO: make more generic (take in whatever path)
 const readDatasetInfo = async (folder) => {
     const data = await fsPromises.readFile(`${folder}/dataset.json`)
     return JSON.parse(data)
@@ -81,6 +69,8 @@ const processDataset = async () => {
             await processSingleDataset(id, jsonDocs[id], skipFileInfoUpload, megasetInfo.name)
         }));
     } else {
+        // Call processSingleDataset (point to dataset-2-1 to test)
+        // Make everything DRY
         megasetInfo.title = datasetJson.title;
         megasetInfo.name = datasetJson.name;
 
