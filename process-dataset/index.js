@@ -69,10 +69,10 @@ const processDataset = async () => {
             await processSingleDataset(id, jsonDocs[id], skipFileInfoUpload, megasetInfo.name)
         }));
     } else {
-        // Call processSingleDataset (point to dataset-2-1 to test)
         // Make everything DRY
         megasetInfo.title = datasetJson.title;
         megasetInfo.name = datasetJson.name;
+        datasetJson.datasetReadFolder = inputFolder;
 
         // TODO: factor out below so it doesn't repeat in above block too
         const dataset = dataPrep.initialize(datasetJson, schemas.datasetSchema)
@@ -85,6 +85,8 @@ const processDataset = async () => {
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
             merge: true
         });
+
+        await processSingleDataset(id, datasetJson, skipFileInfoUpload, datasetJson.name);
     }
 
     return process.exit(0);
