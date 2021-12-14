@@ -1,34 +1,24 @@
 {
-    // big questions:
-    // * do we require channel data to be same for every image in data set?
-    // i.e same number of channels in same order? what if naming is inconsistent?
     "groups": [
-        // names must be actual channel names, not display names?
-        // allow regexes?
-        {"group":"Observed channels", "names": [
-                "CMDRP",
-                "EGFP",
-                "mtagRFPT",
-                "H3342",
-                "H3342_3",
-                "Bright_100",
-                "Bright_100X",
-                "TL 100x",
-                "TL_100x",
-                "Bright_2"
-            ]},
-            {"group": "Segmentation channels", "names": ["SEG_STRUCT", "SEG_Memb", "SEG_DNA"]},
-            {"group":"Contour channels", "names": ["CON_Memb", "CON_DNA"]}
+        {"name":"Observed channels", "channels": [
+            {"name": "Membrane", "match": ["/(CMDRP)/"], "color": "E2CDB3", "enabled":true, "lut":["p50","p98"]},
+            {"name": "Labeled structure", "match": ["/(EGFP)|(RFPT)/"], "color": "6FBA11", "enabled":true, "lut":["p50","p98"]},
+            {"name": "DNA", "match": ["/(H3342)/"], "color": "8DA3C0", "enabled":true, "lut":["p50","p98"]},
+            {"name": "Bright field", "match": ["/(100)|(Bright)/"], "color": "F5F1CB", "enabled":false, "lut":["p50","p98"]}
+        ]},
+        {"name":"Segmentation channels", "channels": [
+            {"name": "Labeled structure", "match": ["/(SEG_STRUCT)/"], "color": "E0E3D1", "enabled":false, "lut":["p50","p98"]},
+            {"name": "Membrane", "match": ["/(SEG_Memb)/"], "color": "DD9BF5", "enabled":false, "lut":["p50","p98"]},
+            {"name": "DNA", "match": ["/(SEG_DNA)/"], "color": "E3F4F5", "enabled":false, "lut":["p50","p98"]}
+        ]},
+        {"name":"Contour channels", "channels": [
+            {"name": "Membrane", "match": ["/(CON_Memb)/"], "color": "FF6200", "enabled":false, "lut":["p50","p98"]},
+            {"name": "DNA", "match": ["/(CON_DNA)/"], "color": "F7DB78", "enabled":false, "lut":["p50","p98"]}
+        ]},
+        // TODO how to handle others / unspecified?
+        {
+            "name":"Others", "channels": []
+        }
     ],
-    "channelSettings":{
-        // by index or by name??? (allow regexes?)
-            "0": { "color": "ffffff", "enabled":true, "displayName":"", "lut":["0", "255"] },
-            "1": { "color": "00ffff", "enabled":true, "lut":["p50", "p98"] },
-            "2": { "color": "808080", "enabled":true, "lut":["m105", "255"]},
-            "3": { "color": "ff00ff" },
-            "4": { "color": "00ff00" }
-},
-    "maskChannelName": "SEG_Memb",
-    // list of channel names to simply drop and never display
-    "ignore": []
+    "maskChannelName": "SEG_Memb"
 }    
