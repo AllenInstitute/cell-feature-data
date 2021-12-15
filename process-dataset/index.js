@@ -18,6 +18,16 @@ const readDatasetJson = async (folder) => {
     return JSON.parse(data)
 }
 
+const getDatasetInfo = (datasetJson) => {
+    const datasetInfo = dataPrep.initialize(datasetJson, schemas.datasetSchema)
+    datasetInfo.production = false; // by default upload all datasets as a staging set
+    return datasetInfo;
+}
+
+const getDatasetId = (datasetInfo) => {
+    return `${datasetInfo.name}_v${datasetInfo.version}`;
+}
+
 const processMegaset = async () => {
     if (!inputFolder) {
         console.log("NEED A DATASET FOLDER TO PROCESS")
@@ -59,9 +69,8 @@ const processMegaset = async () => {
             // Turn array of datasets into an object (megasetInfo.datasets) with dataset ids
             // as keys and objects containing pared-down info about individual datasets as values
             return datasetJsonArr.reduce((acc, datasetJson) => {
-                const datasetInfo = dataPrep.initialize(datasetJson, schemas.datasetSchema)
-                const id = `${datasetInfo.name}_v${datasetInfo.version}`;
-                datasetInfo.production = false; // by default upload all datasets as a staging set
+                const datasetInfo = getDatasetInfo(datasetJson);
+                const id = getDatasetId(datasetInfo);
                 acc[id] = datasetInfo;
                 // Also save the entire datasetJson with the same id to datasetJsons, for uploading
                 // to AWS
@@ -74,23 +83,24 @@ const processMegaset = async () => {
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
             merge: true
         });
-
         // Process the rest of data for each dataset in the megaset
         await Promise.all(Object.keys(megasetInfo.datasets).map(async (id) => {
             await processSingleDataset(id, datasetJsons[id], shouldSkipFileInfoUpload, megasetInfo.name)
         }));
-    } else { // A single dataset is provided
-        // Make everything DRY
+    } else { 
+        // A single dataset is provided (no nested datasets). It will be saved as a megaset with
+        // just one dataset in it. 
+        
+        // Do the same processing as for a real megaset, but much simpler since all data is
+        // contained in the top-level dataset.json
         megasetInfo.title = topLevelJson.title;
         megasetInfo.name = topLevelJson.name;
         topLevelJson.datasetReadFolder = inputFolder;
 
-        // TODO: factor out below so it doesn't repeat in above block too
-        const dataset = dataPrep.initialize(topLevelJson, schemas.datasetSchema)
-        dataset.production = false; // by default upload all datasets as a staging set
-        const id = `${dataset.name}_v${dataset.version}`;
+        const datasetInfo = getDatasetInfo(topLevelJson);
+        const id = getDatasetId(datasetInfo);
         megasetInfo.datasets = {
-            [id]: dataset
+            [id]: datasetInfo
         }
 
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
