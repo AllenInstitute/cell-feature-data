@@ -11,17 +11,17 @@ const FirebaseHandler = require('../firebase/firebase-handler');
 
 const TEMP_FOLDER = "./data";
 
-const processSingleDataset = async (id, jsonDoc, shouldSkipFileInfoUpload, megasetName) => {
+const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, megasetName) => {
     const {
         name,
         datasetReadFolder
-    } = jsonDoc;
+    } = datasetJson;
     const firebaseHandler = new FirebaseHandler(id, name, megasetName);
     console.log("Dataset id:", firebaseHandler.id)
     const fileNames = {
-        featureDefs: jsonDoc.featureDefsPath,
-        featuresData: jsonDoc.featuresDataPath,
-        cellLineData: jsonDoc.cellLineDataPath,
+        featureDefs: datasetJson.featureDefsPath,
+        featuresData: datasetJson.featuresDataPath,
+        cellLineData: datasetJson.cellLineDataPath,
     }
     for (const key in fileNames) {
         if (Object.hasOwnProperty.call(fileNames, key)) {
@@ -33,7 +33,7 @@ const processSingleDataset = async (id, jsonDoc, shouldSkipFileInfoUpload, megas
     }
 
     // 1. upload dataset description and manifest
-    const manifestRef = await uploadDatasetAndManifest(firebaseHandler, jsonDoc, datasetReadFolder, fileNames.featureDefs);
+    const manifestRef = await uploadDatasetAndManifest(firebaseHandler, datasetJson, datasetReadFolder, fileNames.featureDefs);
     // 2. check dataset feature defs for new features, upload them if needed
     const featureDefRef = await uploadFeatureDefs(firebaseHandler, datasetReadFolder, fileNames.featureDefs);
     // 3. upload cell lines TODO: add check if cell line is already there
@@ -47,7 +47,7 @@ const processSingleDataset = async (id, jsonDoc, shouldSkipFileInfoUpload, megas
     // 7. upload json to aws
     const awsLocation = await uploadFileToS3(firebaseHandler.id, TEMP_FOLDER);
     // 8. upload card image
-    const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, jsonDoc.image);
+    const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image);
     // 9. update dataset manifest with location for data
     const updateToManifest = {
         ...featureDefRef,
