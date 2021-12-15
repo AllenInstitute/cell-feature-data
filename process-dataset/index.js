@@ -18,14 +18,16 @@ const readDatasetJson = async (folder) => {
     return JSON.parse(data)
 }
 
+// Extract out just the fields that will go into Firebase under 
+// dataset-descriptions/{megaset name}
 const getDatasetInfo = (datasetJson) => {
     const datasetInfo = dataPrep.initialize(datasetJson, schemas.datasetSchema)
     datasetInfo.production = false; // by default upload all datasets as a staging set
     return datasetInfo;
 }
 
-const getDatasetId = (datasetInfo) => {
-    return `${datasetInfo.name}_v${datasetInfo.version}`;
+const getDatasetId = (dataset) => {
+    return `${dataset.name}_v${dataset.version}`;
 }
 
 const processMegaset = async () => {
@@ -48,10 +50,10 @@ const processMegaset = async () => {
         production: false,
     };
     
-    // Read in the dataset.json at the top level of the provided directory as an object
+    // Read in the dataset.json at the top level of the provided directory
     const topLevelJson = await readDatasetJson(inputFolder);
-
-    if (topLevelJson.datasets) { // Datasets are provided as a megaset
+    
+    if (topLevelJson.datasets) { // Datasets are provided as a megaset (nested datasets exist)
         const datasetJsons = {};
         megasetInfo = {...topLevelJson, production: false};
         
@@ -83,8 +85,9 @@ const processMegaset = async () => {
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
             merge: true
         });
-        // Process the rest of data for each dataset in the megaset
-        await Promise.all(Object.keys(megasetInfo.datasets).map(async (id) => {
+        // For each dataset in the megaset, process the rest of the data
+        const datasetIds = Object.keys(megasetInfo.datasets);
+        await Promise.all(datasetIds.map(async (id) => {
             await processSingleDataset(id, datasetJsons[id], shouldSkipFileInfoUpload, megasetInfo.name)
         }));
     } else { 
@@ -106,7 +109,6 @@ const processMegaset = async () => {
         await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
             merge: true
         });
-
         await processSingleDataset(id, topLevelJson, shouldSkipFileInfoUpload, topLevelJson.name);
     }
 
