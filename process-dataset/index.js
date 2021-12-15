@@ -41,7 +41,7 @@ const processMegaset = async () => {
             console.log("COULDN'T READ DIRECTORY:", error)
         }) 
     
-    // Top-level megaset structure
+    // Top-level megaset structure for Firebase
     let megasetInfo = {
         title: "",
         name: "",
@@ -49,12 +49,15 @@ const processMegaset = async () => {
         datasets: {},
         production: false,
     };
+
+    // This will hold all data from dataset.json files for individual datasets, 
+    // with dataset IDs as keys
+    const datasetJsons = {};
     
     // Read in the dataset.json at the top level of the provided directory
     const topLevelJson = await readDatasetJson(inputFolder);
     
     if (topLevelJson.datasets) { // Datasets are provided as a megaset (nested datasets exist)
-        const datasetJsons = {};
         megasetInfo = {...topLevelJson, production: false};
         
         // Unpack individual datasets and save data as megasetInfo.datasets and to datasetJsons
@@ -80,16 +83,6 @@ const processMegaset = async () => {
                 return acc;
             }, {})
         })
-
-        // Upload the dataset description (megasetInfo) to Firebase
-        await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
-            merge: true
-        });
-        // For each dataset in the megaset, process the rest of the data
-        const datasetIds = Object.keys(megasetInfo.datasets);
-        await Promise.all(datasetIds.map(async (id) => {
-            await processSingleDataset(id, datasetJsons[id], shouldSkipFileInfoUpload, megasetInfo.name)
-        }));
     } else { 
         // A single dataset is provided (no nested datasets). It will be saved as a megaset with
         // just one dataset in it. 
@@ -105,12 +98,18 @@ const processMegaset = async () => {
         megasetInfo.datasets = {
             [id]: datasetInfo
         }
-
-        await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
-            merge: true
-        });
-        await processSingleDataset(id, topLevelJson, shouldSkipFileInfoUpload, topLevelJson.name);
+        datasetJsons[id] = topLevelJson;
     }
+
+    // Upload the dataset description (megasetInfo) to Firebase
+    await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
+        merge: true
+    });
+    // For each dataset in the megaset, process the rest of the data
+    const datasetIds = Object.keys(megasetInfo.datasets);
+    await Promise.all(datasetIds.map(async (id) => {
+        await processSingleDataset(id, datasetJsons[id], shouldSkipFileInfoUpload, megasetInfo.name)
+    }));
 
     return process.exit(0);
 }
