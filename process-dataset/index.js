@@ -102,9 +102,12 @@ const processMegaset = async () => {
     }
 
     // Upload the dataset description (megasetInfo) to Firebase
+    console.log("uploading data description...")
     await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
         merge: true
     });
+    console.log("uploading data description complete");
+    
     // For each dataset in the megaset, process the rest of the data
     const datasetIds = Object.keys(megasetInfo.datasets);
     await Promise.all(datasetIds.map(async (id) => {

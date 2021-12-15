@@ -1,4 +1,4 @@
-const uploadDatasetAndManifest = require("./steps/upload-dataset-and-manifest");
+const uploadDatasetAndManifest = require("./steps/upload-manifest");
 const uploadFeatureDefs = require("./steps/upload-feature-defs");
 const uploadCellLines = require("./steps/upload-cell-lines");
 const formatAndWritePerCellJsons = require("./steps/write-per-cell-jsons");
@@ -32,7 +32,7 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
         }
     }
 
-    // 1. upload dataset description and manifest
+    // 1. upload manifest
     const manifestRef = await uploadDatasetAndManifest(firebaseHandler, datasetJson, datasetReadFolder, fileNames.featureDefs);
     // 2. check dataset feature defs for new features, upload them if needed
     const featureDefRef = await uploadFeatureDefs(firebaseHandler, datasetReadFolder, fileNames.featureDefs);

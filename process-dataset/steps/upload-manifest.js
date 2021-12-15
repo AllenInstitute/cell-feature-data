@@ -2,8 +2,8 @@ const fsPromises = require('fs').promises;
 const dataPrep = require("../data-validation/data-prep");
 const schemas = require("../data-validation/schema");
 
-const uploadDatasetAndManifest = async (firebaseHandler, datasetJson, readFolder, featureDefsFileName) => {
-    console.log("uploading dataset description and manifest...");
+const uploadManifest = async (firebaseHandler, datasetJson, readFolder, featureDefsFileName) => {
+    console.log("uploading manifest...");
     const readFeatureData = async () => {
         const data = await fsPromises.readFile(`${readFolder}/${featureDefsFileName}`)
         return JSON.parse(data)
@@ -25,10 +25,10 @@ const uploadDatasetAndManifest = async (firebaseHandler, datasetJson, readFolder
         console.log(manifestCheck.error)
         process.exit(1);
     }
-    console.log("uploading dataset description and manifest complete");
+    console.log("uploading manifest complete");
     return {
         manifest: `${firebaseHandler.manifestEndpoint}/${firebaseHandler.id}`
     }
 }
 
-module.exports = uploadDatasetAndManifest;
+module.exports = uploadManifest;
