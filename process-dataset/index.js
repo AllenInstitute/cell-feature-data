@@ -46,6 +46,8 @@ const processMegaset = async () => {
         title: "",
         name: "",
         publications: [],
+        // User provides datasets as an array of dataset names, but we will be
+        // transforming it to an object with ids as keys
         datasets: {},
         production: false,
     };
