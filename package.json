@@ -12,7 +12,8 @@
   "scripts": {
     "test": "jest --env node --forceExit",
     "process-dataset": "node process-dataset",
-    "upload-image": "node upload-dataset-image"
+    "upload-image": "node upload-dataset-image",
+    "release-dataset": "node release-dataset"
   },
   "repository": {
     "type": "git",

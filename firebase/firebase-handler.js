@@ -8,9 +8,10 @@ const {
 
 
 class FirebaseHandler {
-    constructor(name, version) {
-        this.id = `${name}_v${version}`;
+    constructor(id, name, megasetName="") {
+        this.id = id;
         this.datasetName = name;
+        this.megasetName = megasetName;
         this.featureDefEndpoint = `dataset-data/feature-definitions/${this.datasetName}`;
         this.manifestEndpoint = "manifests";
         this.datasetDescriptionEndpoint = "dataset-descriptions";
@@ -21,12 +22,6 @@ class FirebaseHandler {
 
     docExists(ref) {
         return ref.get().then(snap => snap.exists)
-    }
-
-    uploadDatasetDoc(data) {
-        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.id).set(data, {
-            merge: true
-        })
     }
 
     async uploadManifest(data) {
@@ -48,8 +43,13 @@ class FirebaseHandler {
         return firestore.collection(this.manifestEndpoint).doc(this.id).set(data)
     }
 
-    updateDatasetDoc(data) {
-        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.id).update(data)
+    async updateDatasetDoc(data) {
+        const document = await firestore.collection(this.datasetDescriptionEndpoint).doc(this.megasetName).get().then(
+            doc => doc.data()
+        )
+        const datasets = document.datasets;
+        datasets[this.id] = {...datasets[this.id], ...data}
+        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.megasetName).update({datasets})
     }
 
     updateManifest(data) {

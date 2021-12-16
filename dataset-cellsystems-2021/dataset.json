@@ -1,0 +1,20 @@
+{
+    "title": "Structural organization and gene expression in hiPSC-derived cardiomyocytes",
+    "name": "cellsystems",
+    "publications": [
+        {
+            "title": "",
+            "url": "",
+            "citation": ""
+        },
+        {
+            "title": "",
+            "url": "",
+            "citation": ""
+        }
+    ],
+    "datasets": [
+        "fish",
+        "live"
+    ]
+}
