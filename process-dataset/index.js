@@ -77,8 +77,7 @@ const processMegaset = async () => {
                 const datasetInfo = getDatasetInfo(datasetJson);
                 const id = getDatasetId(datasetInfo);
                 acc[id] = datasetInfo;
-                // Also save the entire datasetJson with the same id to datasetJsons, for uploading
-                // to AWS
+                // Also save the entire datasetJson with the same id to datasetJsons, which will be used in the "process-one-dataset" script to upload and save the rest of the data
                 datasetJsons[id] = datasetJson;
                 return acc;
             }, {})
