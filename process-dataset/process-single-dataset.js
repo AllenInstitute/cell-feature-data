@@ -22,6 +22,7 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
         featureDefs: datasetJson.featureDefsPath,
         featuresData: datasetJson.featuresDataPath,
         cellLineData: datasetJson.cellLineDataPath,
+        viewerSettingsData: datasetJson.viewerSettingsPath,
     }
     for (const key in fileNames) {
         if (Object.hasOwnProperty.call(fileNames, key)) {
