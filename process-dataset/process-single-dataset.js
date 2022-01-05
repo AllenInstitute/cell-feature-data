@@ -4,8 +4,8 @@ const uploadCellLines = require("./steps/upload-cell-lines");
 const formatAndWritePerCellJsons = require("./steps/write-per-cell-jsons");
 const uploadCellCountsPerCellLine = require("./steps/upload-cell-counts");
 const uploadFileInfo = require("./steps/upload-file-info");
-const uploadFileToS3 = require("./steps/upload-to-aws");
-const uploadViewerSettingsToS3 = require("./steps/upload-viewer-settings");
+const uploadFeaturesFileToS3 = require("./steps/upload-features-to-aws");
+const uploadFileToS3 = require("./steps/upload-file-to-aws");
 const uploadDatasetImage = require("./steps/upload-dataset-image");
 
 const FirebaseHandler = require('../firebase/firebase-handler');
@@ -47,9 +47,9 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
     // 6. upload cell line subtotals
     await uploadCellCountsPerCellLine(TEMP_FOLDER, firebaseHandler);
     // 7. upload json to aws
-    const awsLocation = await uploadFileToS3(firebaseHandler.id, TEMP_FOLDER);
+    const awsLocation = await uploadFeaturesFileToS3(firebaseHandler.id, TEMP_FOLDER);
     // 8. upload viewer settings json to aws
-    const awsViewerSettingsLocation = await uploadViewerSettingsToS3(firebaseHandler.id, datasetReadFolder, fileNames.viewerSettingsData);
+    const awsViewerSettingsLocation = await uploadFileToS3(firebaseHandler.id, datasetReadFolder, fileNames.viewerSettingsData);
     // 9. upload card image
     const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image);
     // 10. update dataset manifest with location for data
