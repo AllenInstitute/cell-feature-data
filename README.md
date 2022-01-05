@@ -6,7 +6,7 @@
 - featureDefsPath: path to a json describing the measured features in this dataset, *the order of this document has to match the order of the values in the `featuresData` file. Also if no displayOrder is given it will be used as the display order on the website. *
 - featuresDataPath: path to a json listing the per cell data
 - cellLineDataPath: path to a json of the cell line definitions
-
+- viewerSettingsPath: path to a json with settings for volume data channels in the 3d viewer
 For more on what these files should look like, look at `process-dataset/data-validation/schema.js`
 
 ### Needed in .env file:
