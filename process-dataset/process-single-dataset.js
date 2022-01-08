@@ -57,7 +57,7 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
         ...featureDefRef,
         ...fileInfoLocation,
         ...awsLocation,
-        ...{viewerSettingsPath: awsViewerSettingsLocation}
+        viewerSettingsPath: awsViewerSettingsLocation
     }
     console.log("updating manifest", updateToManifest)
     await firebaseHandler.updateDatasetDoc({
