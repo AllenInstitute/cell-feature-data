@@ -14,6 +14,7 @@
   "featureDefsPath": "feature_defs.json",
   "featuresDataPath": "cell_feature_analysis_live.json",
   "cellLineDataPath": "cell_lines.json",
+  "viewerSettingsPath": "images.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-live.1/Cell-Viewer_Thumbnails",
   "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-live_1",

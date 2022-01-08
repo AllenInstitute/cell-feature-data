@@ -37,6 +37,7 @@ class FirebaseHandler {
             delete data.albumPath
             delete data.featuresDataPath
             delete data.featureDefsPath
+            delete data.viewerSettingsPath
             return firestore.collection(this.manifestEndpoint).doc(this.id).update(data)
 
         }

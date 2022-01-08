@@ -72,6 +72,10 @@ const manifestSchema = {
             "description": "path to the feature def collection",
             "type": "string",
         },
+        "viewerSettingsPath": {
+            "description": "path to image per-channel settings for the 3d viewer",
+            "type": "string",
+        },
         "albumPath": {
             "description": "collection name of the album data",
             "type": "string",
@@ -112,6 +116,7 @@ const manifestSchema = {
     "required": [
         "featuresDataPath",
         "cellLineDataPath",
+        "viewerSettingsPath",
         "albumPath",
         "thumbnailRoot",
         "downloadRoot",
