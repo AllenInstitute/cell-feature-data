@@ -4,7 +4,7 @@
             {"match":0, "color":"ff00ff", "enabled": false},
             {"match":1, "color":"ffffff", "enabled": true},
             {"match":2, "color":"00ffff", "enabled": true},
-            {"match":3, "color":"808080", "enabled": false},
+            {"match":3, "color":"808080", "enabled": false}
         ]}
     ]
 }
