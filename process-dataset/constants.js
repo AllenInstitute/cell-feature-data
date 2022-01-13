@@ -13,7 +13,7 @@ const TEMP_LOCAL_CELL_FEATURE_JSON = "cell-feature-analysis.json";
 const FILE_INFO_KEYS = [
     CELL_ID_KEY,
     FOV_ID_KEY,
-    CELL_LINE_NAME_KEY,
+    "groupBy",
     "thumbnailPath",
     "volumeviewerPath",
     "fovThumbnailPath",

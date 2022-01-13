@@ -92,17 +92,73 @@ const manifestSchema = {
             "description": "Root url for 3d images",
             "type": "string",
         },
-        "defaultXAxis": {
-            "description": "Default feature to plot on x axis",
-            "type": "string",
+        "xAxis": {
+            "description": "Settings for the x axis",
+            "type": "object",
+            "properties": {
+                "default": {
+                    "description": "Default feature key for the axis",
+                    "type": "string",
+                },
+                "exclude": {
+                    "description": "Optional list of feature keys to exclude",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
         },
-        "defaultYAxis": {
-            "description": "Default feature to plot on y axis",
-            "type": "string",
+        "yAxis": {
+            "description": "Settings for the y axis",
+            "type": "object",
+            "properties": {
+                "default": {
+                    "description": "Default feature key for the axis",
+                    "type": "string",
+                },
+                "exclude": {
+                    "description": "Optional list of feature keys to exclude",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
         },
-        "defaultColorBy": {
-            "description": "Default feature to color the data by",
-            "type": "string",
+        "colorBy": {
+            "description": "Settings for the color by menu",
+            "type": "object",
+            "properties": {
+                "default": {
+                    "description": "Default feature key to color the data by",
+                    "type": "string",
+                },
+                "exclude": {
+                    "description": "Optional list of feature keys to exclude",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "groupBy": {
+            "description": "Settings for the grouping menu",
+            "type": "object",
+            "properties": {
+                "default": {
+                    "description": "Default feature key for the group menu",
+                    "type": "string",
+                },
+                "exclude": {
+                    "description": "Optional list of feature keys to exclude",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
         },
         "featuresDisplayOrder": {
             "description": "Ordered array of feature keys for display on front end",
@@ -121,8 +177,10 @@ const manifestSchema = {
         "thumbnailRoot",
         "downloadRoot",
         "volumeViewerDataRoot",
-        "defaultXAxis",
-        "defaultYAxis",
+        "xAxis",
+        "yAxis",
+        "groupBy",
+        "colorBy",
         "featuresDisplayOrder",
         "featuresDataOrder"
     ],
@@ -163,8 +221,7 @@ const featureDefSchema = {
         "options": {
             "description": "For discrete features, display items for each value",
             "type": "object",
-        },
-
+        }
     },
     "required": [
         "displayName",
@@ -194,8 +251,8 @@ const fileInfoSchema = {
                 "description": "Field of view cell came from",
                 "type": ["number", "string"]
             },
-            "CellLineName": {
-                "description": "Id of cell line",
+            "groupBy": {
+                "description": "Id of feature the data is grouped by by default",
                 "type": "string",
             },
             "thumbnailPath": {
@@ -219,7 +276,7 @@ const fileInfoSchema = {
         "required": [
             "CellId",
             "FOVId",
-            "CellLineName",
+            "groupBy",
             "volumeviewerPath",
         ],
     }

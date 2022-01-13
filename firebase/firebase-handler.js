@@ -110,6 +110,13 @@ class FirebaseHandler {
 
     }
 
+    updateFeatureCount(feature, option, count) {
+        const update = {
+            [`options.${option}.count`] : count
+        }
+        return firestore.collection(this.featureDefEndpoint).doc(feature).update(update)
+    }
+
     uploadArrayUsingKeys(array, collectionName, docKey) {
         return Promise.all(array.map(async (ele) => {
             const doc = await firestore.collection(collectionName).doc(ele[docKey]).get()

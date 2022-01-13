@@ -6,24 +6,21 @@ const {
     TEMP_LOCAL_FILE_INFO_JSON
 } = require("../constants");
 
-const uploadCellCountsPerCellLine = async (readFolder, firebaseHandler) => {
+const uploadCellCountsPerCellLine = async (readFolder, firebaseHandler, defaultGroupBy) => {
     console.log("uploading cell line counts... ")
     const data = await fsPromises.readFile(`${readFolder}/${TEMP_LOCAL_FILE_INFO_JSON}`);
     const json = JSON.parse(data);
     const counts = json.reduce((acc, ele) => {
 
-        const cellLine = ele.CellLineName;
-        if (!acc[cellLine]) {
-            acc[cellLine] = 0;
+        const groupBy = ele.groupBy;
+        if (!acc[groupBy]) {
+            acc[groupBy] = 0;
         }
-        acc[cellLine]++;
+        acc[groupBy]++;
         return acc;
     }, {})
     map(counts, (value, key) => {
-
-        firebaseHandler.cellRef.collection(firebaseHandler.cellLineDefEndpoint).doc(key).update({
-            cellCount: value
-        })
+        firebaseHandler.updateFeatureCount(defaultGroupBy, key, value)
     })
     console.log("uploading cell line counts complete ")
 

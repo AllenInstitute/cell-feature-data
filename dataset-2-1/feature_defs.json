@@ -196,5 +196,137 @@
     "unit": "std",
     "key": "shape-mode-8",
     "discrete": false
+  },
+  {
+    "key": "cell-line",
+    "displayName": "Labeled Structure",
+    "description": "Name of the cellular structure that has been fluorescently labeled in each cell line",
+    "tooltip": "Name of the cellular structure that has been fluorescently labeled in each cell line",
+    "discrete": true,
+    "options": {
+      "5": {
+        "color": "#77207C",
+        "name": "Matrix adhesions",
+        "key": "Paxillin"
+      },
+      "7": {
+        "color": "#FFB1FF",
+        "name": "Actin filaments",
+        "key": "Alpha-actinin-1"
+      },
+      "10": {
+        "color": "#FFFFB5",
+        "name": "Endoplasmic reticulum",
+        "key": "Sec61 beta"
+      },
+      "11": {
+        "color": "#FFD184",
+        "name": "Mitochondria",
+        "key": "Tom20"
+      },
+      "12": {
+        "color": "#6B4500",
+        "name": "Microtubules",
+        "key": "Alpha-tubulin"
+      },
+      "13": {
+        "color": "#084AE7",
+        "name": "Nuclear envelope",
+        "key": "Lamin B1"
+      },
+      "14": {
+        "color": "#A9D1E5",
+        "name": "Nucleolus (Dense Fibrillar Component)",
+        "key": "Fibrillarin"
+      },
+      "16": {
+        "color": "#FFB1FF",
+        "name": "Actin filaments",
+        "key": "Beta-actin"
+      },
+      "17": {
+        "color": "#A850E8",
+        "name": "Desmosomes",
+        "key": "Desmoplakin"
+      },
+      "22": {
+        "color": "#AD952A",
+        "name": "Lysosome",
+        "key": "LAMP-1"
+      },
+      "23": {
+        "color": "#A850D4",
+        "name": "Tight junctions",
+        "key": "Tight junction ZO-1"
+      },
+      "24": {
+        "color": "#FF82FF",
+        "name": "Actomyosin bundles",
+        "key": "Non-muscle myosin heavy chain IIB"
+      },
+      "25": {
+        "color": "#B7952A",
+        "name": "Golgi",
+        "key": "Sialyltransferase 1"
+      },
+      "32": {
+        "color": "#9D7000",
+        "name": "Centrosome",
+        "key": "Centrin-2"
+      },
+      "33": {
+        "color": "#FFD16E",
+        "name": "Peroxisomes",
+        "key": "Peroxisomal membrane protein PMP34"
+      },
+      "40": {
+        "color": "#FFD150",
+        "name": "Endosomes",
+        "key": "Ras-related protein Rab-5A"
+      },
+      "53": {
+        "color": "#A850C0",
+        "name": "Gap junctions",
+        "key": "Connexin-43"
+      },
+      "54": {
+        "color": "#FFD2FF",
+        "name": "Plasma membrane",
+        "key": "CAAX domain of K-Ras"
+      },
+      "57": {
+        "color": "#88D1E5",
+        "name": "Nucleolus (Granular Component)",
+        "key": "Nucleophosmin"
+      },
+      "58": {
+        "color": "#CB1CCC",
+        "name": "Adherens junctions",
+        "key": "Beta-catenin"
+      },
+      "61": {
+        "color": "#305098",
+        "name": "Heterochromatin",
+        "key": "Histone H2B type 1-J"
+      },
+      "68": {
+        "color": "#306598",
+        "name": "Cohesin",
+        "key": "SMC protein 1A"
+      },
+      "69": {
+        "color": "#0840E7",
+        "name": "Nuclear pores",
+        "key": "Nucleoporin Nup153"
+      },
+      "94": {
+        "color": "#3292C9",
+        "name": "RNA Speckles",
+        "key": "SON"
+      }
+    },
+    "exclude": [
+      "plot"
+    ]
   }
 ]

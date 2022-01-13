@@ -19,10 +19,27 @@
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v1.4.0/Cell-Viewer_Thumbnails",
   "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellviewer-1-4",
   "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v1.4.0/Cell-Viewer_Thumbnails",
-  "defaultXAxis": "cellular-volume",
-  "defaultYAxis": "nuclear-volume",
+  "xAxis": {
+    "default": "cellular-volume",
+    "exclude": [
+      "cell-line"
+    ]
+  },
+  "yAxis": {
+    "default": "nuclear-volume",
+    "exclude": [
+      "cell-line"
+    ]
+  },
+  "colorBy": {
+    "default": "cell-line"
+  },
+  "groupBy": {
+    "default": "cell-line"
+  },
   "featuresDisplayOrder": [],
   "featuresDataOrder": [
+            "cell-line",
             "apical-proximity",
             "anaphase-segmentation-complete",
             "cell-surface-area",

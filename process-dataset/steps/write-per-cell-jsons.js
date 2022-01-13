@@ -15,7 +15,7 @@ const {
 } = require("../constants");
 
 
-const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFileName, cellLines) => {
+const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFileName, featureDefs, defaultGroupBy, defaultGroupByIndex) => {
 
     console.log("writing out file info json...")
     return fsPromises.readFile(`${readFolder}/${featureDataFileName}`)
@@ -25,33 +25,28 @@ const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFile
             const fileInfoJson = [];
             for (let index = 0; index < json.length; index++) {
                 const cellData = json[index];
-
                 if (cellData.file_info.length !== FILE_INFO_KEYS.length) {
                     console.error("file info in not in expected format")
                     process.exit(1)
                 }
                 const fileInfo = cellData.file_info.reduce((acc, cur, index) => {
-
                     acc[FILE_INFO_KEYS[index]] = cur;
                     return acc;
                 }, {});
-                const cellLine = find(cellLines, {
-                    [CELL_LINE_DEF_NAME_KEY]: fileInfo[CELL_LINE_NAME_KEY]
-                });
-                if (!cellLine) {
-                    console.error("No matching cell line for this cell in the dataset", fileInfo)
-                    process.exit(1)
-                }
+
+                const categoryValue = cellData.features[defaultGroupByIndex];
+                const groupBy = find(featureDefs, {
+                    key: defaultGroupBy
+                }).options[categoryValue]
 
                 fileInfoJson[index] = fileInfo;
 
                 measuredFeaturesJson[index] = {
                     f: cellData.features,
-                    p: cellLine[CELL_LINE_DEF_PROTEIN_KEY],
+                    p: groupBy.key || groupBy.name,
                     t: fileInfo.thumbnailPath,
                     i: fileInfo.CellId,
                 }
-
             }
 
             const fileInfoCheck = dataPrep.validate(fileInfoJson, schemas.fileInfo);

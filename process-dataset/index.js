@@ -101,7 +101,8 @@ const processMegaset = async () => {
         }
         datasetJsons[id] = topLevelJson;
     }
-
+  
+ 
     // Upload the dataset description (megasetInfo) to Firebase
     console.log("uploading data description...")
     await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {

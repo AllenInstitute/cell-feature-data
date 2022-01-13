@@ -1,8 +1,9 @@
-const uploadDatasetAndManifest = require("./steps/upload-manifest");
+const fsPromises = require('fs').promises;
+
+const uploadManifest = require("./steps/upload-manifest");
 const uploadFeatureDefs = require("./steps/upload-feature-defs");
-const uploadCellLines = require("./steps/upload-cell-lines");
 const formatAndWritePerCellJsons = require("./steps/write-per-cell-jsons");
-const uploadCellCountsPerCellLine = require("./steps/upload-cell-counts");
+const uploadCellCountsPerCategory = require("./steps/upload-cell-counts");
 const uploadFileInfo = require("./steps/upload-file-info");
 const uploadFeaturesFileToS3 = require("./steps/upload-features-to-aws");
 const uploadFileToS3 = require("./steps/upload-file-to-aws");
@@ -33,26 +34,31 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
             }
         }
     }
+    const readFeatureData = async () => {
+        const data = await fsPromises.readFile(`${datasetReadFolder}/${fileNames.featureDefs}`)
+        return JSON.parse(data)
+    }
+    const defaultGroupBy = datasetJson.groupBy.default;
+    const defaultGroupByIndex = datasetJson.featuresDataOrder.indexOf(defaultGroupBy);
 
-    // 1. upload manifest
-    const manifestRef = await uploadDatasetAndManifest(firebaseHandler, datasetJson, datasetReadFolder, fileNames.featureDefs);
+    const featureDefsData = await readFeatureData();
+    // 1. upload dataset description and manifest
+    const manifestRef = await uploadManifest(firebaseHandler, datasetJson, featureDefsData);
     // 2. check dataset feature defs for new features, upload them if needed
-    const featureDefRef = await uploadFeatureDefs(firebaseHandler, datasetReadFolder, fileNames.featureDefs);
-    // 3. upload cell lines TODO: add check if cell line is already there
-    const formattedCellLines = await uploadCellLines(firebaseHandler, datasetReadFolder, fileNames.cellLineData);
-    // 4. format file info, write to json locally
-    await formatAndWritePerCellJsons(datasetReadFolder, TEMP_FOLDER, fileNames.featuresData, formattedCellLines);
-    // 5. upload file info per cell
+    const featureDefRef = await uploadFeatureDefs(firebaseHandler, featureDefsData);
+    // 3. format file info, write to json locally
+    await formatAndWritePerCellJsons(datasetReadFolder, TEMP_FOLDER, fileNames.featuresData, featureDefsData, defaultGroupBy, defaultGroupByIndex);
+    // 4. upload file info per cell
     const fileInfoLocation = await uploadFileInfo(firebaseHandler, TEMP_FOLDER, shouldSkipFileInfoUpload);
-    // 6. upload cell line subtotals
-    await uploadCellCountsPerCellLine(TEMP_FOLDER, firebaseHandler);
-    // 7. upload json to aws
+    // 5. upload cell line subtotals
+    await uploadCellCountsPerCategory(TEMP_FOLDER, firebaseHandler, defaultGroupBy);
+    // 6. upload json to aws
     const awsLocation = await uploadFeaturesFileToS3(firebaseHandler.id, TEMP_FOLDER);
-    // 8. upload viewer settings json to aws
+    // 7. upload viewer settings json to aws
     const awsViewerSettingsLocation = await uploadFileToS3(firebaseHandler.id, datasetReadFolder, fileNames.viewerSettingsData);
-    // 9. upload card image
+    // 8. upload card image
     const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image);
-    // 10. update dataset manifest with location for data
+    // 9. update dataset manifest with location for data
     const updateToManifest = {
         ...featureDefRef,
         ...fileInfoLocation,

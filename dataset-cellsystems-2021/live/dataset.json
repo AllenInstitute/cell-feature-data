@@ -19,9 +19,18 @@
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-live.1/Cell-Viewer_Thumbnails",
   "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-live_1",
   "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-live.1/Cell-Viewer_Thumbnails",
-  "defaultXAxis": "expert-score",
-  "defaultYAxis": "cos",
-  "defaultColorBy": "cell-age",
+  "xAxis": {
+    "default": "expert-score"
+  },
+  "yAxis": {
+    "default": "cos"
+  },
+  "colorBy": {
+    "default": "cell-age"
+  },
+  "groupBy": {
+    "default": "cell-age"
+  },
   "featuresDisplayOrder": [
     "cell-age",
     "expert-score",

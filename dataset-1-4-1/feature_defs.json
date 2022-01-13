@@ -124,5 +124,115 @@
         "description": "An intensity-derived image feature, defined as the optical intensity of a structure found in the more external shell of a roughly columnar cell (closer to the cell exterior) as compared to the more internal columnar core of the same cell (closer to the cell center), scaled from -1 to 1. A cell in which all of the fluorescence intensity was at the center of the cell would have a radial proximity of -1; whereas a structure that was at cell boundary would have a radial proximity of 1.",
         "tooltip": "An intensity-derived image feature, defined as the optical intensity of a structure found in the more external shell of a roughly columnar cell (closer to the cell exterior) as compared to the more internal columnar core of the same cell (closer to the cell center), scaled from -1 to 1. ",
         "discrete": false
+    },
+    {
+        "key": "cell-line",
+        "displayName": "Labeled Structure",
+        "unit": "",
+        "description": "Name of the cellular structure that has been fluorescently labeled in each cell line",
+        "tooltip": "Name of the cellular structure that has been fluorescently labeled in each cell line",
+        "discrete": true,
+        "options": {
+            "5": {
+                "color": "#77207C",
+                "name": "Matrix adhesions",
+                "key": "Paxillin"
+            },
+            "7": {
+                "color": "#FF96FF",
+                "name": "Actin filaments",
+                "key": "Alpha-actinin-1"
+            },
+            "10": {
+                "color": "#FFFFB5",
+                "name": "Endoplasmic reticulum",
+                "key": "Sec61 beta"
+            },
+            "11": {
+                "color": "#FFD184",
+                "name": "Mitochondria",
+                "key": "Tom20"
+            },
+            "12": {
+                "color": "#6B4500",
+                "name": "Microtubules",
+                "key": "Alpha-tubulin"
+            },
+            "13": {
+                "color": "#084AE7",
+                "name": "Nuclear envelope",
+                "key": "Lamin B1"
+            },
+            "14": {
+                "color": "#A9D1E5",
+                "name": "Nucleolus (Dense Fibrillar Component)",
+                "key": "Fibrillarin"
+            },
+            "16": {
+                "color": "#FFB1FF",
+                "name": "Actin filaments",
+                "key": "Beta-actin"
+            },
+            "17": {
+                "color": "#A850E8",
+                "name": "Desmosomes",
+                "key": "Desmoplakin"
+            },
+            "22": {
+                "color": "#AD952A",
+                "name": "Lysosome",
+                "key": "LAMP-1"
+            },
+            "23": {
+                "color": "#A850D4",
+                "name": "Tight junctions",
+                "key": "Tight junction ZO-1"
+            },
+            "24": {
+                "color": "#FF82FF",
+                "name": "Actomyosin bundles",
+                "key": "Non-muscle myosin heavy chain IIB"
+            },
+            "25": {
+                "color": "#B7952A",
+                "name": "Golgi",
+                "key": "Sialyltransferase 1"
+            },
+            "32": {
+                "color": "#9D7000",
+                "name": "Centrosome",
+                "key": "Centrin-2"
+            },
+            "33": {
+                "color": "#FFD16E",
+                "name": "Peroxisomes",
+                "key": "Peroxisomal membrane protein PMP34"
+            },
+            "40": {
+                "color": "#FFD150",
+                "name": "Endosomes",
+                "key": "Ras-related protein Rab-5A"
+            },
+            "53": {
+                "color": "#A850C0",
+                "name": "Gap junctions",
+                "key": "Connexin-43"
+            },
+            "54": {
+                "color": "#FFD2FF",
+                "name": "Plasma membrane",
+                "key": "CAAX domain of K-Ras"
+            },
+            "57": {
+                "color": "#88D1E5",
+                "name": "Nucleolus (Granular Component)",
+                "key": "Nucleophosmin"
+            },
+            "58": {
+                "color": "#CB1CCC",
+                "name": "Adherens junctions",
+                "key": "Beta-catenin"
+            }
+        }
     }
 ]
