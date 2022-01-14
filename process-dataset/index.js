@@ -61,7 +61,7 @@ const processMegaset = async () => {
     
     if (topLevelJson.datasets) { // Datasets are provided as a megaset (nested datasets exist)
         megasetInfo = {...topLevelJson, production: false};
-        
+
         // Unpack individual datasets and save data as megasetInfo.datasets and to datasetJsons
         megasetInfo.datasets = await Promise.all(
             // Read in individual datasets from the sub-folders listed in topLevelJson.datasets
@@ -91,11 +91,12 @@ const processMegaset = async () => {
         // Do the same processing as for a real megaset, but much simpler since all data is
         // contained in the top-level dataset.json
         megasetInfo.title = topLevelJson.title;
-        megasetInfo.name = topLevelJson.name;
         topLevelJson.datasetReadFolder = inputFolder;
-
         const datasetInfo = getDatasetInfo(topLevelJson);
         const id = getDatasetId(datasetInfo);
+        megasetInfo.name = id;
+        // for single dataset sets we want to store the document with the whole id, to avoid 
+        // grouping versions of the same name together as if they're megasets 
         megasetInfo.datasets = {
             [id]: datasetInfo
         }
