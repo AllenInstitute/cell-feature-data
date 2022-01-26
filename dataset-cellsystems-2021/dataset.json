@@ -3,14 +3,9 @@
     "name": "cellsystems",
     "publications": [
         {
-            "title": "",
-            "url": "",
-            "citation": ""
-        },
-        {
-            "title": "",
-            "url": "",
-            "citation": ""
+            "title": "Cell states beyond transcriptomics: Integrating structural organization and gene expression in hiPSC-derived cardiomyocytes",
+            "url": "https://www.cell.com/cell-systems/fulltext/S2405-4712(21)00156-3?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2405471221001563%3Fshowall%3Dtrue",
+            "citation": "Cell Systems, May 2021"
         }
     ],
     "datasets": [

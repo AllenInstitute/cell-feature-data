@@ -3,7 +3,7 @@
   "version": "2021.1",
   "name": "cellsystems_live",
   "image": "thumb_livecardio.png",
-  "description": "This dataset contains images of live hiPSC-derived cardiomyocytes from our recent article in <a href='https://doi.org/10.1016/j.cels.2021.05.001'>Cell Systems</a> that developed a quantitative, imaging-based platform for the systematic and automated classification of sarcomeric z-disk organization using alpha-actinin-2.",
+  "description": "This dataset is one of the two datasets accompanying the Cell Systems manuscript. This one presents live-captured FOVs of cardiomyocytes at different timepoints. For more information please click on the link below to access the manuscript.",
   "userData": {
     "isNew": true,
     "inReview": false,
