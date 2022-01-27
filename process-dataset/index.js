@@ -91,6 +91,7 @@ const processMegaset = async () => {
         // Do the same processing as for a real megaset, but much simpler since all data is
         // contained in the top-level dataset.json
         megasetInfo.title = topLevelJson.title;
+        megasetInfo.publications = topLevelJson.publications || [];
         topLevelJson.datasetReadFolder = inputFolder;
         const datasetInfo = getDatasetInfo(topLevelJson);
         const id = getDatasetId(datasetInfo);
