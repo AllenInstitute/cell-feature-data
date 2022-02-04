@@ -12,7 +12,7 @@ class FirebaseHandler {
         this.id = id;
         this.datasetName = name;
         this.megasetName = megasetName;
-        this.featureDefEndpoint = `dataset-data/feature-definitions/${this.datasetName}`;
+        this.featureDefEndpoint = `dataset-data/feature-definitions/${this.id}`;
         this.manifestEndpoint = "manifests";
         this.datasetDescriptionEndpoint = "dataset-descriptions";
         this.cellLineDefEndpoint = "cell-line-def";

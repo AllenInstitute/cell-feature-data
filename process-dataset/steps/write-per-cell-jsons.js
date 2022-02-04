@@ -1,21 +1,19 @@
 const fsPromises = require('fs').promises;
 const {
-    find
+    find,
+    map,
 } = require("lodash");
 
 const schemas = require("../data-validation/schema");
 const dataPrep = require("../data-validation/data-prep");
 const {
-    CELL_LINE_NAME_KEY,
     FILE_INFO_KEYS,
-    CELL_LINE_DEF_NAME_KEY,
-    CELL_LINE_DEF_PROTEIN_KEY,
     TEMP_LOCAL_CELL_FEATURE_JSON,
     TEMP_LOCAL_FILE_INFO_JSON,
 } = require("../constants");
 
 
-const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFileName, featureDefs, defaultGroupBy, defaultGroupByIndex) => {
+const formatAndWritePerCellJsons = async (firebaseHandler, readFolder, outFolder, featureDataFileName, featureDefs, defaultGroupBy, defaultGroupByIndex) => {
 
     console.log("writing out file info json...")
     return fsPromises.readFile(`${readFolder}/${featureDataFileName}`)
@@ -23,6 +21,7 @@ const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFile
         .then(async (json) => {
             const measuredFeaturesJson = [];
             const fileInfoJson = [];
+            const counts = {}
             for (let index = 0; index < json.length; index++) {
                 const cellData = json[index];
                 if (cellData.file_info.length !== FILE_INFO_KEYS.length) {
@@ -38,6 +37,15 @@ const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFile
                 const groupBy = find(featureDefs, {
                     key: defaultGroupBy
                 }).options[categoryValue]
+                if (!groupBy) {
+                    console.log("NO GROUP BY FOR ", defaultGroupBy, categoryValue);
+                    process.exit(1);
+
+                }
+                if (!counts[categoryValue]) {
+                    counts[categoryValue] = 0;
+                }
+                counts[categoryValue]++;
 
                 fileInfoJson[index] = fileInfo;
 
@@ -48,6 +56,11 @@ const formatAndWritePerCellJsons = async (readFolder, outFolder, featureDataFile
                     i: fileInfo.CellId,
                 }
             }
+            /* end of feature json loop */
+
+            map(counts, (value, key) => {
+                firebaseHandler.updateFeatureCount(defaultGroupBy, key, value)
+            })
 
             const fileInfoCheck = dataPrep.validate(fileInfoJson, schemas.fileInfo);
 

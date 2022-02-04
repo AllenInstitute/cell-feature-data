@@ -3,7 +3,6 @@ const fsPromises = require('fs').promises;
 const uploadManifest = require("./steps/upload-manifest");
 const uploadFeatureDefs = require("./steps/upload-feature-defs");
 const formatAndWritePerCellJsons = require("./steps/write-per-cell-jsons");
-const uploadCellCountsPerCategory = require("./steps/upload-cell-counts");
 const uploadFileInfo = require("./steps/upload-file-info");
 const uploadFeaturesFileToS3 = require("./steps/upload-features-to-aws");
 const uploadFileToS3 = require("./steps/upload-file-to-aws");
@@ -47,18 +46,16 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
     // 2. check dataset feature defs for new features, upload them if needed
     const featureDefRef = await uploadFeatureDefs(firebaseHandler, featureDefsData);
     // 3. format file info, write to json locally
-    await formatAndWritePerCellJsons(datasetReadFolder, TEMP_FOLDER, fileNames.featuresData, featureDefsData, defaultGroupBy, defaultGroupByIndex);
+    await formatAndWritePerCellJsons(firebaseHandler, datasetReadFolder, TEMP_FOLDER, fileNames.featuresData, featureDefsData, defaultGroupBy, defaultGroupByIndex);
     // 4. upload file info per cell
     const fileInfoLocation = await uploadFileInfo(firebaseHandler, TEMP_FOLDER, shouldSkipFileInfoUpload);
-    // 5. upload cell line subtotals
-    await uploadCellCountsPerCategory(TEMP_FOLDER, firebaseHandler, defaultGroupBy);
-    // 6. upload json to aws
+    // 5. upload json to aws
     const awsLocation = await uploadFeaturesFileToS3(firebaseHandler.id, TEMP_FOLDER);
-    // 7. upload viewer settings json to aws
+    // 6. upload viewer settings json to aws
     const awsViewerSettingsLocation = await uploadFileToS3(firebaseHandler.id, datasetReadFolder, fileNames.viewerSettingsData);
-    // 8. upload card image
+    // 7. upload card image
     const awsImageLocation = await uploadDatasetImage(firebaseHandler, datasetReadFolder, datasetJson.image);
-    // 9. update dataset manifest with location for data
+    // 8. update dataset manifest with location for data
     const updateToManifest = {
         ...featureDefRef,
         ...fileInfoLocation,

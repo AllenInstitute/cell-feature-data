@@ -284,6 +284,11 @@
         "name": "Endosomes",
         "key": "Ras-related protein Rab-5A"
       },
+      "46": {
+        "color": "#FFFFA0",
+        "name": "Sarcoplasmic reticulum/Endoplasmic reticulum",
+        "key": "SERCA2"
+      },
       "53": {
         "color": "#A850C0",
         "name": "Gap junctions",
