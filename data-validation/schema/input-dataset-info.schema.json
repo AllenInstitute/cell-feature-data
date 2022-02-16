@@ -1,0 +1,165 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "datasetInfoSchema",
+    "title": "Dataset Info",
+    "description": "Data needed to process a dataset",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "title": {
+            "description": "Display name of the dataset",
+            "type": "string"
+        },
+        "name": {
+            "description": "Name of the dataset (no version number)",
+            "type": "string"
+        },
+        "version": {
+            "description": "version year and number",
+            "type": "string"
+        },
+        "description": {
+            "description": "Description of the dataset",
+            "type": "string"
+        },
+        "image": {
+            "description": "relative path to the dataset card image file",
+            "type": "string"
+        },
+        "link": {
+            "description": "Link to website displaying the dataset",
+            "type": "string"
+        },
+        "userData": {
+            "description": "Optional display data",
+            "type": "object"
+        },
+        "production": {
+            "description": "Whether this dataset should only be shown in production",
+            "type": "boolean"
+        },
+        "featuresDataPath": {
+            "description": "url to the per cell data json",
+            "type": "string"
+        },
+        "featureDefsPath": {
+            "description": "path to the feature def collection",
+            "type": "string"
+        },
+        "viewerSettingsPath": {
+            "description": "path to image per-channel settings for the 3d viewer",
+            "type": "string"
+        },
+        "albumPath": {
+            "description": "collection name of the album data",
+            "type": "string"
+        },
+        "thumbnailRoot": {
+            "description": "Root url for thumbnail images",
+            "type": "string"
+        },
+        "downloadRoot": {
+            "description": "Root url for downloading cell data",
+            "type": "string"
+        },
+        "volumeViewerDataRoot": {
+            "description": "Root url for 3d images",
+            "type": "string"
+        },
+        "xAxis": {
+            "description": "Settings for the x axis",
+            "type": "object",
+            "properties": {
+                "default": {
+                    "description": "Default feature key for the axis",
+                    "type": "string"
+                },
+                "exclude": {
+                    "description": "Optional list of feature keys to exclude",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "yAxis": {
+            "description": "Settings for the y axis",
+            "type": "object",
+            "properties": {
+                "default": {
+                    "description": "Default feature key for the axis",
+                    "type": "string"
+                },
+                "exclude": {
+                    "description": "Optional list of feature keys to exclude",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "colorBy": {
+            "description": "Settings for the color by menu",
+            "type": "object",
+            "properties": {
+                "default": {
+                    "description": "Default feature key to color the data by",
+                    "type": "string"
+                },
+                "exclude": {
+                    "description": "Optional list of feature keys to exclude",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "groupBy": {
+            "description": "Settings for the grouping menu",
+            "type": "object",
+            "properties": {
+                "default": {
+                    "description": "Default feature key for the group menu",
+                    "type": "string"
+                },
+                "exclude": {
+                    "description": "Optional list of feature keys to exclude",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "featuresDisplayOrder": {
+            "description": "Ordered array of feature keys for display on front end",
+            "type": "array"
+        },
+        "featuresDataOrder": {
+            "description": "Ordered array of feature keys for packing and unpacking data",
+            "type": "array"
+        }
+    },
+    "required": [
+        "title",
+        "version",
+        "name",
+        "image",
+        "description",
+        "featuresDataPath",
+        "viewerSettingsPath",
+        "albumPath",
+        "thumbnailRoot",
+        "downloadRoot",
+        "volumeViewerDataRoot",
+        "xAxis",
+        "yAxis",
+        "groupBy",
+        "colorBy",
+        "featuresDisplayOrder",
+        "featuresDataOrder"
+    ]
+}

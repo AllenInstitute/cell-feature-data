@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "inputMegaset",
+    "title": "Dataset JSON",
+    "description": "Data that describes a groups of datasets",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "title": {
+            "description": "Display name of the dataset or group",
+            "type": "string"
+        },
+        "name": {
+            "description": "Name of the dataset (no version number)",
+            "type": "string"
+        },
+        "datasets": {
+            "description": "subfolder names that point to each dataset in the group",
+            "type": "array"
+        },
+        "publications": {
+            "description": "Publications associated with the group",
+            "type": "array",
+            "items": {
+                "properties": {
+                    "title": {
+                        "description": "Article title",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "Article link",
+                        "type": "string"
+                    },
+                    "citation": {
+                        "description": "Article journal and date",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "required": [
+        "title",
+        "name"
+    ]
+}

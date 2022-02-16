@@ -5,18 +5,29 @@
 
 [source,json]
 ----
-include::schema/root.schema.json[]
+include::schema/input-dataset.schema.json[]
 ----
 
 <<<
 
 
-[#schema-reference-dataset]
-== JSON Schema for Dataset
+[#schema-reference-input-dataset-info]
+== JSON Schema for Dataset Info
 
 [source,json]
 ----
-include::schema/dataset.schema.json[]
+include::schema/input-dataset-info.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-input-megaset]
+== JSON Schema for Dataset JSON
+
+[source,json]
+----
+include::schema/input-megaset.schema.json[]
 ----
 
 <<<
@@ -33,34 +44,12 @@ include::schema/feature-def.schema.json[]
 <<<
 
 
-[#schema-reference-file-info]
-== JSON Schema for File Info
+[#schema-reference-input-measured-features]
+== JSON Schema for Measured features json
 
 [source,json]
 ----
-include::schema/file-info.schema.json[]
-----
-
-<<<
-
-
-[#schema-reference-manifest]
-== JSON Schema for Manifest
-
-[source,json]
-----
-include::schema/manifest.schema.json[]
-----
-
-<<<
-
-
-[#schema-reference-measured-features]
-== JSON Schema for Measured features
-
-[source,json]
-----
-include::schema/measured-features.schema.json[]
+include::schema/input-measured-features.schema.json[]
 ----
 
 <<<

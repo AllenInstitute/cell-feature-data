@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "Cell Feature Dataset Specification",
+    "type": "object",
+    "properties": {
+        "megaset": {
+            "description": "File that describes a group of datasets. Should be at the highest level, and the datasets nested in their own folders",
+            "$ref": "input-megaset.schema.json"
+        },
+        "dataset": {
+            "$ref": "input-dataset-info.schema.json"
+        },
+        "feature-defs": {
+            "$ref": "feature-def.schema.json"
+        },
+        "measured-features": {
+            "$ref": "input-measured-features.schema.json"
+        }
+    },
+    "required": [
+        "dataset",
+        "feature-defs",
+        "file"
+    ]
+}

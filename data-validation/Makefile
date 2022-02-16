@@ -15,7 +15,7 @@ GENERATED = $(PROPREF) $(EMBEDSCHEMA)
 $(GENERATED): $(wildcard schema/*schema.json)
 	$(WETZEL) -n -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDSCHEMA)" \
 		-c "icon:check[]" -k "**MUST**"\
-		schema/root.schema.json > $(PROPREF)
+		schema/input-dataset.schema.json > $(PROPREF)
 
 clean: 
 	-rm -f $(GENERATED) $(TARGETS)
