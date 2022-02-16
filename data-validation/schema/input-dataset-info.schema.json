@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "datasetInfoSchema",
     "title": "Dataset Info",
-    "description": "Data needed to process a dataset",
+    "description": "Data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON",
     "type": "object",
     "additionalProperties": false,
     "properties": {

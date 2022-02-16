@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "inputMeasuredFeaturesSchema",
     "title": "Measured features json",
-    "description": "Measured features values",
+    "description": "File that contains the measured analysis values, which will drive the plot.",
     "type": "array",
     "items": {
         "additionalProperties": false,

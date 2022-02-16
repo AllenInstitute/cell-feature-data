@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "inputMegaset",
     "title": "Dataset JSON",
-    "description": "Data that describes a groups of datasets",
+    "description": "File that describes a group of datasets. Should be at the highest level, and the datasets nested in their own folders",
     "type": "object",
     "additionalProperties": false,
     "properties": {

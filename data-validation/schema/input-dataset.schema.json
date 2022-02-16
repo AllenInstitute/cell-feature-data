@@ -5,7 +5,6 @@
     "additionalProperties": false,
     "properties": {
         "megaset": {
-            "description": "File that describes a group of datasets. Should be at the highest level, and the datasets nested in their own folders",
             "$ref": "input-megaset.schema.json"
         },
         "dataset": {
