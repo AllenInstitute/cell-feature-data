@@ -1,0 +1,378 @@
+
+
+
+
+'''
+[#reference-cell-feature-database-specification]
+== Cell Feature Database Specification
+
+.`Cell Feature Database Specification` Properties
+|===
+|   |Type|Description|Required
+
+|**dataset-descriptions**
+|`object`
+|Endpoint that gets called first to load all the available datasets
+| icon:check[] Yes
+
+|**manifests**
+|`object`
+|
+|No
+
+|**dataset-data**
+|`object`
+|Dataset level data
+|No
+
+|**cell-data**
+|`object`
+|Per cell data
+|No
+
+|**measured-features**
+|<<reference-measured-features,`measured-features`>>
+|Data per cell needed to create the CFE plot
+| icon:check[] Yes
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-cell-feature-database-specification,`database.schema.json`>>
+
+=== Cell Feature Database Specification.dataset-descriptions
+
+Endpoint that gets called first to load all the available datasets
+
+* **Type**: `object`
+* **Required**:  icon:check[] Yes
+
+=== Cell Feature Database Specification.manifests
+
+* **Type**: `object`
+* **Required**: No
+
+=== Cell Feature Database Specification.dataset-data
+
+Dataset level data
+
+* **Type**: `object`
+* **Required**: No
+
+=== Cell Feature Database Specification.cell-data
+
+Per cell data
+
+* **Type**: `object`
+* **Required**: No
+
+=== Cell Feature Database Specification.measured-features
+
+Data per cell needed to create the CFE plot
+
+* **Type**: <<reference-measured-features,`measured-features`>>
+* **Required**:  icon:check[] Yes
+
+
+
+
+'''
+[#reference-dataset-card]
+== Dataset Card
+
+Data needed to render a dataset card
+
+.`Dataset Card` Properties
+|===
+|   |Type|Description|Required
+
+|**title**
+|`string`
+|Display name of the dataset
+| icon:check[] Yes
+
+|**name**
+|`string`
+|Name of the dataset (no version number)
+| icon:check[] Yes
+
+|**version**
+|`string`
+|version year and number
+| icon:check[] Yes
+
+|**description**
+|`string`
+|Description of the dataset
+| icon:check[] Yes
+
+|**image**
+|`string`
+|Url to image src
+| icon:check[] Yes
+
+|**link**
+|`string`
+|Link to website displaying the dataset
+|No
+
+|**userData**
+|`object`
+|Optional display data
+|No
+
+|**production**
+|`boolean`
+|Whether this dataset should only be shown in production
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-dataset-card,`dataset-card.schema.json`>>
+
+=== dataset-card.title
+
+Display name of the dataset
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset-card.name
+
+Name of the dataset (no version number)
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset-card.version
+
+version year and number
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset-card.description
+
+Description of the dataset
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset-card.image
+
+Url to image src
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset-card.link
+
+Link to website displaying the dataset
+
+* **Type**: `string`
+* **Required**: No
+
+=== dataset-card.userData
+
+Optional display data
+
+* **Type**: `object`
+* **Required**: No
+
+=== dataset-card.production
+
+Whether this dataset should only be shown in production
+
+* **Type**: `boolean`
+* **Required**: No
+
+
+
+
+'''
+[#reference-input-megaset]
+== Dataset JSON
+
+File that describes a group of datasets. Should be at the highest level, and the datasets nested in their own folders
+
+.`Dataset JSON` Properties
+|===
+|   |Type|Description|Required
+
+|**title**
+|`string`
+|Display name of the dataset or group
+| icon:check[] Yes
+
+|**name**
+|`string`
+|Name of the dataset (no version number)
+| icon:check[] Yes
+
+|**datasets**
+|`array[]`
+|subfolder names that point to each dataset in the group
+|No
+
+|**publications**
+|`array[]`
+|Publications associated with the group
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-input-megaset,`input-megaset.schema.json`>>
+
+=== input-megaset.title
+
+Display name of the dataset or group
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== input-megaset.name
+
+Name of the dataset (no version number)
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== input-megaset.datasets
+
+subfolder names that point to each dataset in the group
+
+* **Type**: `array[]`
+* **Required**: No
+
+=== input-megaset.publications
+
+Publications associated with the group
+
+* **Type**: `array[]`
+* **Required**: No
+
+
+
+
+'''
+[#reference-feature-def]
+== Feature Defs
+
+Definition of the measured features in the dataset
+
+.`Feature Defs` Properties
+|===
+|   |Type|Description|Required
+
+|**displayName**
+|`string`
+|Human readable name
+| icon:check[] Yes
+
+|**description**
+|`string`
+|Description of how the data was collected/measured
+| icon:check[] Yes
+
+|**tooltip**
+|`string`
+|Shorter version of description
+| icon:check[] Yes
+
+|**unit**
+|`string`
+|unit of measurement
+| icon:check[] Yes
+
+|**key**
+|`string`
+|Id of the feature
+| icon:check[] Yes
+
+|**discrete**
+|`boolean`
+|Whether it's a continuous measurement or not
+| icon:check[] Yes
+
+|**options**
+|`object`
+|For discrete features, display items for each value
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-feature-def,`feature-def.schema.json`>>
+
+=== feature-def.displayName
+
+Human readable name
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.description
+
+Description of how the data was collected/measured
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.tooltip
+
+Shorter version of description
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.unit
+
+unit of measurement
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.key
+
+Id of the feature
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.discrete
+
+Whether it's a continuous measurement or not
+
+* **Type**: `boolean`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.options
+
+For discrete features, display items for each value
+
+* **Type**: `object`
+* **Required**: No
+
+
+
+
+'''
+[#reference-file-info]
+== File Info
+
+Metadata per cell
+
+
+
+'''
+[#reference-measured-features]
+== Measured features
+
+Data per cell needed to create the CFE plot
+

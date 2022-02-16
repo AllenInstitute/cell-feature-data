@@ -10,12 +10,12 @@
 
 |**megaset**
 |<<reference-input-megaset,`input-megaset`>>
-|Data that describes a groups of datasets
+|File that describes a group of datasets. Should be at the highest level, and the datasets nested in their own folders
 |No
 
 |**dataset**
 |<<reference-input-dataset-info,`input-dataset-info`>>
-|Data needed to process a dataset
+|Data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON
 | icon:check[] Yes
 
 |**feature-defs**
@@ -25,7 +25,7 @@
 
 |**measured-features**
 |<<reference-input-measured-features,`input-measured-features`>>
-|Measured features values
+|File that contains the measured analysis values, which will drive the plot.
 | icon:check[] Yes
 
 |===
@@ -36,14 +36,14 @@ Additional properties are not allowed.
 
 === Cell Feature Dataset Specification.megaset
 
-Data that describes a groups of datasets
+File that describes a group of datasets. Should be at the highest level, and the datasets nested in their own folders
 
 * **Type**: <<reference-input-megaset,`input-megaset`>>
 * **Required**: No
 
 === Cell Feature Dataset Specification.dataset
 
-Data needed to process a dataset
+Data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON
 
 * **Type**: <<reference-input-dataset-info,`input-dataset-info`>>
 * **Required**:  icon:check[] Yes
@@ -57,7 +57,7 @@ File that describes the measured feature definitions
 
 === Cell Feature Dataset Specification.measured-features
 
-Measured features values
+File that contains the measured analysis values, which will drive the plot.
 
 * **Type**: <<reference-input-measured-features,`input-measured-features`>>
 * **Required**:  icon:check[] Yes
@@ -69,7 +69,7 @@ Measured features values
 [#reference-input-dataset-info]
 == Dataset Info
 
-Data needed to process a dataset
+Data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON
 
 .`Dataset Info` Properties
 |===
@@ -340,7 +340,7 @@ Ordered array of feature keys for packing and unpacking data
 [#reference-input-megaset]
 == Dataset JSON
 
-Data that describes a groups of datasets
+File that describes a group of datasets. Should be at the highest level, and the datasets nested in their own folders
 
 .`Dataset JSON` Properties
 |===
@@ -510,5 +510,5 @@ For discrete features, display items for each value
 [#reference-input-measured-features]
 == Measured features json
 
-Measured features values
+File that contains the measured analysis values, which will drive the plot.
 

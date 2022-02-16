@@ -1,0 +1,110 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "Cell Feature Database Specification",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "dataset-descriptions": {
+            "description": "Endpoint that gets called first to load all the available datasets",
+            "type": "object",
+            "properties": {
+                "$dataset": {
+                    "type": "object",
+                    "properties": {
+                        "datasets": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "dataset-card.schema.json"
+                            }
+                        },
+                        "dateCreated": {
+                            "description": "Month Day, Year",
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "production": {
+                            "type": "boolean"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "publications": {
+                            "description": "Publications associated with the group",
+                            "type": "array",
+                            "items": {
+                                "properties": {
+                                    "title": {
+                                        "description": "Article title",
+                                        "type": "string"
+                                    },
+                                    "url": {
+                                        "description": "Article link",
+                                        "type": "string"
+                                    },
+                                    "citation": {
+                                        "description": "Article journal and date",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "manifests": {
+            "type": "object",
+            "properties": {
+                "$manifest": {
+                    "$ref": "input-megaset.schema.json"
+                }
+            }
+        },
+        "dataset-data": {
+            "description": "Dataset level data",
+            "type": "object",
+            "properties": {
+                "feature-definitions": {
+                    "type": "object",
+                    "properties": {
+                        "$dataset-id": {
+                            "type": "object",
+                            "$feature-key": {
+                                "$ref": "feature-def.schema.json"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "cell-data": {
+            "description": "Per cell data",
+            "type": "object",
+            "properties": {
+                "$dataset-id": {
+                    "type": "object",
+                    "properties": {
+                        "cell-file-info": {
+                            "type": "object",
+                            "properties": {
+                                "$id": {
+                                    "$ref": "file-info.schema.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "measured-features": {
+            "$ref": "measured-features.schema.json"
+        }
+    },
+    "required": [
+        "dataset-descriptions",
+        "feature-defs",
+        "measured-features"
+    ]
+}
