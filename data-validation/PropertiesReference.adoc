@@ -19,18 +19,18 @@
 | icon:check[] Yes
 
 |**feature-defs**
-|<<reference-feature-def,`feature-def`>>
-|Measured features in the dataset
+|<<reference-feature-def,`feature-def`>> `[]`
+|File that describes the measured feature definitions
 | icon:check[] Yes
 
 |**measured-features**
 |<<reference-input-measured-features,`input-measured-features`>>
-|Measured features data
-|No
+|Measured features values
+| icon:check[] Yes
 
 |===
 
-Additional properties are allowed.
+Additional properties are not allowed.
 
 * **JSON schema**: <<schema-reference-cell-feature-dataset-specification,`input-dataset.schema.json`>>
 
@@ -50,17 +50,17 @@ Data needed to process a dataset
 
 === Cell Feature Dataset Specification.feature-defs
 
-Measured features in the dataset
+File that describes the measured feature definitions
 
-* **Type**: <<reference-feature-def,`feature-def`>>
+* **Type**: <<reference-feature-def,`feature-def`>> `[]`
 * **Required**:  icon:check[] Yes
 
 === Cell Feature Dataset Specification.measured-features
 
-Measured features data
+Measured features values
 
 * **Type**: <<reference-input-measured-features,`input-measured-features`>>
-* **Required**: No
+* **Required**:  icon:check[] Yes
 
 
 
@@ -407,7 +407,7 @@ Publications associated with the group
 [#reference-feature-def]
 == Feature Defs
 
-Measured features in the dataset
+Definition of the measured features in the dataset
 
 .`Feature Defs` Properties
 |===
@@ -510,5 +510,5 @@ For discrete features, display items for each value
 [#reference-input-measured-features]
 == Measured features json
 
-Measured features data
+Measured features values
 

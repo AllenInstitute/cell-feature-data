@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "featureDefSchema",
     "title": "Feature Defs",
-    "description": "Measured features in the dataset",
+    "description": "Definition of the measured features in the dataset",
     "type": "object",
     "additionalProperties": false,
     "properties": {
