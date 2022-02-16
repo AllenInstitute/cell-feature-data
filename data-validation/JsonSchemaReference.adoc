@@ -1,0 +1,66 @@
+
+
+[#schema-reference-cell-feature-dataset-specification]
+== JSON Schema for Cell Feature Dataset Specification
+
+[source,json]
+----
+include::schema/root.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-dataset]
+== JSON Schema for Dataset
+
+[source,json]
+----
+include::schema/dataset.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-feature-def]
+== JSON Schema for Feature Defs
+
+[source,json]
+----
+include::schema/feature-def.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-file-info]
+== JSON Schema for File Info
+
+[source,json]
+----
+include::schema/file-info.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-manifest]
+== JSON Schema for Manifest
+
+[source,json]
+----
+include::schema/manifest.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-measured-features]
+== JSON Schema for Measured features
+
+[source,json]
+----
+include::schema/measured-features.schema.json[]
+----
+
+<<<

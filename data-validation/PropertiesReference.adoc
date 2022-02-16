@@ -1,0 +1,498 @@
+
+
+'''
+[#reference-cell-feature-dataset-specification]
+== Cell Feature Dataset Specification
+
+.`Cell Feature Dataset Specification` Properties
+|===
+|   |Type|Description|Required
+
+|**dataset**
+|<<reference-dataset,`dataset`>>
+|Data needed to render a dataset card
+|No
+
+|**feature-def**
+|<<reference-feature-def,`feature-def`>>
+|Measured features in the dataset
+|No
+
+|**file-info**
+|<<reference-file-info,`file-info`>>
+|Metadata per cell
+|No
+
+|**manifest**
+|<<reference-manifest,`manifest`>>
+|High level for each dataset
+|No
+
+|**measured-features**
+|<<reference-measured-features,`measured-features`>>
+|Data per cell needed to create the CFE plot
+|No
+
+|===
+
+Additional properties are allowed.
+
+* **JSON schema**: <<schema-reference-cell-feature-dataset-specification,`root.schema.json`>>
+
+=== Cell Feature Dataset Specification.dataset
+
+Data needed to render a dataset card
+
+* **Type**: <<reference-dataset,`dataset`>>
+* **Required**: No
+
+=== Cell Feature Dataset Specification.feature-def
+
+Measured features in the dataset
+
+* **Type**: <<reference-feature-def,`feature-def`>>
+* **Required**: No
+
+=== Cell Feature Dataset Specification.file-info
+
+Metadata per cell
+
+* **Type**: <<reference-file-info,`file-info`>>
+* **Required**: No
+
+=== Cell Feature Dataset Specification.manifest
+
+High level for each dataset
+
+* **Type**: <<reference-manifest,`manifest`>>
+* **Required**: No
+
+=== Cell Feature Dataset Specification.measured-features
+
+Data per cell needed to create the CFE plot
+
+* **Type**: <<reference-measured-features,`measured-features`>>
+* **Required**: No
+
+
+
+
+'''
+[#reference-dataset]
+== Dataset
+
+Data needed to render a dataset card
+
+.`Dataset` Properties
+|===
+|   |Type|Description|Required
+
+|**title**
+|`string`
+|Display name of the dataset
+| icon:check[] Yes
+
+|**name**
+|`string`
+|Name of the dataset (no version number)
+| icon:check[] Yes
+
+|**version**
+|`string`
+|version year and number
+| icon:check[] Yes
+
+|**description**
+|`string`
+|Description of the dataset
+| icon:check[] Yes
+
+|**image**
+|`string`
+|Url to image src
+| icon:check[] Yes
+
+|**link**
+|`string`
+|Link to website displaying the dataset
+|No
+
+|**userData**
+|`object`
+|Optional display data
+|No
+
+|**production**
+|`boolean`
+|Whether this dataset should only be shown in production
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-dataset,`dataset.schema.json`>>
+
+=== dataset.title
+
+Display name of the dataset
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset.name
+
+Name of the dataset (no version number)
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset.version
+
+version year and number
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset.description
+
+Description of the dataset
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset.image
+
+Url to image src
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== dataset.link
+
+Link to website displaying the dataset
+
+* **Type**: `string`
+* **Required**: No
+
+=== dataset.userData
+
+Optional display data
+
+* **Type**: `object`
+* **Required**: No
+
+=== dataset.production
+
+Whether this dataset should only be shown in production
+
+* **Type**: `boolean`
+* **Required**: No
+
+
+
+
+'''
+[#reference-feature-def]
+== Feature Defs
+
+Measured features in the dataset
+
+.`Feature Defs` Properties
+|===
+|   |Type|Description|Required
+
+|**displayName**
+|`string`
+|Human readable name
+| icon:check[] Yes
+
+|**description**
+|`string`
+|Description of how the data was collected/measured
+| icon:check[] Yes
+
+|**tooltip**
+|`string`
+|Shorter version of description
+| icon:check[] Yes
+
+|**unit**
+|`string`
+|unit of measurement
+| icon:check[] Yes
+
+|**key**
+|`string`
+|Id of the feature
+| icon:check[] Yes
+
+|**discrete**
+|`boolean`
+|Whether it's a continuous measurement or not
+| icon:check[] Yes
+
+|**options**
+|`object`
+|For discrete features, display items for each value
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-feature-def,`feature-def.schema.json`>>
+
+=== feature-def.displayName
+
+Human readable name
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.description
+
+Description of how the data was collected/measured
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.tooltip
+
+Shorter version of description
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.unit
+
+unit of measurement
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.key
+
+Id of the feature
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.discrete
+
+Whether it's a continuous measurement or not
+
+* **Type**: `boolean`
+* **Required**:  icon:check[] Yes
+
+=== feature-def.options
+
+For discrete features, display items for each value
+
+* **Type**: `object`
+* **Required**: No
+
+
+
+
+'''
+[#reference-file-info]
+== File Info
+
+Metadata per cell
+
+
+
+'''
+[#reference-manifest]
+== Manifest
+
+High level for each dataset
+
+.`Manifest` Properties
+|===
+|   |Type|Description|Required
+
+|**featuresDataPath**
+|`string`
+|url to the per cell data json
+| icon:check[] Yes
+
+|**cellLineDataPath**
+|`string`
+|collection name of the cell line data
+| icon:check[] Yes
+
+|**featureDefsPath**
+|`string`
+|path to the feature def collection
+|No
+
+|**viewerSettingsPath**
+|`string`
+|path to image per-channel settings for the 3d viewer
+| icon:check[] Yes
+
+|**albumPath**
+|`string`
+|collection name of the album data
+| icon:check[] Yes
+
+|**thumbnailRoot**
+|`string`
+|Root url for thumbnail images
+| icon:check[] Yes
+
+|**downloadRoot**
+|`string`
+|Root url for downloading cell data
+| icon:check[] Yes
+
+|**volumeViewerDataRoot**
+|`string`
+|Root url for 3d images
+| icon:check[] Yes
+
+|**xAxis**
+|`object`
+|Settings for the x axis
+| icon:check[] Yes
+
+|**yAxis**
+|`object`
+|Settings for the y axis
+| icon:check[] Yes
+
+|**colorBy**
+|`object`
+|Settings for the color by menu
+| icon:check[] Yes
+
+|**groupBy**
+|`object`
+|Settings for the grouping menu
+| icon:check[] Yes
+
+|**featuresDisplayOrder**
+|`array[]`
+|Ordered array of feature keys for display on front end
+| icon:check[] Yes
+
+|**featuresDataOrder**
+|`array[]`
+|Ordered array of feature keys for packing and unpacking data
+| icon:check[] Yes
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-manifest,`manifest.schema.json`>>
+
+=== manifest.featuresDataPath
+
+url to the per cell data json
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== manifest.cellLineDataPath
+
+collection name of the cell line data
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== manifest.featureDefsPath
+
+path to the feature def collection
+
+* **Type**: `string`
+* **Required**: No
+
+=== manifest.viewerSettingsPath
+
+path to image per-channel settings for the 3d viewer
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== manifest.albumPath
+
+collection name of the album data
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== manifest.thumbnailRoot
+
+Root url for thumbnail images
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== manifest.downloadRoot
+
+Root url for downloading cell data
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== manifest.volumeViewerDataRoot
+
+Root url for 3d images
+
+* **Type**: `string`
+* **Required**:  icon:check[] Yes
+
+=== manifest.xAxis
+
+Settings for the x axis
+
+* **Type**: `object`
+* **Required**:  icon:check[] Yes
+
+=== manifest.yAxis
+
+Settings for the y axis
+
+* **Type**: `object`
+* **Required**:  icon:check[] Yes
+
+=== manifest.colorBy
+
+Settings for the color by menu
+
+* **Type**: `object`
+* **Required**:  icon:check[] Yes
+
+=== manifest.groupBy
+
+Settings for the grouping menu
+
+* **Type**: `object`
+* **Required**:  icon:check[] Yes
+
+=== manifest.featuresDisplayOrder
+
+Ordered array of feature keys for display on front end
+
+* **Type**: `array[]`
+* **Required**:  icon:check[] Yes
+
+=== manifest.featuresDataOrder
+
+Ordered array of feature keys for packing and unpacking data
+
+* **Type**: `array[]`
+* **Required**:  icon:check[] Yes
+
+
+
+
+'''
+[#reference-measured-features]
+== Measured features
+
+Data per cell needed to create the CFE plot
+
