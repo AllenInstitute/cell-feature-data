@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "fileInfoSchema",
+    "title": "File Info",
+    "description": "Metadata per cell",
+    "type": "array",
+    "items": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+            "CellId": {
+                "description": "unique id for segmented cell",
+                "type": ["number", "string"]
+            },
+            "FOVId": {
+                "description": "Field of view cell came from",
+                "type": ["number", "string"]
+            },
+            "groupBy": {
+                "description": "Id of feature the data is grouped by by default",
+                "type": "string"
+            },
+            "thumbnailPath": {
+                "description": "Path to thumbnail image for cell",
+                "type": "string"
+            },
+            "volumeviewerPath": {
+                "description": "path to 3d data for cell",
+                "type": "string"
+            },
+            "fovThumbnailPath": {
+                "description": "Path to fov thumbnail",
+                "type": "string"
+            },
+            "fovVolumeviewerPath": {
+                "description": "Path to the fov 3d data",
+                "type": "string"
+            }
+
+        },
+        "required": [
+            "CellId",
+            "FOVId",
+            "groupBy",
+            "volumeviewerPath"
+        ]
+    }
+}

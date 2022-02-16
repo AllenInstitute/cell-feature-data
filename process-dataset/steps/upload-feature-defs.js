@@ -3,8 +3,8 @@ const map = require("lodash").map;
 const uniq = require("lodash").uniq;
 const filter = require("lodash").filter;
 
-const dataPrep = require("../data-validation/data-prep");
-const schemas = require("../data-validation/schema");
+const dataPrep = require("../../data-validation/data-prep");
+const schemas = require("../../data-validation/full-schema");
 
 const uploadFeatureDefs = async (firebaseHandler, featureDefs) => {
     console.log("uploading feature defs...")

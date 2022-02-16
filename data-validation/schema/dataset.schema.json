@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "datasetSchema",
+    "title": "Dataset",
+    "description": "Data needed to render a dataset card",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "title": {
+            "description": "Display name of the dataset",
+            "type": "string"
+        },
+        "name": {
+            "description": "Name of the dataset (no version number)",
+            "type": "string"
+        },
+        "version": {
+            "description": "version year and number",
+            "type": "string"
+        },
+        "description": {
+            "description": "Description of the dataset",
+            "type": "string"
+        },
+        "image": {
+            "description": "Url to image src",
+            "type": "string"
+        },
+        "link": {
+            "description": "Link to website displaying the dataset",
+            "type": "string"
+        },
+        "userData": {
+            "description": "Optional display data",
+            "type": "object"
+        },
+        "production": {
+            "description": "Whether this dataset should only be shown in production",
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "title",
+        "version",
+        "name",
+        "image",
+        "description"
+    ]
+}

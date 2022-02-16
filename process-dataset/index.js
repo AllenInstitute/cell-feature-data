@@ -3,8 +3,8 @@ const {
     firestore
 } = require('../firebase/setup-firebase');
 
-const dataPrep = require("./data-validation/data-prep");
-const schemas = require("./data-validation/schema");
+const dataPrep = require("../data-validation/data-prep");
+const schemas = require("../data-validation/full-schema");
 const processSingleDataset = require("./process-single-dataset");
 
 const args = process.argv.slice(2);

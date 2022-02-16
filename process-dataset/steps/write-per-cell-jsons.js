@@ -4,8 +4,8 @@ const {
     map,
 } = require("lodash");
 
-const schemas = require("../data-validation/schema");
-const dataPrep = require("../data-validation/data-prep");
+const schemas = require("../../data-validation/full-schema");
+const dataPrep = require("../../data-validation/data-prep");
 const {
     FILE_INFO_KEYS,
     TEMP_LOCAL_CELL_FEATURE_JSON,
