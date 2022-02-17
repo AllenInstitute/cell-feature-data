@@ -68,10 +68,6 @@ const manifestSchema = {
             "description": "url to the per cell data json",
             "type": "string"
         },
-        "cellLineDataPath": {
-            "description": "collection name of the cell line data",
-            "type": "string",
-        },
         "featureDefsPath": {
             "description": "path to the feature def collection",
             "type": "string",
@@ -175,7 +171,6 @@ const manifestSchema = {
     },
     "required": [
         "featuresDataPath",
-        "cellLineDataPath",
         "viewerSettingsPath",
         "albumPath",
         "thumbnailRoot",

@@ -13,7 +13,6 @@
   },
   "featureDefsPath": "feature_defs.json",
   "featuresDataPath": "cell_feature_analysis_fish.json",
-  "cellLineDataPath": "gene_pairs.json",
   "viewerSettingsPath": "images.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-fish.1/Cell-Viewer_Thumbnails",

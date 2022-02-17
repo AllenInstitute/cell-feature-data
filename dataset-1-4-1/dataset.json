@@ -14,7 +14,6 @@
   },
   "featureDefsPath": "feature_defs.json",
   "featuresDataPath": "features.json",
-  "cellLineDataPath": "cell_line_defs.json",
   "viewerSettingsPath": "images.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v1.4.0/Cell-Viewer_Thumbnails",
