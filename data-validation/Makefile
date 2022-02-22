@@ -30,6 +30,7 @@ database-docs:
 
 convert-to-html:
 	$(ASCIIDOCTOR) -D ../dist $(GENERATED) 
+	$(ASCIIDOCTOR) -D ../dist ../docs/Specification.adoc
 
 docs: 
 	make input-docs
