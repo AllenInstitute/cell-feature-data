@@ -1,6 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema",
+    "$id": "database-schema",
     "title": "Cell Feature Database Specification",
+    "description": "Structure of the data stored in firebase and AWS",
     "type": "object",
     "additionalProperties": false,
     "properties": {
@@ -8,8 +10,9 @@
             "description": "Endpoint that gets called first to load all the available datasets",
             "type": "object",
             "properties": {
-                "$dataset": {
+                "DATASET_ID": {
                     "type": "object",
+                    "title": "Dataset group information",
                     "properties": {
                         "datasets": {
                             "type": "array",
@@ -34,6 +37,7 @@
                             "description": "Publications associated with the group",
                             "type": "array",
                             "items": {
+                                "type": "object",
                                 "properties": {
                                     "title": {
                                         "description": "Article title",
@@ -55,15 +59,18 @@
             }
         },
         "manifests": {
+            "description": "Collection of manifests for each published dataset.",
             "type": "object",
             "properties": {
-                "$manifest": {
-                    "$ref": "input-megaset.schema.json"
+                "DATASET_ID": {
+                    "type": "object",
+                    "$ref": "manifest.schema.json"
                 }
             }
         },
         "dataset-data": {
-            "description": "Dataset level data",
+            "$id": "dataset-data",
+            "description": "Data ",
             "type": "object",
             "properties": {
                 "feature-definitions": {
@@ -81,9 +88,10 @@
         },
         "cell-data": {
             "description": "Per cell data",
+            "$id": "cell-data",
             "type": "object",
             "properties": {
-                "$dataset-id": {
+                "DATASET_ID": {
                     "type": "object",
                     "properties": {
                         "cell-file-info": {
@@ -104,7 +112,9 @@
     },
     "required": [
         "dataset-descriptions",
-        "feature-defs",
+        "manifests",
+        "dataset-data",
+        "cell-data",
         "measured-features"
     ]
 }

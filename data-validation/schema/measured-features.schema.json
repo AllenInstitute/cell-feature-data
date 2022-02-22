@@ -1,36 +1,11 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "measuredFeaturesSchema",
-    "title": "Measured features",
-    "description": "Data per cell needed to create the CFE plot",
+    "title": "Condensed measured features JSON",
+    "description": "File stored on AWS that has the condensed measured data.",
     "type": "array",
     "items": {
-        "additionalProperties": false,
         "type": "object",
-        "properties": {
-            "f": {
-                "description": "ordered array of measured features",
-                "type": "array",
-                "items": {
-                    "type": "number"
-                }
-            },
-            "p": {
-                "description": "Protein name",
-                "type": "string"
-            },
-            "t": {
-                "description": "Thumbnail Path",
-                "type": "string"
-            }
-
-
-        },
-        "required": [
-            "f",
-            "p",
-            "t"
-        ]
+        "$ref": "condensed-measured-feature.schema.json"
     }
-
 }

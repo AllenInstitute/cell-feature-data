@@ -1,0 +1,598 @@
+= Objects
+* <<reference-cell-feature-database-specification,`Cell Feature Database Specification`>> (root object)
+* <<reference-measured-features,`Condensed measured features JSON`>>
+** <<reference-condensed-measured-feature,`Condensed measured feature`>>
+* <<reference-selection-setting,`Data selection settings`>>
+* <<reference-feature-def,`Feature Definitions`>>
+* <<reference-file-info,`File Info`>>
+* <<reference-manifest,`Manifest`>>
+
+
+
+
+'''
+[#reference-cell-feature-database-specification]
+== Cell Feature Database Specification
+
+Structure of the data stored in firebase and AWS
+
+.`Cell Feature Database Specification` Properties
+|===
+|   |Type|Description|Required
+
+|**dataset-descriptions**
+|`object`
+|Endpoint that gets called first to load all the available datasets
+| &#10003; Yes
+
+|**manifests**
+|`object`
+|Collection of manifests for each published dataset.
+| &#10003; Yes
+
+|**dataset-data**
+|`object`
+|Dataset level data
+| &#10003; Yes
+
+|**cell-data**
+|`object`
+|Per cell data
+| &#10003; Yes
+
+|**measured-features**
+|<<reference-measured-features,`measured-features`>>
+|File stored on AWS that has the condensed measured data.
+| &#10003; Yes
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-cell-feature-database-specification,`database.schema.json`>>
+
+=== Cell Feature Database Specification.dataset-descriptions
+
+Endpoint that gets called first to load all the available datasets
+
+* **Type**: `object`
+* **Required**:  &#10003; Yes
+
+=== Cell Feature Database Specification.manifests
+
+Collection of manifests for each published dataset.
+
+* **Type**: `object`
+* **Required**:  &#10003; Yes
+
+=== Cell Feature Database Specification.dataset-data
+
+Dataset level data
+
+* **Type**: `object`
+* **Required**:  &#10003; Yes
+
+=== Cell Feature Database Specification.cell-data
+
+Per cell data
+
+* **Type**: `object`
+* **Required**:  &#10003; Yes
+
+=== Cell Feature Database Specification.measured-features
+
+File stored on AWS that has the condensed measured data.
+
+* **Type**: <<reference-measured-features,`measured-features`>>
+* **Required**:  &#10003; Yes
+
+
+
+
+'''
+[#reference-condensed-measured-feature]
+== Condensed measured feature
+
+Data per cell needed to create the CFE plot
+
+.`Condensed measured feature` Properties
+|===
+|   |Type|Description|Required
+
+|**f**
+|`number` `[]`
+|ordered array of measured features
+| &#10003; Yes
+
+|**p**
+|`string`
+|Protein name
+| &#10003; Yes
+
+|**t**
+|`string`
+|Thumbnail Path
+| &#10003; Yes
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-condensed-measured-feature,`condensed-measured-feature.schema.json`>>
+
+=== condensed-measured-feature.f
+
+ordered array of measured features
+
+* **Type**: `number` `[]`
+* **Required**:  &#10003; Yes
+
+=== condensed-measured-feature.p
+
+Protein name
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== condensed-measured-feature.t
+
+Thumbnail Path
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+
+
+
+'''
+[#reference-measured-features]
+== Condensed measured features JSON
+
+File stored on AWS that has the condensed measured data.
+
+
+
+'''
+[#reference-selection-setting]
+== Data selection settings
+
+.`Data selection settings` Properties
+|===
+|   |Type|Description|Required
+
+|**default**
+|`string`
+|Default feature key for the setting
+| &#10003; Yes
+
+|**exclude**
+|`string` `[]`
+|Optional list of feature keys to exclude
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-selection-setting,`selection-setting.schema.json`>>
+
+=== selection-setting.default
+
+Default feature key for the setting
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== selection-setting.exclude
+
+Optional list of feature keys to exclude
+
+* **Type**: `string` `[]`
+* **Required**: No
+
+
+
+
+'''
+[#reference-dataset-card]
+== Dataset Card
+
+Data needed to render a dataset card
+
+.`Dataset Card` Properties
+|===
+|   |Type|Description|Required
+
+|**title**
+|`string`
+|Display name of the dataset
+| &#10003; Yes
+
+|**name**
+|`string`
+|Name of the dataset (no version number)
+| &#10003; Yes
+
+|**version**
+|`string`
+|version year and number
+| &#10003; Yes
+
+|**description**
+|`string`
+|Description of the dataset
+| &#10003; Yes
+
+|**image**
+|`string`
+|Url to image src
+| &#10003; Yes
+
+|**link**
+|`string`
+|Link to website displaying the dataset
+|No
+
+|**userData**
+|`object`
+|Optional display data
+|No
+
+|**production**
+|`boolean`
+|Whether this dataset should only be shown in production
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-dataset-card,`dataset-card.schema.json`>>
+
+=== dataset-card.title
+
+Display name of the dataset
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== dataset-card.name
+
+Name of the dataset (no version number)
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== dataset-card.version
+
+version year and number
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== dataset-card.description
+
+Description of the dataset
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== dataset-card.image
+
+Url to image src
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== dataset-card.link
+
+Link to website displaying the dataset
+
+* **Type**: `string`
+* **Required**: No
+
+=== dataset-card.userData
+
+Optional display data
+
+* **Type**: `object`
+* **Required**: No
+
+=== dataset-card.production
+
+Whether this dataset should only be shown in production
+
+* **Type**: `boolean`
+* **Required**: No
+
+
+
+
+'''
+[#reference-feature-def]
+== Feature Definitions
+
+Definition of a measured features in the dataset
+
+.`Feature Definitions` Properties
+|===
+|   |Type|Description|Required
+
+|**displayName**
+|`string`
+|Human readable name
+| &#10003; Yes
+
+|**description**
+|`string`
+|Description of how the data was collected/measured
+| &#10003; Yes
+
+|**tooltip**
+|`string`
+|Shorter version of description
+| &#10003; Yes
+
+|**unit**
+|`string`
+|unit of measurement
+| &#10003; Yes
+
+|**key**
+|`string`
+|Id of the feature
+| &#10003; Yes
+
+|**discrete**
+|`boolean`
+|Whether it's a continuous measurement or not
+| &#10003; Yes
+
+|**options**
+|`object`
+|For discrete features, options is a mapping of the numeral value in the 'measured' feature to the name and color for that category.
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-feature-def,`feature-def.schema.json`>>
+
+=== feature-def.displayName
+
+Human readable name
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.description
+
+Description of how the data was collected/measured
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.tooltip
+
+Shorter version of description
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.unit
+
+unit of measurement
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.key
+
+Id of the feature
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.discrete
+
+Whether it's a continuous measurement or not
+
+* **Type**: `boolean`
+* **Required**:  &#10003; Yes
+
+=== feature-def.options
+
+For discrete features, options is a mapping of the numeral value in the 'measured' feature to the name and color for that category.
+
+* **Type**: `object`
+* **Required**: No
+
+
+
+
+'''
+[#reference-file-info]
+== File Info
+
+Metadata per cell
+
+
+
+'''
+[#reference-manifest]
+== Manifest
+
+High level for each dataset
+
+.`Manifest` Properties
+|===
+|   |Type|Description|Required
+
+|**featuresDataPath**
+|`string`
+|url to the per cell data json
+| &#10003; Yes
+
+|**cellLineDataPath**
+|`string`
+|collection name of the cell line data
+| &#10003; Yes
+
+|**featureDefsPath**
+|`string`
+|path to the feature def collection
+|No
+
+|**viewerSettingsPath**
+|`string`
+|path to image per-channel settings for the 3d viewer
+| &#10003; Yes
+
+|**albumPath**
+|`string`
+|collection name of the album data
+| &#10003; Yes
+
+|**thumbnailRoot**
+|`string`
+|Root url for thumbnail images
+| &#10003; Yes
+
+|**downloadRoot**
+|`string`
+|Root url for downloading cell data
+| &#10003; Yes
+
+|**volumeViewerDataRoot**
+|`string`
+|Root url for 3d images
+| &#10003; Yes
+
+|**xAxis**
+|<<reference-selection-setting,`selection-setting`>>
+|
+| &#10003; Yes
+
+|**yAxis**
+|<<reference-selection-setting,`selection-setting`>>
+|
+| &#10003; Yes
+
+|**colorBy**
+|<<reference-selection-setting,`selection-setting`>>
+|
+| &#10003; Yes
+
+|**groupBy**
+|<<reference-selection-setting,`selection-setting`>>
+|
+| &#10003; Yes
+
+|**featuresDisplayOrder**
+|`string` `[]`
+|Ordered array of feature keys for display on front end
+| &#10003; Yes
+
+|**featuresDataOrder**
+|`string` `[]`
+|Ordered array of feature keys for packing and unpacking data
+| &#10003; Yes
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-manifest,`manifest.schema.json`>>
+
+=== manifest.featuresDataPath
+
+url to the per cell data json
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== manifest.cellLineDataPath
+
+collection name of the cell line data
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== manifest.featureDefsPath
+
+path to the feature def collection
+
+* **Type**: `string`
+* **Required**: No
+
+=== manifest.viewerSettingsPath
+
+path to image per-channel settings for the 3d viewer
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== manifest.albumPath
+
+collection name of the album data
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== manifest.thumbnailRoot
+
+Root url for thumbnail images
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== manifest.downloadRoot
+
+Root url for downloading cell data
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== manifest.volumeViewerDataRoot
+
+Root url for 3d images
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== manifest.xAxis
+
+* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Required**:  &#10003; Yes
+
+=== manifest.yAxis
+
+* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Required**:  &#10003; Yes
+
+=== manifest.colorBy
+
+* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Required**:  &#10003; Yes
+
+=== manifest.groupBy
+
+* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Required**:  &#10003; Yes
+
+=== manifest.featuresDisplayOrder
+
+Ordered array of feature keys for display on front end
+
+* **Type**: `string` `[]`
+* **Required**:  &#10003; Yes
+
+=== manifest.featuresDataOrder
+
+Ordered array of feature keys for packing and unpacking data
+
+* **Type**: `string` `[]`
+* **Required**:  &#10003; Yes
+
+

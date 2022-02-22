@@ -1,32 +1,40 @@
-# SPEC = Specification
-# TARGETS = $(SPEC).html $(SPEC).pdf
+SPEC = Specification
+TARGETS = $(SPEC).html $(SPEC).pdf
 # all: $(TARGETS)
 
 WETZEL = npx wetzel@0.2.2
 
 SCHEMALINK = schema
-EMBEDINPUTSCHEMA = DatasetHandoffSchema.adoc
-INPUTREF = DatasetHandoffRef.adoc
 
-EMBEDDATABASESCHEMA = DatabaseSchema.adoc
-DATABASEREF = DatabaseRef.adoc
+EMBEDINPUTSCHEMA = ../docs/DatasetHandoffSchema.adoc
+INPUTREF = ../docs/DatasetHandoffRef.adoc
 
-GENERATED = $(PROPREF) $(EMBEDINPUTSCHEMA) $(EMBEDDATABASESCHEMA) $(DATABASEREF)
+EMBEDDATABASESCHEMA = ../docs/DatabaseSchema.adoc
+DATABASEREF = ../docs/DatabaseRef.adoc
+
+GENERATED = $(EMBEDINPUTSCHEMA) $(INPUTREF) $(EMBEDDATABASESCHEMA) $(DATABASEREF)
 $(GENERATED): $(wildcard schema/*schema.json)
 
+ASCIIDOCTOR = npx asciidoctor 
+ADOCOPTS = -d book
+ADOCHTMLOPTS = -a stylesheet=khronos.css -a sectanchors
+SPECDEPS = $(SPEC).adoc $(GENERATED)
+
 input-docs:
-	$(WETZEL) -n -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDINPUTSCHEMA)" \
-		-c "icon:check[]" -k "**MUST**"\
+	$(WETZEL) -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDINPUTSCHEMA)" \
 		schema/input-dataset.schema.json > $(INPUTREF)
 
 database-docs:
-	$(WETZEL) -n -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDDATABASESCHEMA)" \
-		-c "icon:check[]" -k "**MUST**"\
+	$(WETZEL) -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDDATABASESCHEMA)" \
 		schema/database.schema.json > $(DATABASEREF)
+
+convert-to-html:
+	$(ASCIIDOCTOR) -D ../dist $(GENERATED) 
 
 docs: 
 	make input-docs
 	make database-docs
+	make convert-to-html
 
 clean: 
 	-rm -f $(GENERATED) $(TARGETS)

@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "$id": "selection-setting",
+    "title": "Data selection settings",
+    "type": "object",
+    "properties": {
+        "default": {
+            "description": "Default feature key for the setting",
+            "type": "string"
+        },
+        "exclude": {
+            "description": "Optional list of feature keys to exclude",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "default"
+    ],
+    "additionalProperties": false
+}

@@ -1,0 +1,77 @@
+= Objects
+* <<reference-cell-feature-dataset-handoff-specification,`Cell Feature Dataset Handoff Specification`>> (root object)
+* <<reference-selection-setting,`Data selection settings`>>
+* <<reference-input-dataset-info,`Dataset Info `dataset.json``>>
+* <<reference-input-megaset,`Input Megaset `dataset.json``>>
+
+
+
+
+[#schema-reference-cell-feature-dataset-handoff-specification]
+== JSON Schema for Cell Feature Dataset Handoff Specification
+
+[source,json]
+----
+include::schema/input-dataset.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-selection-setting]
+== JSON Schema for Data selection settings
+
+[source,json]
+----
+include::schema/selection-setting.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-input-dataset-info]
+== JSON Schema for Dataset Info `dataset.json`
+
+[source,json]
+----
+include::schema/input-dataset-info.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-feature-def]
+== JSON Schema for Feature Definitions
+
+[source,json]
+----
+include::schema/feature-def.schema.json[]
+----
+
+<<<
+
+
+
+
+[#schema-reference-input-megaset]
+== JSON Schema for Input Megaset `dataset.json`
+
+[source,json]
+----
+include::schema/input-megaset.schema.json[]
+----
+
+<<<
+
+
+
+
+[#schema-reference-input-measured-features]
+== JSON Schema for One measured value
+
+[source,json]
+----
+include::schema/input-measured-features.schema.json[]
+----
+
+<<<

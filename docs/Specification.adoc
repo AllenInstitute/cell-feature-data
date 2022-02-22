@@ -1,0 +1,23 @@
+Cell Feature Data Dataset Handoff and Database Specification
+
+[[for-handoffs]]
+== For people handing off datasets:
+
+For a single dataset (the only file name that matters is `dataset.json`):
+1. Create a folder with 5 files:
+a. dataset.json
+b. feature_analysis.json or .zip depending on the size
+c. feature_defs.json
+d. images.json
+e. card-cover.png (for display on the homepage)
+
+For a group of datasets, ie a Megaset (the only file name that matters is `dataset.json`):
+1. Create a folder with 1 file and one folder per dataset:
+`dataset.json`
+/dataset-1
+    `dataset.json`
+    ... the other 4 files listed above
+/dataset-2
+    `dataset.json`
+    ... the other 4 files listed above
+

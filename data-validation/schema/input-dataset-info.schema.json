@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "datasetInfoSchema",
-    "title": "Dataset Info",
-    "description": "Data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON",
+    "title": "Dataset Info `dataset.json`",
+    "description": "File containing the data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON `datasets` array. Should be named `dataset.json`",
     "type": "object",
     "additionalProperties": false,
     "properties": {
@@ -69,78 +69,36 @@
         "xAxis": {
             "description": "Settings for the x axis",
             "type": "object",
-            "properties": {
-                "default": {
-                    "description": "Default feature key for the axis",
-                    "type": "string"
-                },
-                "exclude": {
-                    "description": "Optional list of feature keys to exclude",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
+            "$ref": "selection-setting.schema.json"
         },
         "yAxis": {
             "description": "Settings for the y axis",
             "type": "object",
-            "properties": {
-                "default": {
-                    "description": "Default feature key for the axis",
-                    "type": "string"
-                },
-                "exclude": {
-                    "description": "Optional list of feature keys to exclude",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
+            "$ref": "selection-setting.schema.json"
         },
         "colorBy": {
             "description": "Settings for the color by menu",
             "type": "object",
-            "properties": {
-                "default": {
-                    "description": "Default feature key to color the data by",
-                    "type": "string"
-                },
-                "exclude": {
-                    "description": "Optional list of feature keys to exclude",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
+            "$ref": "selection-setting.schema.json"
         },
         "groupBy": {
             "description": "Settings for the grouping menu",
             "type": "object",
-            "properties": {
-                "default": {
-                    "description": "Default feature key for the group menu",
-                    "type": "string"
-                },
-                "exclude": {
-                    "description": "Optional list of feature keys to exclude",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
+            "$ref": "selection-setting.schema.json"
         },
         "featuresDisplayOrder": {
             "description": "Ordered array of feature keys for display on front end",
-            "type": "array"
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
         },
         "featuresDataOrder": {
             "description": "Ordered array of feature keys for packing and unpacking data",
-            "type": "array"
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
         }
     },
     "required": [

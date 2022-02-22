@@ -13,7 +13,8 @@
     "test": "jest --env node --forceExit",
     "process-dataset": "node process-dataset",
     "upload-image": "node upload-dataset-image",
-    "release-dataset": "node release-dataset"
+    "release-dataset": "node release-dataset",
+    "gh-deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,8 @@
     "prompt": "^1.1.0"
   },
   "devDependencies": {
+    "asciidoctor": "^2.2.6",
+    "gh-pages": "^3.2.3",
     "jest": "^24.9.0",
     "wetzel": "^0.2.3"
   }

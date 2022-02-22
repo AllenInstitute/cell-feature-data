@@ -1,6 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema",
-    "title": "Cell Feature Dataset Specification",
+    "$id": "handoff-datasete",
+    "title": "Cell Feature Dataset Handoff Specification",
     "type": "object",
     "additionalProperties": false,
     "properties": {
@@ -11,14 +12,20 @@
             "$ref": "input-dataset-info.schema.json"
         },
         "feature-defs": {
-            "description": "File that describes the measured feature definitions",
+            "title": "Feature definitions `feature-defs.json`",
+            "description": "File that describes the measured feature definitions. Is an array of feature definitions.",
             "type": "array",
             "items": {
                 "$ref": "feature-def.schema.json"
             }
         },
         "measured-features": {
-            "$ref": "input-measured-features.schema.json"
+            "title": "Measured Values `features.json`",
+            "description": "File that contains the measured analysis values, which will drive the plot.",
+            "type": "array",
+            "items": {
+                "$ref": "input-measured-features.schema.json"
+            }
         }
     },
     "required": [
