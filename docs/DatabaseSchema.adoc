@@ -15,7 +15,7 @@
 
 [source,json]
 ----
-include::schema/database.schema.json[]
+include::../data-validation/schema/database.schema.json[]
 ----
 
 <<<
@@ -26,7 +26,7 @@ include::schema/database.schema.json[]
 
 [source,json]
 ----
-include::schema/condensed-measured-feature.schema.json[]
+include::../data-validation/schema/condensed-measured-feature.schema.json[]
 ----
 
 <<<
@@ -37,7 +37,7 @@ include::schema/condensed-measured-feature.schema.json[]
 
 [source,json]
 ----
-include::schema/measured-features.schema.json[]
+include::../data-validation/schema/measured-features.schema.json[]
 ----
 
 <<<
@@ -48,7 +48,7 @@ include::schema/measured-features.schema.json[]
 
 [source,json]
 ----
-include::schema/selection-setting.schema.json[]
+include::../data-validation/schema/selection-setting.schema.json[]
 ----
 
 <<<
@@ -59,7 +59,7 @@ include::schema/selection-setting.schema.json[]
 
 [source,json]
 ----
-include::schema/dataset-card.schema.json[]
+include::../data-validation/schema/dataset-card.schema.json[]
 ----
 
 <<<
@@ -70,7 +70,7 @@ include::schema/dataset-card.schema.json[]
 
 [source,json]
 ----
-include::schema/feature-def.schema.json[]
+include::../data-validation/schema/feature-def.schema.json[]
 ----
 
 <<<
@@ -81,7 +81,7 @@ include::schema/feature-def.schema.json[]
 
 [source,json]
 ----
-include::schema/file-info.schema.json[]
+include::../data-validation/schema/file-info.schema.json[]
 ----
 
 <<<
@@ -92,7 +92,7 @@ include::schema/file-info.schema.json[]
 
 [source,json]
 ----
-include::schema/manifest.schema.json[]
+include::../data-validation/schema/manifest.schema.json[]
 ----
 
 <<<

@@ -12,7 +12,7 @@
 
 [source,json]
 ----
-include::schema/input-dataset.schema.json[]
+include::../data-validation/schema/input-dataset.schema.json[]
 ----
 
 <<<
@@ -23,7 +23,7 @@ include::schema/input-dataset.schema.json[]
 
 [source,json]
 ----
-include::schema/selection-setting.schema.json[]
+include::../data-validation/schema/selection-setting.schema.json[]
 ----
 
 <<<
@@ -34,7 +34,7 @@ include::schema/selection-setting.schema.json[]
 
 [source,json]
 ----
-include::schema/input-dataset-info.schema.json[]
+include::../data-validation/schema/input-dataset-info.schema.json[]
 ----
 
 <<<
@@ -45,7 +45,7 @@ include::schema/input-dataset-info.schema.json[]
 
 [source,json]
 ----
-include::schema/feature-def.schema.json[]
+include::../data-validation/schema/feature-def.schema.json[]
 ----
 
 <<<
@@ -58,7 +58,7 @@ include::schema/feature-def.schema.json[]
 
 [source,json]
 ----
-include::schema/input-megaset.schema.json[]
+include::../data-validation/schema/input-megaset.schema.json[]
 ----
 
 <<<
@@ -71,7 +71,7 @@ include::schema/input-megaset.schema.json[]
 
 [source,json]
 ----
-include::schema/input-measured-features.schema.json[]
+include::../data-validation/schema/input-measured-features.schema.json[]
 ----
 
 <<<

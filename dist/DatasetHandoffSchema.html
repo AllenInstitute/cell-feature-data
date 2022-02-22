@@ -466,7 +466,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">Unresolved directive in DatasetHandoffSchema.adoc - include::schema/input-dataset.schema.json[]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "$id": "handoff-datasete",
+    "title": "Cell Feature Dataset Handoff Specification",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "megaset": {
+            "$ref": "input-megaset.schema.json"
+        },
+        "dataset": {
+            "$ref": "input-dataset-info.schema.json"
+        },
+        "feature-defs": {
+            "title": "Feature definitions `feature-defs.json`",
+            "description": "File that describes the measured feature definitions. Is an array of feature definitions.",
+            "type": "array",
+            "items": {
+                "$ref": "feature-def.schema.json"
+            }
+        },
+        "measured-features": {
+            "title": "Measured Values `features.json`",
+            "description": "File that contains the measured analysis values, which will drive the plot.",
+            "type": "array",
+            "items": {
+                "$ref": "input-measured-features.schema.json"
+            }
+        }
+    },
+    "required": [
+        "dataset",
+        "feature-defs",
+        "measured-features"
+    ]
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -477,7 +512,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">Unresolved directive in DatasetHandoffSchema.adoc - include::schema/selection-setting.schema.json[]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "$id": "selection-setting",
+    "title": "Data selection settings",
+    "type": "object",
+    "properties": {
+        "default": {
+            "description": "Default feature key for the setting",
+            "type": "string"
+        },
+        "exclude": {
+            "description": "Optional list of feature keys to exclude",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "default"
+    ],
+    "additionalProperties": false
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -488,7 +545,129 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">Unresolved directive in DatasetHandoffSchema.adoc - include::schema/input-dataset-info.schema.json[]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "datasetInfoSchema",
+    "title": "Dataset Info `dataset.json`",
+    "description": "File containing the data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON `datasets` array. Should be named `dataset.json`",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "title": {
+            "description": "Display name of the dataset",
+            "type": "string"
+        },
+        "name": {
+            "description": "Name of the dataset (no version number)",
+            "type": "string"
+        },
+        "version": {
+            "description": "version year and number",
+            "type": "string"
+        },
+        "description": {
+            "description": "Description of the dataset",
+            "type": "string"
+        },
+        "image": {
+            "description": "relative path to the dataset card image file",
+            "type": "string"
+        },
+        "link": {
+            "description": "Link to website displaying the dataset",
+            "type": "string"
+        },
+        "userData": {
+            "description": "Optional display data",
+            "type": "object"
+        },
+        "production": {
+            "description": "Whether this dataset should only be shown in production",
+            "type": "boolean"
+        },
+        "featuresDataPath": {
+            "description": "url to the per cell data json",
+            "type": "string"
+        },
+        "featureDefsPath": {
+            "description": "path to the feature def collection",
+            "type": "string"
+        },
+        "viewerSettingsPath": {
+            "description": "path to image per-channel settings for the 3d viewer",
+            "type": "string"
+        },
+        "albumPath": {
+            "description": "collection name of the album data",
+            "type": "string"
+        },
+        "thumbnailRoot": {
+            "description": "Root url for thumbnail images",
+            "type": "string"
+        },
+        "downloadRoot": {
+            "description": "Root url for downloading cell data",
+            "type": "string"
+        },
+        "volumeViewerDataRoot": {
+            "description": "Root url for 3d images",
+            "type": "string"
+        },
+        "xAxis": {
+            "description": "Settings for the x axis",
+            "type": "object",
+            "$ref": "selection-setting.schema.json"
+        },
+        "yAxis": {
+            "description": "Settings for the y axis",
+            "type": "object",
+            "$ref": "selection-setting.schema.json"
+        },
+        "colorBy": {
+            "description": "Settings for the color by menu",
+            "type": "object",
+            "$ref": "selection-setting.schema.json"
+        },
+        "groupBy": {
+            "description": "Settings for the grouping menu",
+            "type": "object",
+            "$ref": "selection-setting.schema.json"
+        },
+        "featuresDisplayOrder": {
+            "description": "Ordered array of feature keys for display on front end",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "featuresDataOrder": {
+            "description": "Ordered array of feature keys for packing and unpacking data",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "title",
+        "version",
+        "name",
+        "image",
+        "description",
+        "featuresDataPath",
+        "viewerSettingsPath",
+        "albumPath",
+        "thumbnailRoot",
+        "downloadRoot",
+        "volumeViewerDataRoot",
+        "xAxis",
+        "yAxis",
+        "groupBy",
+        "colorBy",
+        "featuresDisplayOrder",
+        "featuresDataOrder"
+    ]
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -499,7 +678,78 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">Unresolved directive in DatasetHandoffSchema.adoc - include::schema/feature-def.schema.json[]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "featureDefSchema",
+    "title": "Feature Definitions",
+    "description": "Definition of a measured features in the dataset",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "displayName": {
+            "description": "Human readable name",
+            "type": "string"
+        },
+        "description": {
+            "description": "Description of how the data was collected/measured",
+            "type": "string"
+        },
+        "tooltip": {
+            "description": "Shorter version of description",
+            "type": "string"
+        },
+        "unit": {
+            "description": "unit of measurement",
+            "type": "string"
+        },
+        "key": {
+            "description": "Id of the feature",
+            "type": "string"
+        },
+        "discrete": {
+            "description": "Whether it's a continuous measurement or not",
+            "type": "boolean"
+        },
+        "options": {
+            "description": "For discrete features, options is a mapping of the numeral value in the 'measured' feature to the name and color for that category.",
+            "type": "object",
+            "properties": {
+                "$number": {
+                    "$schema": "http://json-schema.org/draft-04/schema",
+                    "$id": "discrete-feature-option",
+                    "type": "object",
+                    "properties": {
+                        "color": {
+                            "description": "Hex string",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Display name for the option. Doesn't have to be unique, but if it's not unique, `key` is required.",
+                            "type": "string"
+                        },
+                        "key": {
+                            "description": "unique key for the option.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "name",
+                        "color"
+                    ]
+                }
+            }
+        }
+    },
+    "required": [
+        "displayName",
+        "description",
+        "tooltip",
+        "unit",
+        "key",
+        "discrete"
+    ]
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -510,7 +760,52 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">Unresolved directive in DatasetHandoffSchema.adoc - include::schema/input-megaset.schema.json[]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "inputMegaset",
+    "title": "Input Megaset `dataset.json`",
+    "description": "File that describes a group of datasets (ie a 'Megaset'). Should be at the highest level, and the datasets nested in their own folders. This file needs to be named `dataset.json`",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "title": {
+            "description": "Display name of the dataset or group",
+            "type": "string"
+        },
+        "name": {
+            "description": "Name of the dataset (no version number)",
+            "type": "string"
+        },
+        "datasets": {
+            "description": "subfolder names that point to each dataset in the group",
+            "type": "array"
+        },
+        "publications": {
+            "description": "Publications associated with the group",
+            "type": "array",
+            "items": {
+                "properties": {
+                    "title": {
+                        "description": "Article title",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "Article link",
+                        "type": "string"
+                    },
+                    "citation": {
+                        "description": "Article journal and date",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "required": [
+        "title",
+        "name"
+    ]
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -521,7 +816,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">Unresolved directive in DatasetHandoffSchema.adoc - include::schema/input-measured-features.schema.json[]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "inputMeasuredFeaturesSchema",
+    "title": "One measured value",
+    "description": "Per data point object. The measured features JSON is an array of these objects.",
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+        "file_info": {
+            "description": "ordered array of file info: [id, parentId, id of default group, thumbnail path, volume viewer path, parent thumbnail path, parent volume viewer path]",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "features": {
+            "description": "Ordered array of measured features. Needs to match the order of featuresDataOrder",
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        }
+    },
+    "required": [
+        "file_info",
+        "features"
+    ]
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -531,7 +853,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2022-02-22 11:55:59 -0800
+Last updated 2022-02-22 12:01:02 -0800
 </div>
 </div>
 </body>

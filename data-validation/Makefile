@@ -1,10 +1,10 @@
 SPEC = Specification
-TARGETS = $(SPEC).html $(SPEC).pdf
+TARGETS = $(SPEC).html
 # all: $(TARGETS)
 
 WETZEL = npx wetzel@0.2.2
 
-SCHEMALINK = schema
+SCHEMALINK = ../data-validation/schema
 
 EMBEDINPUTSCHEMA = ../docs/DatasetHandoffSchema.adoc
 INPUTREF = ../docs/DatasetHandoffRef.adoc

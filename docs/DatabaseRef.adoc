@@ -32,7 +32,7 @@ Structure of the data stored in firebase and AWS
 
 |**dataset-data**
 |`object`
-|Dataset level data
+|Data 
 | &#10003; Yes
 
 |**cell-data**
@@ -67,7 +67,7 @@ Collection of manifests for each published dataset.
 
 === Cell Feature Database Specification.dataset-data
 
-Dataset level data
+Data 
 
 * **Type**: `object`
 * **Required**:  &#10003; Yes
