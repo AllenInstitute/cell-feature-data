@@ -22,11 +22,11 @@ ADOCOPTS = -d book
 ADOCHTMLOPTS = -a stylesheet=khronos.css -a sectanchors
 
 input-docs:
-	$(WETZEL) -n -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDINPUTSCHEMA)" \
+	$(WETZEL) -n -a=cqo -m=a -w -p "$(SCHEMALINK)" -e "$(EMBEDINPUTSCHEMA)" \
 		schema/input-dataset.schema.json > $(INPUTREF)
 
 database-docs:
-	$(WETZEL) -n -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDDATABASESCHEMA)" \
+	$(WETZEL) -n -a=cqo -m=a -w -p "$(SCHEMALINK)" -e "$(EMBEDDATABASESCHEMA)" \
 		schema/database.schema.json > $(DATABASEREF)
 
 convert-to-html:
@@ -38,4 +38,4 @@ docs:
 	make convert-to-html
 
 clean: 
-	-rm -f $(GENERATED) ${HTML_DOCS}
+	-rm -f $(GENERATED)
