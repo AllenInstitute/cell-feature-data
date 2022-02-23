@@ -1,6 +1,6 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema",
-    "$id": "handoff-datasete",
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "input-dataset.schema.json",
     "title": "Cell Feature Dataset Handoff Specification",
     "type": "object",
     "additionalProperties": false,

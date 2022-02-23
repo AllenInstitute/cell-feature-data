@@ -1,6 +1,6 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema",
-    "$id": "discrete-feature-option",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "sub-schema/discrete-feature-option.schema.json",
     "title": "Discrete feature option",
     "description": "Schema for each category in a discrete feature",
     "type": "object",

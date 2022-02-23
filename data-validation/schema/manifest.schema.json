@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "manifestSchema",
+    "$id": "manifest.schema.json",
     "title": "Manifest",
     "description": "High level data for each dataset that points to where all the data is stored for this dataset.",
     "type": "object",

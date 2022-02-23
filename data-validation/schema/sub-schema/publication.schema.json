@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "publication",
+    "$id": "sub-schema/publication.schema.json",
     "title": "Publication",
     "description": "Publication data",
     "additionalProperties": false,

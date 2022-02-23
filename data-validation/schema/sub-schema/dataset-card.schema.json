@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "datasetCardSchema",
+    "$id": "sub-schema/dataset-card.schema.json",
     "title": "Dataset Card",
     "description": "Data needed to render a dataset card",
     "type": "object",

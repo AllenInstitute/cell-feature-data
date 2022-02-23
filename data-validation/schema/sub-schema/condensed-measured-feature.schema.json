@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "measuredFeatureSchema",
+    "$id": "sub-schema/condensed-measured-feature.schema.json",
     "title": "Condensed measured feature",
     "description": "Data per cell needed to create the CFE plot",
     "additionalProperties": false,
@@ -10,7 +10,15 @@
             "description": "ordered array of measured features",
             "type": "array",
             "items": {
-                "type": "number"
+                "anyOf": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "string",
+                        "pattern": "[NaN]"
+                    }
+                ]
             }
         },
         "p": {
@@ -20,11 +28,16 @@
         "t": {
             "description": "Thumbnail Path",
             "type": "string"
+        },
+        "i": {
+            "description": "Cell id",
+            "type": "string"
         }
     },
     "required": [
         "f",
         "p",
-        "t"
+        "t",
+        "i"
     ]
 }

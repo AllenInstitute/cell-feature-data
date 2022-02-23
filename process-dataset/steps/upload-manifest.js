@@ -1,11 +1,14 @@
-const fsPromises = require('fs').promises;
 const dataPrep = require("../../data-validation/data-prep");
 const schemas = require("../../data-validation/full-schema");
 
 const uploadManifest = async (firebaseHandler, datasetJson, featureDefsData) => {
     console.log("uploading dataset description and manifest...");
 
-    const manifest = dataPrep.initialize(datasetJson, schemas.manifestSchema)
+    const {
+        data: manifest,
+        valid,
+        error
+    } = dataPrep.validate(datasetJson, schemas.manifest)
     // will be updated when the data is uploaded
     manifest.cellLineDataPath = "";
     manifest.albumPath = "";
@@ -14,12 +17,11 @@ const uploadManifest = async (firebaseHandler, datasetJson, featureDefsData) => 
     manifest.featuresDisplayOrder = featureDefsData.map(ele => ele.key)
     manifest.viewerSettingsPath = "";
 
-    const manifestCheck = dataPrep.validate(manifest, schemas.manifest)
-    if (manifestCheck.valid) {
+    if (valid) {
         // upload manifest
         await firebaseHandler.uploadManifest(manifest)
     } else {
-        console.log(manifestCheck.error)
+        console.log(error)
         process.exit(1);
     }
     console.log("uploading manifest complete");

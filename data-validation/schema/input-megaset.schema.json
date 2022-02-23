@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "inputMegaset",
+    "$id": "input-megaset.schema.json",
     "title": "Input Megaset `dataset.json`",
     "description": "File that describes a group of datasets (ie a 'Megaset'). Should be at the highest level, and the datasets nested in their own folders. This file needs to be named `dataset.json`",
     "type": "object",

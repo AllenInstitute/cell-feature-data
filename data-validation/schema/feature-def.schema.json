@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "featureDefSchema",
+    "$id": "feature-def.schema.json",
     "title": "Feature Definition",
     "description": "Definition of a measured features in the dataset. Feature definitions file is an array of these objects.",
     "type": "object",
@@ -33,7 +33,7 @@
         "options": {
             "description": "Required for discrete features, options is a mapping of the numeral value in the 'measured' feature to the name and color for that category.",
             "type": "object",
-            "$ref": "sub-schema/discrete-feature-options.schema.json"
+            "$ref": "discrete-feature-options.schema.json"
         }
     },
     "required": [

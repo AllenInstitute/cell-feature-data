@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "datasetInfoSchema",
+    "$id": "input-dataset-info.schema.json",
     "title": "Input dataset info `dataset.json`",
     "description": "File containing the data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON `datasets` array. Should be named `dataset.json`",
     "type": "object",

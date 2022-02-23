@@ -21,9 +21,18 @@ const readDatasetJson = async (folder) => {
 // Extract out just the fields that will go into Firebase under 
 // dataset-descriptions/{megaset name}
 const getDatasetInfo = (datasetJson) => {
-    const datasetInfo = dataPrep.initialize(datasetJson, schemas.datasetSchema)
-    datasetInfo.production = false; // by default upload all datasets as a staging set
-    return datasetInfo;
+    // will remove additional properties
+    const {
+        data,
+        valid,
+        error
+    } = dataPrep.validate(datasetJson, schemas.dataset);
+    if (!valid) {
+        console.log("dataset.json failed validation", error)
+        process.exit(1);
+    }
+    data.production = false; // by default upload all datasets as a staging set
+    return data;
 }
 
 const getDatasetId = (dataset) => {
@@ -35,12 +44,12 @@ const processMegaset = async () => {
         console.log("NEED A DATASET FOLDER TO PROCESS")
         process.exit(1)
     }
-    
+
     fsPromises.readdir(inputFolder)
-        .catch ((error) => {
+        .catch((error) => {
             console.log("COULDN'T READ DIRECTORY:", error)
-        }) 
-    
+        })
+
     // Top-level megaset structure for Firebase
     let megasetInfo = {
         title: "",
@@ -55,12 +64,15 @@ const processMegaset = async () => {
     // This will hold all data from dataset.json files for individual datasets, 
     // with dataset IDs as keys
     const datasetJsons = {};
-    
+
     // Read in the dataset.json at the top level of the provided directory
     const topLevelJson = await readDatasetJson(inputFolder);
-    
+
     if (topLevelJson.datasets) { // Datasets are provided as a megaset (nested datasets exist)
-        megasetInfo = {...topLevelJson, production: false};
+        megasetInfo = {
+            ...topLevelJson,
+            production: false
+        };
 
         // Unpack individual datasets and save data as megasetInfo.datasets and to datasetJsons
         megasetInfo.datasets = await Promise.all(
@@ -77,24 +89,24 @@ const processMegaset = async () => {
             // as keys and objects containing pared-down info about individual datasets as values
             return datasetJsonArr.reduce((acc, datasetJson) => {
                 const datasetInfo = getDatasetInfo(datasetJson);
-                const id = getDatasetId(datasetInfo);
+                const id = getDatasetId(datasetJson);
                 acc[id] = datasetInfo;
                 // Also save the entire datasetJson with the same id to datasetJsons, which will be used in the "process-one-dataset" script to upload and save the rest of the data
                 datasetJsons[id] = datasetJson;
                 return acc;
             }, {})
         })
-    } else { 
+    } else {
         // A single dataset is provided (no nested datasets). It will be saved as a megaset with
         // just one dataset in it. 
-        
+
         // Do the same processing as for a real megaset, but much simpler since all data is
         // contained in the top-level dataset.json
         megasetInfo.title = topLevelJson.title;
         megasetInfo.publications = topLevelJson.publications || [];
         topLevelJson.datasetReadFolder = inputFolder;
         const datasetInfo = getDatasetInfo(topLevelJson);
-        const id = getDatasetId(datasetInfo);
+        const id = getDatasetId(topLevelJson);
         megasetInfo.name = id;
         // for single dataset sets we want to store the document with the whole id, to avoid 
         // grouping versions of the same name together as if they're megasets 
@@ -103,15 +115,15 @@ const processMegaset = async () => {
         }
         datasetJsons[id] = topLevelJson;
     }
-  
- 
+
+
     // Upload the dataset description (megasetInfo) to Firebase
     console.log("uploading data description...")
     await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
         merge: true
     });
     console.log("uploading data description complete");
-    
+
     // For each dataset in the megaset, process the rest of the data
     const datasetIds = Object.keys(megasetInfo.datasets);
     await Promise.all(datasetIds.map(async (id) => {
