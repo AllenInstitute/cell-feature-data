@@ -15,8 +15,11 @@
             "type": "string"
         },
         "datasets": {
-            "description": "subfolder names that point to each dataset in the group",
-            "type": "array"
+            "description": "Array of subfolder names that point to each dataset in the group. Each subfolder should contain their own `dataset.json`",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
         },
         "publications": {
             "description": "Publications associated with the group",
@@ -28,6 +31,7 @@
     },
     "required": [
         "title",
-        "name"
+        "name",
+        "datasets"
     ]
 }
