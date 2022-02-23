@@ -15,7 +15,8 @@
     "upload-image": "node upload-dataset-image",
     "release-dataset": "node release-dataset",
     "prepublish-docs": "cd ./data-validation && make docs",
-    "publish-docs": "gh-pages -d dist"
+    "publish-docs": "gh-pages -d dist",
+    "postpublish-docs": "cd ./data-validation && make clean"
   },
   "repository": {
     "type": "git",
