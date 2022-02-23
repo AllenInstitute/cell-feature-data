@@ -26,11 +26,12 @@ function replaceRef(schema, searchPaths, ignorableTypes, schemaReferences, paren
     }
 
     schemaReferences = defaultValue(schemaReferences, {});
-
+    var baseTypes = ["number", "string"];
     var ref = schema.$ref;
     if (defined(ref)) {
         // TODO: $ref could also be absolute.
         var refSchema, fileName;
+        var error;
         for (var searchPath of searchPaths) {
             try {
                 var [file, pointer] = ref.split(/#(.*)/);
@@ -44,24 +45,36 @@ function replaceRef(schema, searchPaths, ignorableTypes, schemaReferences, paren
                 }
                 if (pointer) {
                     refSchema = jsonpointer.get(refSchema, pointer);
-                    refSchema.typeName = pointer.split('/').pop();
+                    if (baseTypes.indexOf(refSchema.type) < 0 ) {
+                        refSchema.typeName = pointer.split('/').pop();
+                    } else {
+                        // if the type is just a string or number, there 
+                        // is no reason to make a whole "type" out of the 
+                        // reference
+                        refSchema.typeName = refSchema.type;
+
+                    }
                 }
                 break;
-            } catch (ex) { refSchema = undefined; }
+            } catch (ex) { 
+                error = ex
+                refSchema = undefined; 
+            }
         }
 
         if (!defined(refSchema)) {
-            throw new Error(`Unable to find $ref ${ref}`);
+            throw new Error(`Unable to find $ref ${ref}, ${error}`);
         }
 
         if (!defined(refSchema.title)) {
-            throw new Error(`No title found in $ref ${ref}`);
+            throw new Error(`No title found in $ref ${ref}, ${error}`);
         }
 
         // If a type is supposed to be ignored, that means that its contents should be applied
         // to the referencing schema, but it shouldn't be called out as a top-level type by itself
         // (meaning it would never show up in a table of contents or get its own documentation section).
         if (ignorableTypes.indexOf(ref.toLowerCase()) < 0) {
+
             if (refSchema.title in schemaReferences) {
                 // update schema and fileName in case it was inserted by a child first
                 schemaReferences[refSchema.title].schema = refSchema;
