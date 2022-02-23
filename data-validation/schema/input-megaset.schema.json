@@ -21,6 +21,10 @@
                 "type": "string"
             }
         },
+        "dateCreated": {
+            "description": "Month Day, Year",
+            "type": "string"
+        },
         "publications": {
             "description": "Publications associated with the group",
             "type": "array",

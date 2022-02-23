@@ -32,5 +32,12 @@
                 "$ref": "sub-schema/publication.schema.json"
             }
         }
-    }
+    },
+    "required": [
+        "datasets",
+        "dateCreated",
+        "name",
+        "production",
+        "title"
+    ]
 }
