@@ -2,6 +2,7 @@
   "title": "hiPSC Single-Cell Image Dataset",
   "version": "2021.1",
   "name": "aics_hipsc",
+  "dateCreated": "Jan 1, 2021",
   "image": "card-cover-dataset-2-0.png",
   "description": "Through improved cell and nuclear segmentation methods, this dataset contains 5x the number of single-cell images and includes 5 new fluorescently-labeled structures. To learn more about the robust intracellular organization found in this dataset, please see our recent article in bioRxiv.",
   "publications": [
@@ -20,7 +21,6 @@
   },
   "featureDefsPath": "feature_defs.json",
   "featuresDataPath": "cell_feature_analysis.json",
-  "cellLineDataPath": "cell_line_def.json",
   "viewerSettingsPath": "images.json",
   "albumPath": "albums",
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",

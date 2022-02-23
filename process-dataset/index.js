@@ -1,11 +1,15 @@
 const fsPromises = require('fs').promises;
 const {
+    admin,
     firestore
 } = require('../firebase/setup-firebase');
 
 const dataPrep = require("../data-validation/data-prep");
 const schemas = require("../data-validation/full-schema");
 const processSingleDataset = require("./process-single-dataset");
+const {
+    DATASET_DESCRIPTIONS
+} = require("./constants");
 
 const args = process.argv.slice(2);
 console.log('Received: ', args);
@@ -39,6 +43,23 @@ const getDatasetId = (dataset) => {
     return `${dataset.name}_v${dataset.version}`;
 }
 
+const getDateCreated = async (name, dateCreated) => {
+    if (dateCreated) {
+        // if dataset has a date created, convert it to a firebase timestamp
+        const {
+            Timestamp
+        } = admin.firestore;
+        return Timestamp.fromDate(new Date(dateCreated));
+    }
+    // if not, check if it's a new dataset
+    const doc = await firestore.collection(DATASET_DESCRIPTIONS).doc(name).get();
+    if (doc.exists) {
+        return null;
+    } else {
+        return Timestamp.fromDate(new Date());
+    }
+}
+
 const processMegaset = async () => {
     if (!inputFolder) {
         console.log("NEED A DATASET FOLDER TO PROCESS")
@@ -67,7 +88,6 @@ const processMegaset = async () => {
 
     // Read in the dataset.json at the top level of the provided directory
     const topLevelJson = await readDatasetJson(inputFolder);
-
     if (topLevelJson.datasets) { // Datasets are provided as a megaset (nested datasets exist)
         megasetInfo = {
             ...topLevelJson,
@@ -119,7 +139,12 @@ const processMegaset = async () => {
 
     // Upload the dataset description (megasetInfo) to Firebase
     console.log("uploading data description...")
-    await firestore.collection("dataset-descriptions").doc(megasetInfo.name).set(megasetInfo, {
+    const dateCreated = await getDateCreated(megasetInfo.name, topLevelJson.dateCreated);
+    if (dateCreated) {
+        megasetInfo.dateCreated = dateCreated;
+    }
+
+    await firestore.collection(DATASET_DESCRIPTIONS).doc(megasetInfo.name).set(megasetInfo, {
         merge: true
     });
     console.log("uploading data description complete");

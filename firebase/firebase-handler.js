@@ -33,7 +33,6 @@ class FirebaseHandler {
              * Remove these fields if just updating a manifest, don't want to clear out
              * the pointers if we're just updating some data
              */
-            delete data.cellLineDataPath
             delete data.albumPath
             delete data.featuresDataPath
             delete data.featureDefsPath
