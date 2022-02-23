@@ -1,9 +1,10 @@
 HANDOFF_SPEC = HandoffSpecification
 DATABASE_SPEC = DatabaseSpecification
-TARGETS = $(SPEC).html
+HTML_DOCS = ../dist/$(DATABASE_SPEC).html ../dist/${HANDOFF_SPEC}.html
+TARGETS = ../docs/$(DATABASE_SPEC).adoc ../docs/${HANDOFF_SPEC}.adoc
 # all: $(TARGETS)
 
-WETZEL = ../node_modules/wetzel/bin/wetzel.js
+WETZEL = ../wetzel/bin/wetzel.js
 
 SCHEMALINK = ../data-validation/schema
 
@@ -29,8 +30,7 @@ database-docs:
 		schema/database.schema.json > $(DATABASEREF)
 
 convert-to-html:
-	$(ASCIIDOCTOR) -D ../dist ../docs/${HANDOFF_SPEC}.adoc
-	$(ASCIIDOCTOR) -D ../dist ../docs/${DATABASE_SPEC}.adoc
+	$(ASCIIDOCTOR) -D ../dist ${TARGETS}
 
 docs: 
 	make input-docs
@@ -38,4 +38,4 @@ docs:
 	make convert-to-html
 
 clean: 
-	-rm -f $(GENERATED) $(TARGETS)
+	-rm -f $(GENERATED) ${HTML_DOCS}
