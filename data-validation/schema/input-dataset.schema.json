@@ -26,6 +26,11 @@
             "items": {
                 "$ref": "input-measured-features.schema.json"
             }
+        },
+        "images": {
+            "title": "3D Viewer settings `images.json`",
+            "description": "File that contains the 3D viewer settings. These are settings consistent with the type of images being displayed.",
+            "$ref": "images.schema.json"
         }
     },
     "required": [

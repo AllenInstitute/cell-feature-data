@@ -11,7 +11,7 @@ Create a folder with 5 files:
 * xref:DatasetHandoffRef.adoc#reference-input-dataset-info[dataset.json]
 * xref:DatasetHandoffRef.adoc#reference-input-measured-features[feature_analysis.json or .zip depending on the size]
 * xref:DatasetHandoffRef.adoc#reference-feature-def[feature_defs.json]
-* images.json
+* xref:DatasetHandoffRef.adoc#reference-images[images.json]
 * card-cover.png (for display on the homepage)
 
 ===== For a group of datasets, ie a Megaset 

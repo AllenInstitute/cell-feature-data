@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "images.schema.json",
+    "title": "3D Viewer Settings",
+    "description": "Settings for the 3D viewer",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "maskChannelName": {
+            "description": "Name of channel to use as mask, applied to all other enabled channels. Generally this would be a segmentation channel or a channel with binary data.  If omitted, then no masking will be available.",
+            "type": "string"
+        },
+        "groups": {
+            "description": "Collection of named channel groupings. If omitted, then there will be a single group called \"Channels\".",
+            "type": "array",
+            "items": {
+                "title": "3D Viewer Channel Group",
+                "description": "Settings for a grouping of channels for the 3D viewer",
+                "type": "object",
+                "properties": {
+                    "name":{
+                        "description": "Name of the channel group",
+                        "type":"string"
+                    },
+                    "channels": {
+                        "description": "Collection of channel settings in the group",
+                        "type": "array",
+                        "items": {
+                            "title": "Channel Settings",
+                            "description": "Default 3D Viewer per-channel settings",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "Displayed name of the channel. If \"match\" is omitted, then this must be an actual channel name in the image.",
+                                    "type": "string"
+                                },
+                                "match": {
+                                    "description": "Regular expression, or List of Regular expressions to match channel names.",
+                                    "anyOf": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        {
+                                            "type":"string"
+                                        }
+                                    ]
+                                },
+                                "color": {
+                                    "description": "Color to use for the channel. Must be a 6 digit hex value of format RRGGBB",
+                                    "type": "string",
+                                    "pattern": "^[0-9A-Fa-f]{6}$"
+                                },
+                                "enabled": {
+                                    "description": "Whether the channel should be enabled (visible) by default",
+                                    "type": "boolean"
+                                },
+                                "lut": {
+                                    "description": "Min and max threshold values to use for this channel.  If omitted, viewer default will be used. Prefix with p for percentile, or m for percentage of median. E.g. m105 is 105% of the median intensity. p98 is the 98th percentile intensity. Plain number is interpreted as raw intensity value (0..255 max)",
+                                    "type": "array",
+                                    "maxItems": 2,
+                                    "minItems": 2,
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "^[pm0-9]+(\\.[0-9]+)?$"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
