@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "$id": "discrete-feature-option",
+    "title": "Discrete feature option",
+    "description": "Schema for each category in a discrete feature",
+    "type": "object",
+    "properties": {
+        "color": {
+            "description": "Hex string",
+            "type": "string"
+        },
+        "name": {
+            "description": "Display name for the option. Doesn't have to be unique, but if it's not unique, `key` is required.",
+            "type": "string"
+        },
+        "key": {
+            "description": "unique key for the option.",
+            "type": "string"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "name",
+        "color"
+    ]
+}

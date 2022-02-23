@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "manifestSchema",
     "title": "Manifest",
-    "description": "High level for each dataset",
+    "description": "High level data for each dataset that points to where all the data is stored for this dataset.",
     "type": "object",
     "additionalProperties": false,
     "properties": {
@@ -41,22 +41,22 @@
         "xAxis": {
             "description": "Settings for the x axis",
             "type": "object",
-            "$ref": "selection-setting.schema.json"
+            "$ref": "sub-schema/selection-setting.schema.json"
         },
         "yAxis": {
             "description": "Settings for the y axis",
             "type": "object",
-            "$ref": "selection-setting.schema.json"
+            "$ref": "sub-schema/selection-setting.schema.json"
         },
         "colorBy": {
             "description": "Settings for the color by menu",
             "type": "object",
-            "$ref": "selection-setting.schema.json"
+            "$ref": "sub-schema/selection-setting.schema.json"
         },
         "groupBy": {
             "description": "Settings for the grouping menu",
             "type": "object",
-            "$ref": "selection-setting.schema.json"
+            "$ref": "sub-schema/selection-setting.schema.json"
         },
         "featuresDisplayOrder": {
             "description": "Ordered array of feature keys for display on front end",

@@ -1,0 +1,45 @@
+= How to hand off a dataset
+
+=== 1. Create the files
+(the only file names that matters are `dataset.json`)
+
+===== For a single dataset:
+[toc]
+
+Create a folder with 5 files:
+
+* xref:DatasetHandoffRef.adoc#reference-input-dataset-info[dataset.json]
+* xref:DatasetHandoffRef.adoc#reference-input-measured-features[feature_analysis.json or .zip depending on the size]
+* xref:DatasetHandoffRef.adoc#reference-feature-def[feature_defs.json]
+* images.json
+* card-cover.png (for display on the homepage)
+
+===== For a group of datasets, ie a Megaset 
+[toc]
+
+Create a folder with 1 file and one folder per dataset.
+Each folder should have the same 5 files listed above.
+
+Megaset Folder/::
+    `dataset.json`:::
+    dataset-1/:::
+        * `dataset.json`
+        * ... the other 4 files listed above
+
+    dataset-2/:::
+        * `dataset.json`
+        * ... the other 4 files listed above
+
+Refer to xref:DatasetHandoffRef.adoc#reference-input-megaset[Megaset] for more information.
+
+=== 2. Make a PR to this repo with your dataset folder. 
+
+= Full Documentation 
+
+include::DatasetHandoffRef.adoc[]
+:toc: 
+
+== Appendix
+:toc: 
+include::DatasetHandoffSchema.adoc[]
+

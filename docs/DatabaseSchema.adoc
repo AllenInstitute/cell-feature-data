@@ -1,11 +1,3 @@
-= Objects
-* <<reference-cell-feature-database-specification,`Cell Feature Database Specification`>> (root object)
-* <<reference-measured-features,`Condensed measured features JSON`>>
-** <<reference-condensed-measured-feature,`Condensed measured feature`>>
-* <<reference-selection-setting,`Data selection settings`>>
-* <<reference-feature-def,`Feature Definitions`>>
-* <<reference-file-info,`File Info`>>
-* <<reference-manifest,`Manifest`>>
 
 
 
@@ -21,12 +13,12 @@ include::../data-validation/schema/database.schema.json[]
 <<<
 
 
-[#schema-reference-condensed-measured-feature]
+[#schema-reference-sub-schema/condensed-measured-feature]
 == JSON Schema for Condensed measured feature
 
 [source,json]
 ----
-include::../data-validation/schema/condensed-measured-feature.schema.json[]
+include::../data-validation/schema/sub-schema/condensed-measured-feature.schema.json[]
 ----
 
 <<<
@@ -43,30 +35,63 @@ include::../data-validation/schema/measured-features.schema.json[]
 <<<
 
 
-[#schema-reference-selection-setting]
+[#schema-reference-sub-schema/selection-setting]
 == JSON Schema for Data selection settings
 
 [source,json]
 ----
-include::../data-validation/schema/selection-setting.schema.json[]
+include::../data-validation/schema/sub-schema/selection-setting.schema.json[]
 ----
 
 <<<
 
 
-[#schema-reference-dataset-card]
+[#schema-reference-sub-schema/dataset-card]
 == JSON Schema for Dataset Card
 
 [source,json]
 ----
-include::../data-validation/schema/dataset-card.schema.json[]
+include::../data-validation/schema/sub-schema/dataset-card.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-sub-schema/dataset-descriptions]
+== JSON Schema for Dataset Descriptions
+
+[source,json]
+----
+include::../data-validation/schema/sub-schema/dataset-descriptions.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-sub-schema/discrete-feature-option]
+== JSON Schema for Discrete feature option
+
+[source,json]
+----
+include::../data-validation/schema/sub-schema/discrete-feature-option.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-sub-schema/discrete-feature-options]
+== JSON Schema for Discrete feature options
+
+[source,json]
+----
+include::../data-validation/schema/sub-schema/discrete-feature-options.schema.json[]
 ----
 
 <<<
 
 
 [#schema-reference-feature-def]
-== JSON Schema for Feature Definitions
+== JSON Schema for Feature Definition
 
 [source,json]
 ----
@@ -76,12 +101,12 @@ include::../data-validation/schema/feature-def.schema.json[]
 <<<
 
 
-[#schema-reference-file-info]
-== JSON Schema for File Info
+[#schema-reference-sub-schema/file-info]
+== JSON Schema for File info
 
 [source,json]
 ----
-include::../data-validation/schema/file-info.schema.json[]
+include::../data-validation/schema/sub-schema/file-info.schema.json[]
 ----
 
 <<<
@@ -93,6 +118,28 @@ include::../data-validation/schema/file-info.schema.json[]
 [source,json]
 ----
 include::../data-validation/schema/manifest.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-sub-schema/megaset-card]
+== JSON Schema for Megaset Card
+
+[source,json]
+----
+include::../data-validation/schema/sub-schema/megaset-card.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-sub-schema/publication]
+== JSON Schema for Publication
+
+[source,json]
+----
+include::../data-validation/schema/sub-schema/publication.schema.json[]
 ----
 
 <<<

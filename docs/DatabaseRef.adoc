@@ -1,11 +1,10 @@
-= Objects
-* <<reference-cell-feature-database-specification,`Cell Feature Database Specification`>> (root object)
-* <<reference-measured-features,`Condensed measured features JSON`>>
-** <<reference-condensed-measured-feature,`Condensed measured feature`>>
-* <<reference-selection-setting,`Data selection settings`>>
-* <<reference-feature-def,`Feature Definitions`>>
-* <<reference-file-info,`File Info`>>
-* <<reference-manifest,`Manifest`>>
+ITEMS
+ITEMS
+ITEMS
+ITEMS
+ITEMS
+ITEMS
+ITEMS
 
 
 
@@ -21,8 +20,8 @@ Structure of the data stored in firebase and AWS
 |   |Type|Description|Required
 
 |**dataset-descriptions**
-|`object`
-|Endpoint that gets called first to load all the available datasets
+|<<reference-sub-schema/dataset-descriptions,`sub-schema/dataset-descriptions`>>
+|Endpoint that gets called first to load all the available datasets. Each DATASET_ID maps to a megaset card
 | &#10003; Yes
 
 |**manifests**
@@ -32,7 +31,7 @@ Structure of the data stored in firebase and AWS
 
 |**dataset-data**
 |`object`
-|Data 
+|High level data for a dataset, ie not per cell data
 | &#10003; Yes
 
 |**cell-data**
@@ -42,7 +41,7 @@ Structure of the data stored in firebase and AWS
 
 |**measured-features**
 |<<reference-measured-features,`measured-features`>>
-|File stored on AWS that has the condensed measured data.
+|File stored on AWS that has the condensed measured data. Is an array of condensed measured features.
 | &#10003; Yes
 
 |===
@@ -53,9 +52,9 @@ Additional properties are not allowed.
 
 === Cell Feature Database Specification.dataset-descriptions
 
-Endpoint that gets called first to load all the available datasets
+Endpoint that gets called first to load all the available datasets. Each DATASET_ID maps to a megaset card
 
-* **Type**: `object`
+* **Type**: <<reference-sub-schema/dataset-descriptions,`sub-schema/dataset-descriptions`>>
 * **Required**:  &#10003; Yes
 
 === Cell Feature Database Specification.manifests
@@ -67,7 +66,7 @@ Collection of manifests for each published dataset.
 
 === Cell Feature Database Specification.dataset-data
 
-Data 
+High level data for a dataset, ie not per cell data
 
 * **Type**: `object`
 * **Required**:  &#10003; Yes
@@ -81,7 +80,7 @@ Per cell data
 
 === Cell Feature Database Specification.measured-features
 
-File stored on AWS that has the condensed measured data.
+File stored on AWS that has the condensed measured data. Is an array of condensed measured features.
 
 * **Type**: <<reference-measured-features,`measured-features`>>
 * **Required**:  &#10003; Yes
@@ -90,7 +89,7 @@ File stored on AWS that has the condensed measured data.
 
 
 '''
-[#reference-condensed-measured-feature]
+[#reference-sub-schema/condensed-measured-feature]
 == Condensed measured feature
 
 Data per cell needed to create the CFE plot
@@ -118,23 +117,23 @@ Data per cell needed to create the CFE plot
 
 Additional properties are not allowed.
 
-* **JSON schema**: <<schema-reference-condensed-measured-feature,`condensed-measured-feature.schema.json`>>
+* **JSON schema**: <<schema-reference-sub-schema/condensed-measured-feature,`sub-schema/condensed-measured-feature.schema.json`>>
 
-=== condensed-measured-feature.f
+=== sub-schema/condensed-measured-feature.f
 
 ordered array of measured features
 
 * **Type**: `number` `[]`
 * **Required**:  &#10003; Yes
 
-=== condensed-measured-feature.p
+=== sub-schema/condensed-measured-feature.p
 
 Protein name
 
 * **Type**: `string`
 * **Required**:  &#10003; Yes
 
-=== condensed-measured-feature.t
+=== sub-schema/condensed-measured-feature.t
 
 Thumbnail Path
 
@@ -148,12 +147,15 @@ Thumbnail Path
 [#reference-measured-features]
 == Condensed measured features JSON
 
-File stored on AWS that has the condensed measured data.
+File stored on AWS that has the condensed measured data. Is an array of condensed measured features.
+
+* **Type**: <<reference-sub-schema/condensed-measured-feature,`sub-schema/condensed-measured-feature`>>
+* **JSON schema**: <<schema-reference-measured-features,`measured-features.schema.json`>>
 
 
 
 '''
-[#reference-selection-setting]
+[#reference-sub-schema/selection-setting]
 == Data selection settings
 
 .`Data selection settings` Properties
@@ -174,16 +176,16 @@ File stored on AWS that has the condensed measured data.
 
 Additional properties are not allowed.
 
-* **JSON schema**: <<schema-reference-selection-setting,`selection-setting.schema.json`>>
+* **JSON schema**: <<schema-reference-sub-schema/selection-setting,`sub-schema/selection-setting.schema.json`>>
 
-=== selection-setting.default
+=== sub-schema/selection-setting.default
 
 Default feature key for the setting
 
 * **Type**: `string`
 * **Required**:  &#10003; Yes
 
-=== selection-setting.exclude
+=== sub-schema/selection-setting.exclude
 
 Optional list of feature keys to exclude
 
@@ -194,7 +196,7 @@ Optional list of feature keys to exclude
 
 
 '''
-[#reference-dataset-card]
+[#reference-sub-schema/dataset-card]
 == Dataset Card
 
 Data needed to render a dataset card
@@ -247,58 +249,58 @@ Data needed to render a dataset card
 
 Additional properties are not allowed.
 
-* **JSON schema**: <<schema-reference-dataset-card,`dataset-card.schema.json`>>
+* **JSON schema**: <<schema-reference-sub-schema/dataset-card,`sub-schema/dataset-card.schema.json`>>
 
-=== dataset-card.title
+=== sub-schema/dataset-card.title
 
 Display name of the dataset
 
 * **Type**: `string`
 * **Required**:  &#10003; Yes
 
-=== dataset-card.name
+=== sub-schema/dataset-card.name
 
 Name of the dataset (no version number)
 
 * **Type**: `string`
 * **Required**:  &#10003; Yes
 
-=== dataset-card.version
+=== sub-schema/dataset-card.version
 
 version year and number
 
 * **Type**: `string`
 * **Required**:  &#10003; Yes
 
-=== dataset-card.description
+=== sub-schema/dataset-card.description
 
 Description of the dataset
 
 * **Type**: `string`
 * **Required**:  &#10003; Yes
 
-=== dataset-card.image
+=== sub-schema/dataset-card.image
 
 Url to image src
 
 * **Type**: `string`
 * **Required**:  &#10003; Yes
 
-=== dataset-card.link
+=== sub-schema/dataset-card.link
 
 Link to website displaying the dataset
 
 * **Type**: `string`
 * **Required**: No
 
-=== dataset-card.userData
+=== sub-schema/dataset-card.userData
 
 Optional display data
 
 * **Type**: `object`
 * **Required**: No
 
-=== dataset-card.production
+=== sub-schema/dataset-card.production
 
 Whether this dataset should only be shown in production
 
@@ -309,12 +311,129 @@ Whether this dataset should only be shown in production
 
 
 '''
+[#reference-sub-schema/dataset-descriptions]
+== Dataset Descriptions
+
+Endpoint that gets called first to load all the available datasets. Each DATASET_ID maps to a megaset card
+
+.`Dataset Descriptions` Properties
+|===
+|   |Type|Description|Required
+
+|**DATASET_ID**
+|<<reference-sub-schema/megaset-card,`sub-schema/megaset-card`>>
+|Data needed to render a megaset card
+|No
+
+|===
+
+Additional properties are allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/dataset-descriptions,`sub-schema/dataset-descriptions.schema.json`>>
+
+=== sub-schema/dataset-descriptions.DATASET_ID
+
+Data needed to render a megaset card
+
+* **Type**: <<reference-sub-schema/megaset-card,`sub-schema/megaset-card`>>
+* **Required**: No
+
+
+
+
+'''
+[#reference-sub-schema/discrete-feature-option]
+== Discrete feature option
+
+Schema for each category in a discrete feature
+
+.`Discrete feature option` Properties
+|===
+|   |Type|Description|Required
+
+|**color**
+|`string`
+|Hex string
+| &#10003; Yes
+
+|**name**
+|`string`
+|Display name for the option. Doesn't have to be unique, but if it's not unique, `key` is required.
+| &#10003; Yes
+
+|**key**
+|`string`
+|unique key for the option.
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/discrete-feature-option,`sub-schema/discrete-feature-option.schema.json`>>
+
+=== sub-schema/discrete-feature-option.color
+
+Hex string
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== sub-schema/discrete-feature-option.name
+
+Display name for the option. Doesn't have to be unique, but if it's not unique, `key` is required.
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== sub-schema/discrete-feature-option.key
+
+unique key for the option.
+
+* **Type**: `string`
+* **Required**: No
+
+
+
+
+'''
+[#reference-sub-schema/discrete-feature-options]
+== Discrete feature options
+
+Mapping of numeral key in the analysis to category names. There should be one key value pair for each category of a discrete feature. For example, if the feature is a boolean, and the numeral data is either `0` or `1`, there should be two option mappings.
+
+.`Discrete feature options` Properties
+|===
+|   |Type|Description|Required
+
+|**NUMERAL_KEY**
+|<<reference-sub-schema/discrete-feature-option,`sub-schema/discrete-feature-option`>>
+|Schema for each category in a discrete feature
+|No
+
+|===
+
+Additional properties are allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/discrete-feature-options,`sub-schema/discrete-feature-options.schema.json`>>
+
+=== sub-schema/discrete-feature-options.NUMERAL_KEY
+
+Schema for each category in a discrete feature
+
+* **Type**: <<reference-sub-schema/discrete-feature-option,`sub-schema/discrete-feature-option`>>
+* **Required**: No
+
+
+
+
+'''
 [#reference-feature-def]
-== Feature Definitions
+== Feature Definition
 
-Definition of a measured features in the dataset
+Definition of a measured features in the dataset. Feature definitions file is an array of these objects.
 
-.`Feature Definitions` Properties
+.`Feature Definition` Properties
 |===
 |   |Type|Description|Required
 
@@ -349,8 +468,8 @@ Definition of a measured features in the dataset
 | &#10003; Yes
 
 |**options**
-|`object`
-|For discrete features, options is a mapping of the numeral value in the 'measured' feature to the name and color for that category.
+|<<reference-sub-schema/discrete-feature-options,`sub-schema/discrete-feature-options`>>
+|Mapping of numeral key in the analysis to category names. There should be one key value pair for each category of a discrete feature. For example, if the feature is a boolean, and the numeral data is either `0` or `1`, there should be two option mappings.
 |No
 
 |===
@@ -403,19 +522,114 @@ Whether it's a continuous measurement or not
 
 === feature-def.options
 
-For discrete features, options is a mapping of the numeral value in the 'measured' feature to the name and color for that category.
+Mapping of numeral key in the analysis to category names. There should be one key value pair for each category of a discrete feature. For example, if the feature is a boolean, and the numeral data is either `0` or `1`, there should be two option mappings.
 
-* **Type**: `object`
+* **Type**: <<reference-sub-schema/discrete-feature-options,`sub-schema/discrete-feature-options`>>
 * **Required**: No
 
 
 
 
 '''
-[#reference-file-info]
-== File Info
+[#reference-sub-schema/file-info]
+== File info
 
-Metadata per cell
+File info for one cell, this is the data needed to access images for the cell.
+
+.`File info` Properties
+|===
+|   |Type|Description|Required
+
+|**CellId**
+|`string`
+|unique id for segmented cell
+| &#10003; Yes
+
+|**FOVId**
+|`string`
+|Field of view cell came from
+| &#10003; Yes
+
+|**groupBy**
+|`string`
+|Id of feature the data is grouped by by default
+| &#10003; Yes
+
+|**thumbnailPath**
+|`string`
+|Path to thumbnail image for cell
+|No
+
+|**volumeviewerPath**
+|`string`
+|path to 3d data for cell
+| &#10003; Yes
+
+|**fovThumbnailPath**
+|`string`
+|Path to fov thumbnail
+|No
+
+|**fovVolumeviewerPath**
+|`string`
+|Path to the fov 3d data
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/file-info,`sub-schema/file-info.schema.json`>>
+
+=== sub-schema/file-info.CellId
+
+unique id for segmented cell
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== sub-schema/file-info.FOVId
+
+Field of view cell came from
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== sub-schema/file-info.groupBy
+
+Id of feature the data is grouped by by default
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== sub-schema/file-info.thumbnailPath
+
+Path to thumbnail image for cell
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/file-info.volumeviewerPath
+
+path to 3d data for cell
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== sub-schema/file-info.fovThumbnailPath
+
+Path to fov thumbnail
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/file-info.fovVolumeviewerPath
+
+Path to the fov 3d data
+
+* **Type**: `string`
+* **Required**: No
+
 
 
 
@@ -423,7 +637,7 @@ Metadata per cell
 [#reference-manifest]
 == Manifest
 
-High level for each dataset
+High level data for each dataset that points to where all the data is stored for this dataset.
 
 .`Manifest` Properties
 |===
@@ -470,22 +684,22 @@ High level for each dataset
 | &#10003; Yes
 
 |**xAxis**
-|<<reference-selection-setting,`selection-setting`>>
+|<<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 |
 | &#10003; Yes
 
 |**yAxis**
-|<<reference-selection-setting,`selection-setting`>>
+|<<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 |
 | &#10003; Yes
 
 |**colorBy**
-|<<reference-selection-setting,`selection-setting`>>
+|<<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 |
 | &#10003; Yes
 
 |**groupBy**
-|<<reference-selection-setting,`selection-setting`>>
+|<<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 |
 | &#10003; Yes
 
@@ -563,22 +777,22 @@ Root url for 3d images
 
 === manifest.xAxis
 
-* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Type**: <<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 * **Required**:  &#10003; Yes
 
 === manifest.yAxis
 
-* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Type**: <<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 * **Required**:  &#10003; Yes
 
 === manifest.colorBy
 
-* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Type**: <<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 * **Required**:  &#10003; Yes
 
 === manifest.groupBy
 
-* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Type**: <<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 * **Required**:  &#10003; Yes
 
 === manifest.featuresDisplayOrder
@@ -594,5 +808,143 @@ Ordered array of feature keys for packing and unpacking data
 
 * **Type**: `string` `[]`
 * **Required**:  &#10003; Yes
+
+
+
+
+'''
+[#reference-sub-schema/megaset-card]
+== Megaset Card
+
+Data needed to render a megaset card
+
+.`Megaset Card` Properties
+|===
+|   |Type|Description|Required
+
+|**datasets**
+|<<reference-sub-schema/dataset-card,`sub-schema/dataset-card`>> `[]`
+|
+|No
+
+|**dateCreated**
+|`string`
+|Month Day, Year
+|No
+
+|**name**
+|`string`
+|
+|No
+
+|**production**
+|`boolean`
+|
+|No
+
+|**title**
+|`string`
+|
+|No
+
+|**publications**
+|<<reference-sub-schema/publication,`sub-schema/publication`>> `[]`
+|Publications associated with the group
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/megaset-card,`sub-schema/megaset-card.schema.json`>>
+
+=== sub-schema/megaset-card.datasets
+
+* **Type**: <<reference-sub-schema/dataset-card,`sub-schema/dataset-card`>> `[]`
+* **Required**: No
+
+=== sub-schema/megaset-card.dateCreated
+
+Month Day, Year
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/megaset-card.name
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/megaset-card.production
+
+* **Type**: `boolean`
+* **Required**: No
+
+=== sub-schema/megaset-card.title
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/megaset-card.publications
+
+Publications associated with the group
+
+* **Type**: <<reference-sub-schema/publication,`sub-schema/publication`>> `[]`
+* **Required**: No
+
+
+
+
+'''
+[#reference-sub-schema/publication]
+== Publication
+
+Publication data
+
+.`Publication` Properties
+|===
+|   |Type|Description|Required
+
+|**title**
+|`string`
+|Article title
+|No
+
+|**url**
+|`string`
+|Article link
+|No
+
+|**citation**
+|`string`
+|Article journal and date
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/publication,`sub-schema/publication.schema.json`>>
+
+=== sub-schema/publication.title
+
+Article title
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/publication.url
+
+Article link
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/publication.citation
+
+Article journal and date
+
+* **Type**: `string`
+* **Required**: No
 
 

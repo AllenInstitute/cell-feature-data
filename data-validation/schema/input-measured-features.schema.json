@@ -11,7 +11,9 @@
             "type": "array",
             "items": {
                 "type": "string"
-            }
+            },
+            "minItems": 7,
+            "maxItems": 7
         },
         "features": {
             "description": "Ordered array of measured features. Needs to match the order of featuresDataOrder",

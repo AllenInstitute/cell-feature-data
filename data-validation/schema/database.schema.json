@@ -7,56 +7,7 @@
     "additionalProperties": false,
     "properties": {
         "dataset-descriptions": {
-            "description": "Endpoint that gets called first to load all the available datasets",
-            "type": "object",
-            "properties": {
-                "DATASET_ID": {
-                    "type": "object",
-                    "title": "Dataset group information",
-                    "properties": {
-                        "datasets": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "dataset-card.schema.json"
-                            }
-                        },
-                        "dateCreated": {
-                            "description": "Month Day, Year",
-                            "type": "string"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "production": {
-                            "type": "boolean"
-                        },
-                        "title": {
-                            "type": "string"
-                        },
-                        "publications": {
-                            "description": "Publications associated with the group",
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "title": {
-                                        "description": "Article title",
-                                        "type": "string"
-                                    },
-                                    "url": {
-                                        "description": "Article link",
-                                        "type": "string"
-                                    },
-                                    "citation": {
-                                        "description": "Article journal and date",
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            "$ref": "sub-schema/dataset-descriptions.schema.json"
         },
         "manifests": {
             "description": "Collection of manifests for each published dataset.",
@@ -70,7 +21,7 @@
         },
         "dataset-data": {
             "$id": "dataset-data",
-            "description": "Data ",
+            "description": "High level data for a dataset, ie not per cell data",
             "type": "object",
             "properties": {
                 "feature-definitions": {
@@ -96,9 +47,10 @@
                     "properties": {
                         "cell-file-info": {
                             "type": "object",
+                            "description": "Per cell mapping of file info",
                             "properties": {
-                                "$id": {
-                                    "$ref": "file-info.schema.json"
+                                "CELL_ID": {
+                                    "$ref": "sub-schema/file-info.schema.json"
                                 }
                             }
                         }

@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "$id": "dataset-descriptions",
+    "title": "Dataset Descriptions",
+    "description": "Endpoint that gets called first to load all the available datasets. Each DATASET_ID maps to a megaset card",
+    "type": "object",
+    "properties": {
+        "DATASET_ID": {
+            "$ref": "sub-schema/megaset-card.schema.json"
+        }
+    }
+}

@@ -1,8 +1,11 @@
-= Objects
-* <<reference-cell-feature-dataset-handoff-specification,`Cell Feature Dataset Handoff Specification`>> (root object)
-* <<reference-selection-setting,`Data selection settings`>>
-* <<reference-input-dataset-info,`Dataset Info `dataset.json``>>
-* <<reference-input-megaset,`Input Megaset `dataset.json``>>
+ITEMS
+ITEMS
+ITEMS
+ITEMS
+ITEMS
+ITEMS
+ITEMS
+ITEMS
 
 
 
@@ -32,7 +35,7 @@
 
 |**measured-features**
 |<<reference-input-measured-features,`input-measured-features`>> `[]`
-|File that contains the measured analysis values, which will drive the plot.
+|File that contains the measured analysis values, which will drive the plot. It is an array of measured features
 | &#10003; Yes
 
 |===
@@ -64,7 +67,7 @@ File that describes the measured feature definitions. Is an array of feature def
 
 === Cell Feature Dataset Handoff Specification.measured-features
 
-File that contains the measured analysis values, which will drive the plot.
+File that contains the measured analysis values, which will drive the plot. It is an array of measured features
 
 * **Type**: <<reference-input-measured-features,`input-measured-features`>> `[]`
 * **Required**:  &#10003; Yes
@@ -73,7 +76,7 @@ File that contains the measured analysis values, which will drive the plot.
 
 
 '''
-[#reference-selection-setting]
+[#reference-sub-schema/selection-setting]
 == Data selection settings
 
 .`Data selection settings` Properties
@@ -94,16 +97,16 @@ File that contains the measured analysis values, which will drive the plot.
 
 Additional properties are not allowed.
 
-* **JSON schema**: <<schema-reference-selection-setting,`selection-setting.schema.json`>>
+* **JSON schema**: <<schema-reference-sub-schema/selection-setting,`sub-schema/selection-setting.schema.json`>>
 
-=== selection-setting.default
+=== sub-schema/selection-setting.default
 
 Default feature key for the setting
 
 * **Type**: `string`
 * **Required**:  &#10003; Yes
 
-=== selection-setting.exclude
+=== sub-schema/selection-setting.exclude
 
 Optional list of feature keys to exclude
 
@@ -114,12 +117,203 @@ Optional list of feature keys to exclude
 
 
 '''
+[#reference-sub-schema/discrete-feature-option]
+== Discrete feature option
+
+Schema for each category in a discrete feature
+
+.`Discrete feature option` Properties
+|===
+|   |Type|Description|Required
+
+|**color**
+|`string`
+|Hex string
+| &#10003; Yes
+
+|**name**
+|`string`
+|Display name for the option. Doesn't have to be unique, but if it's not unique, `key` is required.
+| &#10003; Yes
+
+|**key**
+|`string`
+|unique key for the option.
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/discrete-feature-option,`sub-schema/discrete-feature-option.schema.json`>>
+
+=== sub-schema/discrete-feature-option.color
+
+Hex string
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== sub-schema/discrete-feature-option.name
+
+Display name for the option. Doesn't have to be unique, but if it's not unique, `key` is required.
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== sub-schema/discrete-feature-option.key
+
+unique key for the option.
+
+* **Type**: `string`
+* **Required**: No
+
+
+
+
+'''
+[#reference-sub-schema/discrete-feature-options]
+== Discrete feature options
+
+Mapping of numeral key in the analysis to category names. There should be one key value pair for each category of a discrete feature. For example, if the feature is a boolean, and the numeral data is either `0` or `1`, there should be two option mappings.
+
+.`Discrete feature options` Properties
+|===
+|   |Type|Description|Required
+
+|**NUMERAL_KEY**
+|<<reference-sub-schema/discrete-feature-option,`sub-schema/discrete-feature-option`>>
+|Schema for each category in a discrete feature
+|No
+
+|===
+
+Additional properties are allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/discrete-feature-options,`sub-schema/discrete-feature-options.schema.json`>>
+
+=== sub-schema/discrete-feature-options.NUMERAL_KEY
+
+Schema for each category in a discrete feature
+
+* **Type**: <<reference-sub-schema/discrete-feature-option,`sub-schema/discrete-feature-option`>>
+* **Required**: No
+
+
+
+
+'''
+[#reference-feature-def]
+== Feature Definition
+
+Definition of a measured features in the dataset. Feature definitions file is an array of these objects.
+
+.`Feature Definition` Properties
+|===
+|   |Type|Description|Required
+
+|**displayName**
+|`string`
+|Human readable name
+| &#10003; Yes
+
+|**description**
+|`string`
+|Description of how the data was collected/measured
+| &#10003; Yes
+
+|**tooltip**
+|`string`
+|Shorter version of description
+| &#10003; Yes
+
+|**unit**
+|`string`
+|unit of measurement
+| &#10003; Yes
+
+|**key**
+|`string`
+|Id of the feature
+| &#10003; Yes
+
+|**discrete**
+|`boolean`
+|Whether it's a continuous measurement or not
+| &#10003; Yes
+
+|**options**
+|<<reference-sub-schema/discrete-feature-options,`sub-schema/discrete-feature-options`>>
+|Mapping of numeral key in the analysis to category names. There should be one key value pair for each category of a discrete feature. For example, if the feature is a boolean, and the numeral data is either `0` or `1`, there should be two option mappings.
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-feature-def,`feature-def.schema.json`>>
+
+=== feature-def.displayName
+
+Human readable name
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.description
+
+Description of how the data was collected/measured
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.tooltip
+
+Shorter version of description
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.unit
+
+unit of measurement
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.key
+
+Id of the feature
+
+* **Type**: `string`
+* **Required**:  &#10003; Yes
+
+=== feature-def.discrete
+
+Whether it's a continuous measurement or not
+
+* **Type**: `boolean`
+* **Required**:  &#10003; Yes
+
+=== feature-def.options
+
+Mapping of numeral key in the analysis to category names. There should be one key value pair for each category of a discrete feature. For example, if the feature is a boolean, and the numeral data is either `0` or `1`, there should be two option mappings.
+
+* **Type**: <<reference-sub-schema/discrete-feature-options,`sub-schema/discrete-feature-options`>>
+* **Required**: No
+
+
+
+
+
+
+'''
 [#reference-input-dataset-info]
-== Dataset Info `dataset.json`
+== Input dataset info `dataset.json`
 
 File containing the data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON `datasets` array. Should be named `dataset.json`
 
-.`Dataset Info `dataset.json`` Properties
+.`Input dataset info `dataset.json`` Properties
 |===
 |   |Type|Description|Required
 
@@ -199,22 +393,22 @@ File containing the data needed to process a dataset. If single dataset, should 
 | &#10003; Yes
 
 |**xAxis**
-|<<reference-selection-setting,`selection-setting`>>
+|<<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 |
 | &#10003; Yes
 
 |**yAxis**
-|<<reference-selection-setting,`selection-setting`>>
+|<<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 |
 | &#10003; Yes
 
 |**colorBy**
-|<<reference-selection-setting,`selection-setting`>>
+|<<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 |
 | &#10003; Yes
 
 |**groupBy**
-|<<reference-selection-setting,`selection-setting`>>
+|<<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 |
 | &#10003; Yes
 
@@ -341,22 +535,22 @@ Root url for 3d images
 
 === input-dataset-info.xAxis
 
-* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Type**: <<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 * **Required**:  &#10003; Yes
 
 === input-dataset-info.yAxis
 
-* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Type**: <<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 * **Required**:  &#10003; Yes
 
 === input-dataset-info.colorBy
 
-* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Type**: <<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 * **Required**:  &#10003; Yes
 
 === input-dataset-info.groupBy
 
-* **Type**: <<reference-selection-setting,`selection-setting`>>
+* **Type**: <<reference-sub-schema/selection-setting,`sub-schema/selection-setting`>>
 * **Required**:  &#10003; Yes
 
 === input-dataset-info.featuresDisplayOrder
@@ -372,111 +566,6 @@ Ordered array of feature keys for packing and unpacking data
 
 * **Type**: `string` `[]`
 * **Required**:  &#10003; Yes
-
-
-
-
-'''
-[#reference-feature-def]
-== Feature Definitions
-
-Definition of a measured features in the dataset
-
-.`Feature Definitions` Properties
-|===
-|   |Type|Description|Required
-
-|**displayName**
-|`string`
-|Human readable name
-| &#10003; Yes
-
-|**description**
-|`string`
-|Description of how the data was collected/measured
-| &#10003; Yes
-
-|**tooltip**
-|`string`
-|Shorter version of description
-| &#10003; Yes
-
-|**unit**
-|`string`
-|unit of measurement
-| &#10003; Yes
-
-|**key**
-|`string`
-|Id of the feature
-| &#10003; Yes
-
-|**discrete**
-|`boolean`
-|Whether it's a continuous measurement or not
-| &#10003; Yes
-
-|**options**
-|`object`
-|For discrete features, options is a mapping of the numeral value in the 'measured' feature to the name and color for that category.
-|No
-
-|===
-
-Additional properties are not allowed.
-
-* **JSON schema**: <<schema-reference-feature-def,`feature-def.schema.json`>>
-
-=== feature-def.displayName
-
-Human readable name
-
-* **Type**: `string`
-* **Required**:  &#10003; Yes
-
-=== feature-def.description
-
-Description of how the data was collected/measured
-
-* **Type**: `string`
-* **Required**:  &#10003; Yes
-
-=== feature-def.tooltip
-
-Shorter version of description
-
-* **Type**: `string`
-* **Required**:  &#10003; Yes
-
-=== feature-def.unit
-
-unit of measurement
-
-* **Type**: `string`
-* **Required**:  &#10003; Yes
-
-=== feature-def.key
-
-Id of the feature
-
-* **Type**: `string`
-* **Required**:  &#10003; Yes
-
-=== feature-def.discrete
-
-Whether it's a continuous measurement or not
-
-* **Type**: `boolean`
-* **Required**:  &#10003; Yes
-
-=== feature-def.options
-
-For discrete features, options is a mapping of the numeral value in the 'measured' feature to the name and color for that category.
-
-* **Type**: `object`
-* **Required**: No
-
-
 
 
 
@@ -507,7 +596,7 @@ File that describes a group of datasets (ie a 'Megaset'). Should be at the highe
 |No
 
 |**publications**
-|`array[]`
+|<<reference-sub-schema/publication,`sub-schema/publication`>> `[]`
 |Publications associated with the group
 |No
 
@@ -542,7 +631,7 @@ subfolder names that point to each dataset in the group
 
 Publications associated with the group
 
-* **Type**: `array[]`
+* **Type**: <<reference-sub-schema/publication,`sub-schema/publication`>> `[]`
 * **Required**: No
 
 
@@ -561,7 +650,7 @@ Per data point object. The measured features JSON is an array of these objects.
 |   |Type|Description|Required
 
 |**file_info**
-|`string` `[]`
+|`string` `[7]`
 |ordered array of file info: [id, parentId, id of default group, thumbnail path, volume viewer path, parent thumbnail path, parent volume viewer path]
 | &#10003; Yes
 
@@ -580,7 +669,7 @@ Additional properties are not allowed.
 
 ordered array of file info: [id, parentId, id of default group, thumbnail path, volume viewer path, parent thumbnail path, parent volume viewer path]
 
-* **Type**: `string` `[]`
+* **Type**: `string` `[7]`
 * **Required**:  &#10003; Yes
 
 === input-measured-features.features
@@ -589,5 +678,60 @@ Ordered array of measured features. Needs to match the order of featuresDataOrde
 
 * **Type**: `number` `[]`
 * **Required**:  &#10003; Yes
+
+
+
+
+'''
+[#reference-sub-schema/publication]
+== Publication
+
+Publication data
+
+.`Publication` Properties
+|===
+|   |Type|Description|Required
+
+|**title**
+|`string`
+|Article title
+|No
+
+|**url**
+|`string`
+|Article link
+|No
+
+|**citation**
+|`string`
+|Article journal and date
+|No
+
+|===
+
+Additional properties are not allowed.
+
+* **JSON schema**: <<schema-reference-sub-schema/publication,`sub-schema/publication.schema.json`>>
+
+=== sub-schema/publication.title
+
+Article title
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/publication.url
+
+Article link
+
+* **Type**: `string`
+* **Required**: No
+
+=== sub-schema/publication.citation
+
+Article journal and date
+
+* **Type**: `string`
+* **Required**: No
 
 

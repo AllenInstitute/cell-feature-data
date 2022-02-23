@@ -12,7 +12,7 @@ module.exports = {
     datasetSchema: await readSchema("dataset.schema.json"),
     manifestSchema: await readSchema("manifest.schema.json"),
     featureDefSchema: await readSchema("feature-def.schema.json"),
-    fileInfoSchema: await readSchema("file-info.schema.json"),
+    fileInfoSchema: await readSchema("file-info-doc.schema.json"),
     dataset: ajv.compile(datasetSchema),
     manifest: ajv.compile(manifestSchema),
     featureDef: ajv.compile(featureDefSchema),

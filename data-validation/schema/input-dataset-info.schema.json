@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "datasetInfoSchema",
-    "title": "Dataset Info `dataset.json`",
+    "title": "Input dataset info `dataset.json`",
     "description": "File containing the data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON `datasets` array. Should be named `dataset.json`",
     "type": "object",
     "additionalProperties": false,
@@ -69,22 +69,22 @@
         "xAxis": {
             "description": "Settings for the x axis",
             "type": "object",
-            "$ref": "selection-setting.schema.json"
+            "$ref": "sub-schema/selection-setting.schema.json"
         },
         "yAxis": {
             "description": "Settings for the y axis",
             "type": "object",
-            "$ref": "selection-setting.schema.json"
+            "$ref": "sub-schema/selection-setting.schema.json"
         },
         "colorBy": {
             "description": "Settings for the color by menu",
             "type": "object",
-            "$ref": "selection-setting.schema.json"
+            "$ref": "sub-schema/selection-setting.schema.json"
         },
         "groupBy": {
             "description": "Settings for the grouping menu",
             "type": "object",
-            "$ref": "selection-setting.schema.json"
+            "$ref": "sub-schema/selection-setting.schema.json"
         },
         "featuresDisplayOrder": {
             "description": "Ordered array of feature keys for display on front end",

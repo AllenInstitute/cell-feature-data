@@ -20,8 +20,8 @@
             }
         },
         "measured-features": {
-            "title": "Measured Values `features.json`",
-            "description": "File that contains the measured analysis values, which will drive the plot.",
+            "title": "Measured values `features.json`",
+            "description": "File that contains the measured analysis values, which will drive the plot. It is an array of measured features",
             "type": "array",
             "items": {
                 "$ref": "input-measured-features.schema.json"

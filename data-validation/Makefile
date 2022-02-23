@@ -1,8 +1,9 @@
-SPEC = Specification
+HANDOFF_SPEC = HandoffSpecification
+DATABASE_SPEC = DatabaseSpecification
 TARGETS = $(SPEC).html
 # all: $(TARGETS)
 
-WETZEL = npx wetzel@0.2.2
+WETZEL = ../node_modules/wetzel/bin/wetzel.js
 
 SCHEMALINK = ../data-validation/schema
 
@@ -18,19 +19,18 @@ $(GENERATED): $(wildcard schema/*schema.json)
 ASCIIDOCTOR = npx asciidoctor 
 ADOCOPTS = -d book
 ADOCHTMLOPTS = -a stylesheet=khronos.css -a sectanchors
-SPECDEPS = $(SPEC).adoc $(GENERATED)
 
 input-docs:
-	$(WETZEL) -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDINPUTSCHEMA)" \
+	$(WETZEL) -n -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDINPUTSCHEMA)" \
 		schema/input-dataset.schema.json > $(INPUTREF)
 
 database-docs:
-	$(WETZEL) -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDDATABASESCHEMA)" \
+	$(WETZEL) -n -a=cqo -m=a -p "$(SCHEMALINK)" -e "$(EMBEDDATABASESCHEMA)" \
 		schema/database.schema.json > $(DATABASEREF)
 
 convert-to-html:
-	$(ASCIIDOCTOR) -D ../dist $(GENERATED) 
-	$(ASCIIDOCTOR) -D ../dist ../docs/Specification.adoc
+	$(ASCIIDOCTOR) -D ../dist ../docs/${HANDOFF_SPEC}.adoc
+	$(ASCIIDOCTOR) -D ../dist ../docs/${DATABASE_SPEC}.adoc
 
 docs: 
 	make input-docs

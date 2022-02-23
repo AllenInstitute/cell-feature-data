@@ -1,8 +1,3 @@
-= Objects
-* <<reference-cell-feature-dataset-handoff-specification,`Cell Feature Dataset Handoff Specification`>> (root object)
-* <<reference-selection-setting,`Data selection settings`>>
-* <<reference-input-dataset-info,`Dataset Info `dataset.json``>>
-* <<reference-input-megaset,`Input Megaset `dataset.json``>>
 
 
 
@@ -18,30 +13,41 @@ include::../data-validation/schema/input-dataset.schema.json[]
 <<<
 
 
-[#schema-reference-selection-setting]
+[#schema-reference-sub-schema/selection-setting]
 == JSON Schema for Data selection settings
 
 [source,json]
 ----
-include::../data-validation/schema/selection-setting.schema.json[]
+include::../data-validation/schema/sub-schema/selection-setting.schema.json[]
 ----
 
 <<<
 
 
-[#schema-reference-input-dataset-info]
-== JSON Schema for Dataset Info `dataset.json`
+[#schema-reference-sub-schema/discrete-feature-option]
+== JSON Schema for Discrete feature option
 
 [source,json]
 ----
-include::../data-validation/schema/input-dataset-info.schema.json[]
+include::../data-validation/schema/sub-schema/discrete-feature-option.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-sub-schema/discrete-feature-options]
+== JSON Schema for Discrete feature options
+
+[source,json]
+----
+include::../data-validation/schema/sub-schema/discrete-feature-options.schema.json[]
 ----
 
 <<<
 
 
 [#schema-reference-feature-def]
-== JSON Schema for Feature Definitions
+== JSON Schema for Feature Definition
 
 [source,json]
 ----
@@ -51,6 +57,17 @@ include::../data-validation/schema/feature-def.schema.json[]
 <<<
 
 
+
+
+[#schema-reference-input-dataset-info]
+== JSON Schema for Input dataset info `dataset.json`
+
+[source,json]
+----
+include::../data-validation/schema/input-dataset-info.schema.json[]
+----
+
+<<<
 
 
 [#schema-reference-input-megaset]
@@ -72,6 +89,17 @@ include::../data-validation/schema/input-megaset.schema.json[]
 [source,json]
 ----
 include::../data-validation/schema/input-measured-features.schema.json[]
+----
+
+<<<
+
+
+[#schema-reference-sub-schema/publication]
+== JSON Schema for Publication
+
+[source,json]
+----
+include::../data-validation/schema/sub-schema/publication.schema.json[]
 ----
 
 <<<

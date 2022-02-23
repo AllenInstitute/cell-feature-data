@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "publication",
+    "title": "Publication",
+    "description": "Publication data",
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+        "title": {
+            "description": "Article title",
+            "type": "string"
+        },
+        "url": {
+            "description": "Article link",
+            "type": "string"
+        },
+        "citation": {
+            "description": "Article journal and date",
+            "type": "string"
+        }
+    }
+}

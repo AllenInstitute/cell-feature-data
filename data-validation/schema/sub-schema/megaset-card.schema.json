@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "megasetCardSchema",
+    "title": "Megaset Card",
+    "description": "Data needed to render a megaset card",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "datasets": {
+            "type": "array",
+            "items": {
+                "$ref": "sub-schema/dataset-card.schema.json"
+            }
+        },
+        "dateCreated": {
+            "description": "Month Day, Year",
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "production": {
+            "type": "boolean"
+        },
+        "title": {
+            "type": "string"
+        },
+        "publications": {
+            "description": "Publications associated with the group",
+            "type": "array",
+            "items": {
+                "$ref": "sub-schema/publication.schema.json"
+            }
+        }
+    }
+}
