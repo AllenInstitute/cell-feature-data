@@ -455,7 +455,7 @@ function getPropertySummary(property, knownTypes, autoLink) {
     var type = defaultValue(getPropertyType(property), 'any');
     var formattedType = style.linkType(style.typeValue(type), type, autoLink);
 
-    if (type === 'array') {
+    if (type === 'array' || property.type === 'array') {
         var insideBrackets = '';
         if ((defined(property.minItems)) && (property.minItems === property.maxItems)) {
             // Min and max are the same so the array is constant size
@@ -487,6 +487,12 @@ function getPropertySummary(property, knownTypes, autoLink) {
                 type += arrayInfo;
                 formattedType += style.typeValue(arrayInfo);
             }
+        } else if (defined(property.items) && defined(property.items.anyOf)) {
+            var types = property.items.anyOf.map(function(ele){
+                return ele.type
+            }).join(' or ')
+            type = '(' + types + ')' + arrayInfo;
+            formattedType = style.typeValue(type);
         } else {
             type += arrayInfo;
             formattedType = style.typeValue(type);

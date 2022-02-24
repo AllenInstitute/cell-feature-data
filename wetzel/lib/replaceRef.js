@@ -26,7 +26,7 @@ function replaceRef(schema, searchPaths, ignorableTypes, schemaReferences, paren
     }
 
     schemaReferences = defaultValue(schemaReferences, {});
-    var baseTypes = ["number", "string"];
+    var baseTypes = ["number", "string", "boolean", "float"];
     var ref = schema.$ref;
     if (defined(ref)) {
         // TODO: $ref could also be absolute.
@@ -45,7 +45,7 @@ function replaceRef(schema, searchPaths, ignorableTypes, schemaReferences, paren
                 }
                 if (pointer) {
                     refSchema = jsonpointer.get(refSchema, pointer);
-                    if (baseTypes.indexOf(refSchema.type) < 0 ) {
+                    if (refSchema.type === "object" ) {
                         refSchema.typeName = pointer.split('/').pop();
                     } else {
                         // if the type is just a string or number, there 
@@ -73,7 +73,7 @@ function replaceRef(schema, searchPaths, ignorableTypes, schemaReferences, paren
         // If a type is supposed to be ignored, that means that its contents should be applied
         // to the referencing schema, but it shouldn't be called out as a top-level type by itself
         // (meaning it would never show up in a table of contents or get its own documentation section).
-        if (ignorableTypes.indexOf(ref.toLowerCase()) < 0) {
+        if (ignorableTypes.indexOf(ref.toLowerCase()) < 0 && baseTypes.indexOf(refSchema.type) < 0) {
 
             if (refSchema.title in schemaReferences) {
                 // update schema and fileName in case it was inserted by a child first
