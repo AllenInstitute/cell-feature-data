@@ -10,11 +10,11 @@ var enums = require('./enums');
 module.exports = generateMarkdown;
 
 /**
-* @function generateMarkdown
-* Generates the markdown content to represent the json schema provided within the options parameter.
-* @param  {object} options - The set of configuration options to be fed into the generator.
-* @return {string} The full markdown content based on the requested options.
-*/
+ * @function generateMarkdown
+ * Generates the markdown content to represent the json schema provided within the options parameter.
+ * @param  {object} options - The set of configuration options to be fed into the generator.
+ * @return {string} The full markdown content based on the requested options.
+ */
 function generateMarkdown(options) {
     var md = '';
     var schema = options.schema;
@@ -40,13 +40,12 @@ function generateMarkdown(options) {
     if (defined(schemaRef)) {
         if (schemaRef === 'http://json-schema.org/draft-03/schema') {
             resolved = schema3.resolve(schema, options.fileName, options.searchPath, options.ignorableTypes, options.debug);
-        }
-        else {
+        } else {
             resolved = schema4.resolve(schema, options.fileName, options.searchPath, options.ignorableTypes, options.debug);
             if ((!options.suppressWarnings) &&
                 (schemaRef !== 'http://json-schema.org/draft-04/schema' &&
-                schemaRef !== 'http://json-schema.org/draft-07/schema' &&
-                schemaRef !== 'https://json-schema.org/draft/2020-12/schema')) {
+                    schemaRef !== 'http://json-schema.org/draft-07/schema' &&
+                    schemaRef !== 'https://json-schema.org/draft/2020-12/schema')) {
                 md += '> WETZEL_WARNING: Unrecognized JSON Schema.\n\n';
             }
         }
@@ -84,14 +83,14 @@ function generateMarkdown(options) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
-* @function getTableOfContentsMarkdown
-* Print a table of contents indicating (and linking to) all of the types that are documented
-* @param  {object} schema       The root schema that the documentation is for.
-* @param  {object} orderedTypes The types for the TOC, as an ordered map from schema.title to objects
-*                               containing the schema, the file name, parent titles and children titles
-* @param  {int} headerLevel     The level that the header for the TOC should be displayed at.
-* @return {string} The markdown for the table of contents.
-*/
+ * @function getTableOfContentsMarkdown
+ * Print a table of contents indicating (and linking to) all of the types that are documented
+ * @param  {object} schema       The root schema that the documentation is for.
+ * @param  {object} orderedTypes The types for the TOC, as an ordered map from schema.title to objects
+ *                               containing the schema, the file name, parent titles and children titles
+ * @param  {int} headerLevel     The level that the header for the TOC should be displayed at.
+ * @return {string} The markdown for the table of contents.
+ */
 function getTableOfContentsMarkdown(schema, orderedTypes, headerLevel) {
     var md = style.getHeaderMarkdown(headerLevel) + ' Objects\n';
     for (var title in orderedTypes) {
@@ -114,14 +113,14 @@ function getTableOfContentsMarkdown(schema, orderedTypes, headerLevel) {
 }
 
 /**
-* @function getRecursiveTOC
-* Appends children elements to the table of contents, if and only if the child has a single parent
-* @param  {object} orderedTypes The types for the TOC, as an ordered map from schema.title to objects
-*                               containing the schema, the file name, parent titles and children titles
-* @param  {string} parentTitle    A string that contains the title of the parent object.
-* @param  {int} depth             The number of indentation levels that should be applied.
-* @return {string} The markdown for the table of contents.
-*/
+ * @function getRecursiveTOC
+ * Appends children elements to the table of contents, if and only if the child has a single parent
+ * @param  {object} orderedTypes The types for the TOC, as an ordered map from schema.title to objects
+ *                               containing the schema, the file name, parent titles and children titles
+ * @param  {string} parentTitle    A string that contains the title of the parent object.
+ * @param  {int} depth             The number of indentation levels that should be applied.
+ * @return {string} The markdown for the table of contents.
+ */
 function getRecursiveTOC(orderedTypes, parentTitle, depth) {
     var md = '';
     for (var i = 0; i < orderedTypes[parentTitle].children.length; i++) {
@@ -141,19 +140,19 @@ function getRecursiveTOC(orderedTypes, parentTitle, depth) {
 }
 
 /**
-* @function getSchemaMarkdown
-* Gets the markdown for the first-class elements of a schema.
-* @param  {object} schema                 The schema being converted to markdown.
-* @param  {string} fileName               The filename of the schema being converted to markdown.
-* @param  {int} headerLevel               The starting level for the headers.
-* @param  {boolean} suppressWarnings      Indicates if wetzel warnings should be printed in the documentation.
-* @param  {string} schemaRelativeBasePath The path, relative to where this documentation lives, that the schema files can be found.
-* Leave as null if you don't want the documentation to link to the schema files.
-* @param  {object} knownTypes             The dictionary of types and their schema information.
-* @param  {string} autoLink               Enum value indicating how the auto-linking should be handled.
-* @param  {string} embedMode              Emum value indicating if we are embedding JSON schema include directives.
-* @return {string}                        The markdown for the schema.
-*/
+ * @function getSchemaMarkdown
+ * Gets the markdown for the first-class elements of a schema.
+ * @param  {object} schema                 The schema being converted to markdown.
+ * @param  {string} fileName               The filename of the schema being converted to markdown.
+ * @param  {int} headerLevel               The starting level for the headers.
+ * @param  {boolean} suppressWarnings      Indicates if wetzel warnings should be printed in the documentation.
+ * @param  {string} schemaRelativeBasePath The path, relative to where this documentation lives, that the schema files can be found.
+ * Leave as null if you don't want the documentation to link to the schema files.
+ * @param  {object} knownTypes             The dictionary of types and their schema information.
+ * @param  {string} autoLink               Enum value indicating how the auto-linking should be handled.
+ * @param  {string} embedMode              Emum value indicating if we are embedding JSON schema include directives.
+ * @return {string}                        The markdown for the schema.
+ */
 function getSchemaMarkdown(schema, fileName, headerLevel, suppressWarnings, schemaRelativeBasePath, knownTypes, autoLink, embedMode) {
     var md = '';
 
@@ -223,24 +222,24 @@ function getSchemaMarkdown(schema, fileName, headerLevel, suppressWarnings, sche
         md += createExamples(schema, headerLevel);
     } else if (schemaType === 'array') {
         var summary = getPropertySummary(schema, knownTypes, autoLink);
-        var eachElementInTheArrayMust = 'Each element in the array' + style.mustKeyword 
-            if (schema.items) {
-                
-                var itemSum = getPropertySummary(schema.items, knownTypes, autoLink) 
-                    md += style.bulletItem(style.propertyDetails('Type') + ': ' + itemSum.formattedType, 0); 
-                if (schema.uniqueItems) {
-                    md += style.bulletItem(eachElementInTheArrayMust + 'be unique.', 1); 
-                } 
-            } 
-             // Schema reference
-            
+        var eachElementInTheArrayMust = 'Each element in the array' + style.mustKeyword
+        if (schema.items) {
+
+            var itemSum = getPropertySummary(schema.items, knownTypes, autoLink)
+            md += style.bulletItem(style.propertyDetails('Type') + ': ' + itemSum.formattedType, 0);
+            if (schema.uniqueItems) {
+                md += style.bulletItem(eachElementInTheArrayMust + 'be unique.', 1);
+            }
+        }
+        // Schema reference
+
         if (embedMode === enums.embedMode.referenceIncludeDocument) {
-            md += style.bulletItem(style.bold('JSON schema') + ': ' + style.getSchemaEmbedLink(fileName, schema)) + '\n'; 
+            md += style.bulletItem(style.bold('JSON schema') + ': ' + style.getSchemaEmbedLink(fileName, schema)) + '\n';
         } else if (defined(schemaRelativeBasePath)) {
-            
+
             if (!schemaRelativeBasePath.endsWith('/')) {
-                schemaRelativeBasePath += '/'; 
-            } 
+                schemaRelativeBasePath += '/';
+            }
             md += style.bulletItem(style.bold('JSON schema') + ': ' + style.getLinkMarkdown(fileName, schemaRelativeBasePath.replace(/\\/g, '/') + fileName)) + '\n';
         }
     }
@@ -271,8 +270,32 @@ function createPropertiesSummary(schema, knownTypes, autoLink) {
         }
 
         md += style.endTable();
-    }
+    } else if (schema.patternProperties) {
+        var propertiesMap = schema.patternProperties;
+        var keys = Object.keys(schema.patternProperties)
+        keys.forEach(function (key) {
+            properties = propertiesMap[key].properties;
+            var type = propertiesMap[key].typeName || propertiesMap[key].type
+            md += 'Mapping interface: ' + style.typeValue('{ ' + ' [ ' + 'key: ' + style.bold(key) + ' ]: ' + type + ' }') + '\n\n'
+            md += style.beginTable(style.typeValue(type) + ' Properties', ['   ', 'Type', 'Description', 'Required']);
 
+            for (var name in properties) {
+
+                if (properties.hasOwnProperty(name)) {
+                    var property = properties[name];
+                    var summary = getPropertySummary(property, knownTypes, autoLink);
+                    md += style.addTableRow([
+                        style.propertyNameSummary(name),
+                        summary.formattedType,
+                        defaultValue(summary.description, ''),
+                        (summary.required === 'Yes' ? style.requiredIcon : '') + summary.required
+                    ]);
+                }
+            }
+            md += style.endTable();
+
+        })
+    }
     return md;
 }
 
@@ -325,13 +348,11 @@ function createPropertiesDetails(schema, title, headerLevel, knownTypes, autoLin
             var items = property.items;
             if (defined(items)) {
                 // Downgrade newer schemas
-                if (defined(items.exclusiveMinimum) && typeof items.exclusiveMinimum === 'number')
-                {
+                if (defined(items.exclusiveMinimum) && typeof items.exclusiveMinimum === 'number') {
                     items.minimum = items.exclusiveMinimum;
                     items.exclusiveMinimum = true;
                 }
-                if (defined(items.exclusiveMaximum) && typeof items.exclusiveMaximum === 'number')
-                {
+                if (defined(items.exclusiveMaximum) && typeof items.exclusiveMaximum === 'number') {
                     items.maximum = items.exclusiveMaximum;
                     items.exclusiveMaximum = true;
                 }
@@ -368,8 +389,7 @@ function createPropertiesDetails(schema, title, headerLevel, knownTypes, autoLin
 
             md += style.bulletItem(style.propertyDetails('Required') + ': ' + summary.required, 0);
 
-            if (defined(property.exclusiveMinimum) && typeof property.exclusiveMinimum === 'number')
-            {
+            if (defined(property.exclusiveMinimum) && typeof property.exclusiveMinimum === 'number') {
                 md += style.bulletItem(style.propertyDetails('Minimum') + ': ' + style.minMax(' > ' + property.exclusiveMinimum), 0);
             } else {
                 var minimum = property.minimum;
@@ -379,8 +399,7 @@ function createPropertiesDetails(schema, title, headerLevel, knownTypes, autoLin
                 }
             }
 
-            if (defined(property.exclusiveMaximum) && typeof property.exclusiveMaximum === 'number')
-            {
+            if (defined(property.exclusiveMaximum) && typeof property.exclusiveMaximum === 'number') {
                 md += style.bulletItem(style.propertyDetails('Maximum') + ': ' + style.minMax(' < ' + property.exclusiveMaximum), 0);
             } else {
                 var maximum = property.maximum;
@@ -488,7 +507,7 @@ function getPropertySummary(property, knownTypes, autoLink) {
                 formattedType += style.typeValue(arrayInfo);
             }
         } else if (defined(property.items) && defined(property.items.anyOf)) {
-            var types = property.items.anyOf.map(function(ele){
+            var types = property.items.anyOf.map(function (ele) {
                 return ele.type
             }).join(' or ')
             type = '(' + types + ')' + arrayInfo;
@@ -591,8 +610,7 @@ function getAnyOfEnumString(schema, type, depth) {
             if (defined(enumDescription)) {
                 enumString += " " + enumDescription;
             }
-        }
-        else {
+        } else {
             // The likely scenario when there's no enum value is that it's the object
             // containing the _type_ of the enum.  Otherwise, it should be an array with
             // a single value in it.
@@ -655,16 +673,16 @@ function getPropertyType(schema) {
 }
 
 /**
-* @function autoLinkDescription
-* This will take a string that describes a type that may potentially reference _other_ types, and then
-* automatically add markdown link refences to those other types inline. This is an admittedly simple
-* (and potentially buggy) approach to the problem, but seems sufficient.
-* @param  {string} description The string that should be auto-linked
-* @param  {string[]} knownTypes  Array of known strings that are types that should be auto-linked if found.
-* If there are multiple types with the same starting root string, it's imperative that the array is sorted such that the longer names are ordered first.
-* @param  {string} autoLink Enum value indicating how the auto-linking should be handled.
-* @return {string} The auto-linked description.
-*/
+ * @function autoLinkDescription
+ * This will take a string that describes a type that may potentially reference _other_ types, and then
+ * automatically add markdown link refences to those other types inline. This is an admittedly simple
+ * (and potentially buggy) approach to the problem, but seems sufficient.
+ * @param  {string} description The string that should be auto-linked
+ * @param  {string[]} knownTypes  Array of known strings that are types that should be auto-linked if found.
+ * If there are multiple types with the same starting root string, it's imperative that the array is sorted such that the longer names are ordered first.
+ * @param  {string} autoLink Enum value indicating how the auto-linking should be handled.
+ * @return {string} The auto-linked description.
+ */
 function autoLinkDescription(description, knownTypes, autoLink) {
     for (var type in knownTypes) {
         description = style.linkType(description, type, autoLink);
@@ -672,4 +690,3 @@ function autoLinkDescription(description, knownTypes, autoLink) {
 
     return description;
 }
-
