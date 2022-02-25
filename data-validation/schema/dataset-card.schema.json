@@ -19,7 +19,7 @@
             "$ref": "definitions.schema.json#/definitions/description"
         },
         "image": {
-            "$ref": "definitions.schema.json#/processed-data/image"
+            "$ref": "definitions.schema.json#/definitions/processed-image"
         },
         "link": {
             "$ref": "definitions.schema.json#/definitions/link"

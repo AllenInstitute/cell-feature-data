@@ -19,7 +19,7 @@
             "$ref": "definitions.schema.json#/definitions/description"
         },
         "image": {
-            "$ref": "definitions.schema.json#/input-data/image"
+            "$ref": "definitions.schema.json#/input-image"
         },
         "link": {
             "$ref": "definitions.schema.json#/definitions/link"
@@ -31,16 +31,16 @@
             "$ref": "definitions.schema.json#/definitions/production"
         },
         "featuresDataPath": {
-            "$ref": "definitions.schema.json#/input-data/featuresDataPath"
+            "$ref": "definitions.schema.json#/input-featuresDataPath"
         },
         "featureDefsPath": {
-            "$ref": "definitions.schema.json#/input-data/featureDefsPath"
+            "$ref": "definitions.schema.json#/input-featureDefsPath"
         },
         "viewerSettingsPath": {
-            "$ref": "definitions.schema.json#/input-data/viewerSettingsPath"
+            "$ref": "definitions.schema.json#/input-viewerSettingsPath"
         },
         "albumPath": {
-            "$ref": "definitions.schema.json#/input-data/albumPath"
+            "$ref": "definitions.schema.json#/input-albumPath"
         },
         "thumbnailRoot": {
             "$ref": "definitions.schema.json#/definitions/thumbnailRoot"
