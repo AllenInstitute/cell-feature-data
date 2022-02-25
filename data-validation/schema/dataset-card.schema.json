@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "dataset-card.schema.json",
+    "title": "Dataset Card",
+    "description": "Data needed to render a dataset card",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "title": {
+            "$ref": "definitions.schema.json#/definitions/dataset-title"
+        },
+        "name": {
+            "$ref": "definitions.schema.json#/definitions/name"
+        },
+        "version": {
+            "$ref": "definitions.schema.json#/definitions/version"
+        },
+        "description": {
+            "$ref": "definitions.schema.json#/definitions/description"
+        },
+        "image": {
+            "$ref": "definitions.schema.json#/processed-data/image"
+        },
+        "link": {
+            "$ref": "definitions.schema.json#/definitions/link"
+        },
+        "userData": {
+            "$ref": "definitions.schema.json#/definitions/userData"
+        },
+        "production": {
+            "$ref": "definitions.schema.json#/definitions/production"
+        }
+    },
+    "required": [
+        "title",
+        "version",
+        "name",
+        "image",
+        "description"
+    ]
+}

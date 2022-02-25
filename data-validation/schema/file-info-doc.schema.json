@@ -5,6 +5,6 @@
     "description": "Temporary file of all the file info for the dataset.",
     "type": "array",
     "items": {
-        "$ref": "sub-schema/file-info.schema.json"
+        "$ref": "array-items/file-info.schema.json"
     }
 }

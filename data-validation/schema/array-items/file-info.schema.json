@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "sub-schema/file-info.schema.json",
+    "$id": "array-items/file-info.schema.json",
     "title": "File info",
     "description": "File info for one cell, this is the data needed to access images for the cell.",
     "type": "object",

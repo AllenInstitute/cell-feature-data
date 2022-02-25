@@ -7,29 +7,23 @@
     "additionalProperties": false,
     "properties": {
         "title": {
-            "description": "Display name of the dataset or group",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/group-title"
         },
         "name": {
-            "description": "Name of the dataset (no version number)",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/name"
         },
         "datasets": {
-            "description": "Array of subfolder names that point to each dataset in the group. Each subfolder should contain their own `dataset.json`",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "$ref": "definitions.schema.json#/input-data/datasets"
         },
         "dateCreated": {
-            "description": "Month Day, Year",
-            "type": "string"
+            "$ref": "definitions.schema.json#/input-data/dateCreated"
         },
         "publications": {
+            "title": "Publications",
             "description": "Publications associated with the group",
             "type": "array",
             "items": {
-                "$ref": "sub-schema/publication.schema.json"
+                "$ref": "definitions.schema.json#/definitions/publication"
             }
         }
     },

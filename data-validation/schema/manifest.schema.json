@@ -35,38 +35,22 @@
             "type": "string"
         },
         "xAxis": {
-            "description": "Settings for the x axis",
-            "type": "object",
-            "$ref": "sub-schema/selection-setting.schema.json"
+            "$ref": "input-dataset-info.schema.json#/properties/xAxis"
         },
         "yAxis": {
-            "description": "Settings for the y axis",
-            "type": "object",
-            "$ref": "sub-schema/selection-setting.schema.json"
+            "$ref": "input-dataset-info.schema.json#/properties/yAxis"
         },
         "colorBy": {
-            "description": "Settings for the color by menu",
-            "type": "object",
-            "$ref": "sub-schema/selection-setting.schema.json"
+            "$ref": "input-dataset-info.schema.json#/properties/colorBy"
         },
         "groupBy": {
-            "description": "Settings for the grouping menu",
-            "type": "object",
-            "$ref": "sub-schema/selection-setting.schema.json"
+            "$ref": "input-dataset-info.schema.json#/properties/groupBy"
         },
         "featuresDisplayOrder": {
-            "description": "Ordered array of feature keys for display on front end",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "$ref": "definitions.schema.json#/definitions/featuresDisplayOrder"
         },
         "featuresDataOrder": {
-            "description": "Ordered array of feature keys for packing and unpacking data",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "$ref": "definitions.schema.json#/definitions/featuresDataOrder"
         }
     },
     "required": [
