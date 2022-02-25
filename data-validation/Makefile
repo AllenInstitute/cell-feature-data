@@ -38,4 +38,4 @@ docs:
 	make convert-to-html
 
 clean: 
-	-rm -f $(GENERATED)
+	-rm -f $(GENERATED) $(HTML_DOCS)
