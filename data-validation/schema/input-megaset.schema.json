@@ -13,10 +13,10 @@
             "$ref": "definitions.schema.json#/definitions/name"
         },
         "datasets": {
-            "$ref": "definitions.schema.json#/input-data/datasets"
+            "$ref": "definitions.schema.json#/definitions/input-datasets"
         },
         "dateCreated": {
-            "$ref": "definitions.schema.json#/input-data/dateCreated"
+            "$ref": "definitions.schema.json#/definitions/input-dateCreated"
         },
         "publications": {
             "title": "Publications",

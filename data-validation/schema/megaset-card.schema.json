@@ -7,10 +7,10 @@
     "additionalProperties": false,
     "properties": {
         "datasets": {
-            "$ref": "definitions.schema.json#/processed-data/datasets"
+            "$ref": "definitions.schema.json#/definitions/processed-datasets"
         },
         "dateCreated": {
-            "$ref": "definitions.schema.json#/input-data/dateCreated"
+            "$ref": "definitions.schema.json#/definitions/processed-dateCreated"
         },
         "name": {
             "$ref": "definitions.schema.json#/definitions/name"

@@ -116,15 +116,13 @@
             "items": {
                 "type": "string"
             }
-        }
-    },
-    "input-data": {
-        "dateCreated": {
+        },
+        "input-dateCreated": {
             "title": "Date the dataset was created",
             "description": "Format: Month Day, Year. If it's not specified, the date will be set to the upload date. ",
             "type": "string"
         },
-        "datasets": {
+        "input-datasets": {
             "title": "Input datasets",
             "description": "Array of subfolder names that point to each dataset in the group. Each subfolder should contain their own `dataset.json`.",
             "type": "array",
@@ -132,39 +130,37 @@
                 "type": "string"
             }
         },
-        "image": {
+        "input-image": {
             "title": "Image file",
             "description": "Relative path to the dataset card image file, including filename.",
             "type": "string"
         },
-        "featuresDataPath": {
+        "input-featuresDataPath": {
             "title": "Feature data path",
             "description": "Relative path to the per cell data json, including filename.",
             "type": "string"
         },
-        "featureDefsPath": {
+        "input-featureDefsPath": {
             "title": "Feature defs path",
             "description": "Relative path to the feature definition file, including filename.",
             "type": "string"
         },
-        "viewerSettingsPath": {
+        "input-viewerSettingsPath": {
             "title": "Viewer settings path",
             "description": "Relative path to image per-channel settings file for the 3d viewer, including filename.",
             "type": "string"
         },
-        "albumPath": {
+        "input-albumPath": {
             "title": "Album path",
             "description": "Relative path to the album file.",
             "type": "string"
-        }
-    },
-    "processed-data": {
-        "dateCreated": {
+        },
+        "processed-dateCreated": {
             "title": "Date the dataset was created",
             "description": "Format: Firebase Timestamp. ",
             "type": "string"
         },
-        "datasets": {
+        "processed-datasets": {
             "title": "Input datasets",
             "description": "Array of dateset cards.",
             "type": "array",
@@ -173,27 +169,27 @@
                 "$ref": "dataset-card.schema.json"
             }
         },
-        "image": {
+        "processed-image": {
             "title": "Image file",
             "description": "Url of the dataset card image file on AWS",
             "type": "string"
         },
-        "featuresDataPath": {
+        "processed-featuresDataPath": {
             "title": "Feature data path",
             "description": "Url of the features JSON on AWS",
             "type": "string"
         },
-        "featureDefsPath": {
+        "processed-featureDefsPath": {
             "title": "Feature defs path",
             "description": "Database path to feature definition collection",
             "type": "string"
         },
-        "viewerSettingsPath": {
+        "processed-viewerSettingsPath": {
             "title": "Viewer settings path",
             "description": "Url of the per-channel settings file for the 3d viewer on AWS.",
             "type": "string"
         },
-        "albumPath": {
+        "processed-albumPath": {
             "title": "Album path",
             "description": "Database path to album information.",
             "type": "string"

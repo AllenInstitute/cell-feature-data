@@ -7,44 +7,49 @@
     "additionalProperties": false,
     "properties": {
         "featuresDataPath": {
-            "description": "url to the per cell data json",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/processed-featuresDataPath"
         },
         "featureDefsPath": {
-            "description": "path to the feature def collection",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/processed-featureDefsPath"
         },
         "viewerSettingsPath": {
-            "description": "path to image per-channel settings for the 3d viewer",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/processed-viewerSettingsPath"
         },
         "albumPath": {
-            "description": "collection name of the album data",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/processed-albumPath"
         },
         "thumbnailRoot": {
-            "description": "Root url for thumbnail images",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/thumbnailRoot"
         },
         "downloadRoot": {
-            "description": "Root url for downloading cell data",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/downloadRoot"
         },
         "volumeViewerDataRoot": {
-            "description": "Root url for 3d images",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/volumeViewerDataRoot"
         },
         "xAxis": {
-            "$ref": "input-dataset-info.schema.json#/properties/xAxis"
+            "title": "xAxis settings",
+            "description": "Settings for the x axis",
+            "type": "object",
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
         },
         "yAxis": {
-            "$ref": "input-dataset-info.schema.json#/properties/yAxis"
+            "title": "yAxis settings",
+            "description": "Settings for the y axis",
+            "type": "object",
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
         },
         "colorBy": {
-            "$ref": "input-dataset-info.schema.json#/properties/colorBy"
+            "title": "Color settings",
+            "description": "Settings for the color by menu",
+            "type": "object",
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
         },
         "groupBy": {
-            "$ref": "input-dataset-info.schema.json#/properties/groupBy"
+            "title": "Grouping settings",
+            "description": "Settings for the grouping menu",
+            "type": "object",
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
         },
         "featuresDisplayOrder": {
             "$ref": "definitions.schema.json#/definitions/featuresDisplayOrder"
