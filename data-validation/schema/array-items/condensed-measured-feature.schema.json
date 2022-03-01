@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "sub-schema/condensed-measured-feature.schema.json",
+    "$id": "array-items/condensed-measured-feature.schema.json",
     "title": "Condensed measured feature",
     "description": "Data per cell needed to create the CFE plot",
     "additionalProperties": false,

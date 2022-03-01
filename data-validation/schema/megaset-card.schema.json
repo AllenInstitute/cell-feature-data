@@ -7,29 +7,26 @@
     "additionalProperties": false,
     "properties": {
         "datasets": {
-            "type": "array",
-            "items": {
-                "$ref": "sub-schema/dataset-card.schema.json"
-            }
+            "$ref": "definitions.schema.json#/definitions/processed-datasets"
         },
         "dateCreated": {
-            "description": "Month Day, Year",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/processed-dateCreated"
         },
         "name": {
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/name"
         },
         "production": {
-            "type": "boolean"
+            "$ref": "definitions.schema.json#/definitions/production"
         },
         "title": {
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/group-title"
         },
         "publications": {
+            "title": "Publications",
             "description": "Publications associated with the group",
             "type": "array",
             "items": {
-                "$ref": "sub-schema/publication.schema.json"
+                "$ref": "definitions.schema.json#/definitions/publication"
             }
         }
     },

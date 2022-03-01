@@ -5,6 +5,6 @@
     "description": "File stored on AWS that has the condensed measured data. Is an array of condensed measured features.",
     "type": "array",
     "items": {
-        "$ref": "sub-schema/condensed-measured-feature.schema.json"
+        "$ref": "array-items/condensed-measured-feature.schema.json"
     }
 }

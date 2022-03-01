@@ -12,8 +12,8 @@
         "manifests": {
             "description": "Collection of manifests for each published dataset.",
             "type": "object",
-            "properties": {
-                "DATASET_ID": {
+            "patternProperties": {
+                "^(\\w{1,})_(v\\d{4}.\\d{1,}|\\w{1,})$": {
                     "type": "object",
                     "$ref": "manifest.schema.json"
                 }
@@ -26,8 +26,8 @@
             "properties": {
                 "feature-definitions": {
                     "type": "object",
-                    "properties": {
-                        "$dataset-id": {
+                    "patternProperties": {
+                        "^(\\w{1,})_(v\\d{4}.\\d{1,}|\\w{1,})$": {
                             "type": "object",
                             "$feature-key": {
                                 "$ref": "feature-def.schema.json"
@@ -41,16 +41,16 @@
             "description": "Per cell data",
             "$id": "cell-data",
             "type": "object",
-            "properties": {
-                "DATASET_ID": {
+            "patternProperties": {
+                "^(\\w{1,})_(v\\d{4}.\\d{1,}|\\w{1,})$": {
                     "type": "object",
                     "properties": {
                         "cell-file-info": {
                             "type": "object",
                             "description": "Per cell mapping of file info",
-                            "properties": {
-                                "CELL_ID": {
-                                    "$ref": "sub-schema/file-info.schema.json"
+                            "patternProperties": {
+                                "^\\d{1,}$": {
+                                    "$ref": "array-items/file-info.schema.json"
                                 }
                             }
                         }

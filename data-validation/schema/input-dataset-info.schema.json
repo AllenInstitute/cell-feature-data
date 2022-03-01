@@ -7,98 +7,79 @@
     "additionalProperties": false,
     "properties": {
         "title": {
-            "description": "Display name of the dataset",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/dataset-title"
         },
         "name": {
-            "description": "Name of the dataset (no version number)",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/name"
         },
         "version": {
-            "description": "version year and number",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/version"
         },
         "description": {
-            "description": "Description of the dataset",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/description"
         },
         "image": {
-            "description": "relative path to the dataset card image file",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/input-image"
         },
         "link": {
-            "description": "Link to website displaying the dataset",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/link"
         },
         "userData": {
-            "description": "Optional display data",
-            "type": "object"
+            "$ref": "definitions.schema.json#/definitions/userData"
         },
         "production": {
-            "description": "Whether this dataset should only be shown in production",
-            "type": "boolean"
+            "$ref": "definitions.schema.json#/definitions/production"
         },
         "featuresDataPath": {
-            "description": "url to the per cell data json",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/input-featuresDataPath"
         },
         "featureDefsPath": {
-            "description": "path to the feature def collection",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/input-featureDefsPath"
         },
         "viewerSettingsPath": {
-            "description": "path to image per-channel settings for the 3d viewer",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/input-viewerSettingsPath"
         },
         "albumPath": {
-            "description": "collection name of the album data",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/input-albumPath"
         },
         "thumbnailRoot": {
-            "description": "Root url for thumbnail images",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/thumbnailRoot"
         },
         "downloadRoot": {
-            "description": "Root url for downloading cell data",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/downloadRoot"
         },
         "volumeViewerDataRoot": {
-            "description": "Root url for 3d images",
-            "type": "string"
+            "$ref": "definitions.schema.json#/definitions/volumeViewerDataRoot"
         },
         "xAxis": {
+            "title": "xAxis settings",
             "description": "Settings for the x axis",
             "type": "object",
-            "$ref": "sub-schema/selection-setting.schema.json"
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
         },
         "yAxis": {
+            "title": "yAxis settings",
             "description": "Settings for the y axis",
             "type": "object",
-            "$ref": "sub-schema/selection-setting.schema.json"
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
         },
         "colorBy": {
+            "title": "Color settings",
             "description": "Settings for the color by menu",
             "type": "object",
-            "$ref": "sub-schema/selection-setting.schema.json"
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
         },
         "groupBy": {
+            "title": "Grouping settings",
             "description": "Settings for the grouping menu",
             "type": "object",
-            "$ref": "sub-schema/selection-setting.schema.json"
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
         },
         "featuresDisplayOrder": {
-            "description": "Ordered array of feature keys for display on front end",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "$ref": "definitions.schema.json#/definitions/featuresDisplayOrder"
         },
         "featuresDataOrder": {
-            "description": "Ordered array of feature keys for packing and unpacking data",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "$ref": "definitions.schema.json#/definitions/featuresDataOrder"
         }
     },
     "required": [
