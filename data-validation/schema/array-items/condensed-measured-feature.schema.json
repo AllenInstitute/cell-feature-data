@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "array-items/condensed-measured-feature.schema.json",
+    "title": "Condensed measured feature",
+    "description": "Data per cell needed to create the CFE plot",
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+        "f": {
+            "description": "ordered array of measured features",
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "string",
+                        "pattern": "[NaN]"
+                    }
+                ]
+            }
+        },
+        "p": {
+            "description": "Protein name",
+            "type": "string"
+        },
+        "t": {
+            "description": "Thumbnail Path",
+            "type": "string"
+        },
+        "i": {
+            "description": "Cell id",
+            "type": "string"
+        }
+    },
+    "required": [
+        "f",
+        "p",
+        "t",
+        "i"
+    ]
+}

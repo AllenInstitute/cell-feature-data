@@ -1,4 +1,5 @@
 .DS_Store
+.vscode
 node_modules
 */node_modules
 .env
@@ -8,3 +9,9 @@ dataset-*/cell_feature_analysis.json
 dataset-*/cell-feature-analysis.json
 *.log
 local-scripts.js
+dist/DatabaseSpecification.html
+dist/HandoffSpecification.html
+docs/DatabaseRef.adoc
+docs/DatabaseSchema.adoc
+docs/DatasetHandoffRef.adoc
+docs/DatasetHandoffSchema.adoc

@@ -4,8 +4,8 @@ const {
     firestore
 } = require('../firebase/setup-firebase');
 
-const dataPrep = require("./data-validation/data-prep");
-const schemas = require("./data-validation/schema");
+const dataPrep = require("../data-validation/data-prep");
+const schemas = require("../data-validation/full-schema");
 const processSingleDataset = require("./process-single-dataset");
 const {
     DATASET_DESCRIPTIONS
@@ -25,9 +25,18 @@ const readDatasetJson = async (folder) => {
 // Extract out just the fields that will go into Firebase under 
 // dataset-descriptions/{megaset name}
 const getDatasetInfo = (datasetJson) => {
-    const datasetInfo = dataPrep.initialize(datasetJson, schemas.datasetSchema)
-    datasetInfo.production = false; // by default upload all datasets as a staging set
-    return datasetInfo;
+    // will remove additional properties
+    const {
+        data,
+        valid,
+        error
+    } = dataPrep.validate(datasetJson, schemas.dataset);
+    if (!valid) {
+        console.log("dataset.json failed validation", error)
+        process.exit(1);
+    }
+    data.production = false; // by default upload all datasets as a staging set
+    return data;
 }
 
 const getDatasetId = (dataset) => {
@@ -100,7 +109,7 @@ const processMegaset = async () => {
             // as keys and objects containing pared-down info about individual datasets as values
             return datasetJsonArr.reduce((acc, datasetJson) => {
                 const datasetInfo = getDatasetInfo(datasetJson);
-                const id = getDatasetId(datasetInfo);
+                const id = getDatasetId(datasetJson);
                 acc[id] = datasetInfo;
                 // Also save the entire datasetJson with the same id to datasetJsons, which will be used in the "process-one-dataset" script to upload and save the rest of the data
                 datasetJsons[id] = datasetJson;
@@ -117,7 +126,7 @@ const processMegaset = async () => {
         megasetInfo.publications = topLevelJson.publications || [];
         topLevelJson.datasetReadFolder = inputFolder;
         const datasetInfo = getDatasetInfo(topLevelJson);
-        const id = getDatasetId(datasetInfo);
+        const id = getDatasetId(topLevelJson);
         megasetInfo.name = id;
         // for single dataset sets we want to store the document with the whole id, to avoid 
         // grouping versions of the same name together as if they're megasets 

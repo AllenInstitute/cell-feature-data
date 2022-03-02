@@ -1,0 +1,9 @@
+= What the data looks like in the database after processing
+
+include::DatabaseRef.adoc[]
+:toc: 
+
+== Appendix
+:toc: 
+include::DatabaseSchema.adoc[]
+

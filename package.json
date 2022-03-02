@@ -13,7 +13,10 @@
     "test": "jest --env node --forceExit",
     "process-dataset": "node process-dataset",
     "upload-image": "node upload-dataset-image",
-    "release-dataset": "node release-dataset"
+    "release-dataset": "node release-dataset",
+    "prepublish-docs": "cd ./data-validation && make docs",
+    "publish-docs": "gh-pages -d dist",
+    "postpublish-docs": "cd ./data-validation && make clean"
   },
   "repository": {
     "type": "git",
@@ -37,6 +40,9 @@
     "prompt": "^1.1.0"
   },
   "devDependencies": {
-    "jest": "^24.9.0"
+    "asciidoctor": "^2.2.6",
+    "gh-pages": "^3.2.3",
+    "jest": "^24.9.0",
+    "wetzel": "^0.2.3"
   }
 }

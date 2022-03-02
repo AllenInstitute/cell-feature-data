@@ -4,8 +4,8 @@ const {
     map,
 } = require("lodash");
 
-const schemas = require("../data-validation/schema");
-const dataPrep = require("../data-validation/data-prep");
+const schemas = require("../../data-validation/full-schema");
+const dataPrep = require("../../data-validation/data-prep");
 const {
     FILE_INFO_KEYS,
     TEMP_LOCAL_CELL_FEATURE_JSON,
@@ -53,7 +53,7 @@ const formatAndWritePerCellJsons = async (firebaseHandler, readFolder, outFolder
                     f: cellData.features,
                     p: groupBy.key || groupBy.name,
                     t: fileInfo.thumbnailPath,
-                    i: fileInfo.CellId,
+                    i: fileInfo.CellId.toString(),
                 }
             }
             /* end of feature json loop */
@@ -62,21 +62,27 @@ const formatAndWritePerCellJsons = async (firebaseHandler, readFolder, outFolder
                 firebaseHandler.updateFeatureCount(defaultGroupBy, key, value)
             })
 
-            const fileInfoCheck = dataPrep.validate(fileInfoJson, schemas.fileInfo);
-
-            const measuredFeaturesCheck = dataPrep.validate(measuredFeaturesJson, schemas.measuredFeaturesDoc)
-            if (fileInfoCheck.valid && measuredFeaturesCheck) {
-
-                return Promise.all([fsPromises.writeFile(`${outFolder}/${TEMP_LOCAL_CELL_FEATURE_JSON}`, JSON.stringify(measuredFeaturesJson)),
-                    fsPromises.writeFile(`${outFolder}/${TEMP_LOCAL_FILE_INFO_JSON}`, JSON.stringify(fileInfoJson))
+            const {
+                data: fileInfoDoc,
+                valid: fileInfoValid,
+                error: fileInfoError
+            } = dataPrep.validate(fileInfoJson, schemas.fileInfo);
+            const {
+                data: measuredFeatureDoc,
+                valid: featuresValid,
+                error: featuresError,
+            } = dataPrep.validate(measuredFeaturesJson, schemas.measuredFeaturesDoc);
+            if (fileInfoValid && featuresValid) {
+                return Promise.all([fsPromises.writeFile(`${outFolder}/${TEMP_LOCAL_CELL_FEATURE_JSON}`, JSON.stringify(measuredFeatureDoc)),
+                    fsPromises.writeFile(`${outFolder}/${TEMP_LOCAL_FILE_INFO_JSON}`, JSON.stringify(fileInfoDoc))
                 ])
             } else {
                 console.error("failed json validation")
-                if (fileInfoCheck.error) {
-                    console.error(fileInfoCheck.error)
+                if (fileInfoError) {
+                    console.error("FILE INFO", fileInfoError)
                 }
-                if (measuredFeaturesCheck.error) {
-                    console.error(measuredFeaturesCheck.error)
+                if (featuresError) {
+                    console.error("MEASURED FEATURE", featuresError)
                 }
                 process.exit(1);
             }

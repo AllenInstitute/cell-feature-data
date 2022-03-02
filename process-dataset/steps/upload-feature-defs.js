@@ -3,8 +3,8 @@ const map = require("lodash").map;
 const uniq = require("lodash").uniq;
 const filter = require("lodash").filter;
 
-const dataPrep = require("../data-validation/data-prep");
-const schemas = require("../data-validation/schema");
+const dataPrep = require("../../data-validation/data-prep");
+const schemas = require("../../data-validation/full-schema");
 
 const uploadFeatureDefs = async (firebaseHandler, featureDefs) => {
     console.log("uploading feature defs...")
@@ -19,16 +19,19 @@ const uploadFeatureDefs = async (firebaseHandler, featureDefs) => {
                 return process.exit(1)
             }
         }
-        const featureData = dataPrep.initialize(feature, schemas.featureDefSchema)
-        const diffToDatabase = await firebaseHandler.checkFeatureExists(featureData)
-        const featureCheck = dataPrep.validate(featureData, schemas.featureDef)
-        if (diffToDatabase && featureCheck.valid) {
+        const {
+            data: validatedFeature,
+            valid,
+            error
+        } = dataPrep.validate(feature, schemas.featureDef);
+        const diffToDatabase = await firebaseHandler.checkFeatureExists(validatedFeature)
+        if (diffToDatabase && valid) {
             prompt.start();
             console.log(`feature "${feature.key}" is already in db`)
             for (const key in diffToDatabase) {
                 if (Object.hasOwnProperty.call(diffToDatabase, key)) {
                     const element = diffToDatabase[key];
-                    console.log(`${key} DB VALUE: ${JSON.stringify(element)}, NEW VALUE: ${JSON.stringify(featureData[key])}`)
+                    console.log(`${key} DB VALUE: ${JSON.stringify(element)}, NEW VALUE: ${JSON.stringify(validatedFeature[key])}`)
                 }
             }
             console.log("Do you want to over write what is in the DB? (Y/N)")
@@ -36,13 +39,16 @@ const uploadFeatureDefs = async (firebaseHandler, featureDefs) => {
                 shouldWrite
             } = await prompt.get(['shouldWrite']);
             if (shouldWrite.toLowerCase() === "y") {
-                await firebaseHandler.addFeature(feature)
+                await firebaseHandler.addFeature(validatedFeature)
             }
 
 
 
-        } else if (featureCheck.valid) {
-            await firebaseHandler.addFeature(feature)
+        } else if (valid) {
+            await firebaseHandler.addFeature(validatedFeature)
+        } else {
+            console.log(error);
+            process.exit(1);
         }
 
     }
