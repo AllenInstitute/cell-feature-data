@@ -528,12 +528,12 @@
     "discrete": true,
     "options": {
       "0": {
-        "color": "#1F77B4",
-        "name": "MYH6-MYH7"
-      },
-      "1": {
         "color": "#FF7F0E",
         "name": "HPRT1-COL2A1"
+      },
+      "1": {
+        "color": "#1F77B4",
+        "name": "MYH6-MYH7"
       },
       "2": {
         "color": "#2CA02C",

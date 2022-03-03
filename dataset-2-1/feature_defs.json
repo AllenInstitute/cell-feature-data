@@ -202,6 +202,7 @@
     "displayName": "Labeled Structure",
     "description": "Name of the cellular structure that has been fluorescently labeled in each cell line",
     "tooltip": "Name of the cellular structure that has been fluorescently labeled in each cell line",
+    "unit": "",
     "discrete": true,
     "options": {
       "5": {
