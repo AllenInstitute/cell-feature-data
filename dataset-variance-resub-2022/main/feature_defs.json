@@ -222,6 +222,14 @@
     "discrete": true
   },
   {
+    "displayName": "Alignment angle",
+    "description": "Angle used to align the cell's longest axis with the x-axis.",
+    "tooltip": "Angle used to align the cell's longest axis with the x-axis.",
+    "unit": "degrees",
+    "key": "angle",
+    "discrete": false
+  },
+  {
     "key": "cell-line",
     "displayName": "Labeled Structure",
     "description": "Name of the cellular structure that has been fluorescently labeled in each cell line",
