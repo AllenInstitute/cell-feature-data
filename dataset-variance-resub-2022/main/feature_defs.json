@@ -252,6 +252,24 @@
     }
   },
   {
+    "displayName": "Edge cell",
+    "description": "Cells at the edge of the colony.",
+    "tooltip": "Cells at the edge of the colony.",
+    "unit": "",
+    "key": "edge",
+    "discrete": true,
+    "options": {
+      "0": {
+        "color": "#fed98e",
+        "name": "No"
+      },
+      "1": {
+        "color": "#7f48f3",
+        "name": "Yes"
+      }
+    }
+  },
+  {
     "displayName": "Alignment angle",
     "description": "Angle used to align the cell's longest axis with the x-axis.",
     "tooltip": "Angle used to align the cell's longest axis with the x-axis.",
