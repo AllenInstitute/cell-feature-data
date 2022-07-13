@@ -203,7 +203,17 @@
     "tooltip": "Cells flagged as outlier either because structure volume was zero or by an automated bi-variate outlier detection algorithm.",
     "unit": "",
     "key": "outlier",
-    "discrete": true
+    "discrete": true,
+    "options": {
+      "0": {
+        "color": "#fed98e",
+        "name": "No"
+      },
+      "1": {
+        "color": "#7f48f3",
+        "name": "Yes"
+      }
+    }
   },
   {
     "displayName": "Baseline Interphase Dataset",
@@ -211,7 +221,17 @@
     "tooltip": "Cells that belong to the Baseline Interphase Dataset (full dataset minus mitotics cells and outliers).",
     "unit": "",
     "key": "baseline",
-    "discrete": true
+    "discrete": true,
+    "options": {
+      "0": {
+        "color": "#fed98e",
+        "name": "No"
+      },
+      "1": {
+        "color": "#7f48f3",
+        "name": "Yes"
+      }
+    }
   },
   {
     "displayName": "Within 8D Sphere",
@@ -219,7 +239,17 @@
     "tooltip": "Cells found within the 8D sphere.",
     "unit": "",
     "key": "sphere",
-    "discrete": true
+    "discrete": true,
+    "options": {
+      "0": {
+        "color": "#fed98e",
+        "name": "No"
+      },
+      "1": {
+        "color": "#7f48f3",
+        "name": "Yes"
+      }
+    }
   },
   {
     "displayName": "Alignment angle",
