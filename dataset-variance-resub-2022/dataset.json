@@ -1,0 +1,15 @@
+{
+    "title": "hiPSC Single-Cell Image Dataset",
+    "name": "In revision",
+    "dateCreated": "Jul 13, 2022",
+    "publications": [
+        {
+            "title": "Integrated intracellular organization and its variations in human iPS cells",
+            "url": "",
+            "citation": "In revision"
+        }
+    ],
+    "datasets": [
+        "main"
+    ]
+}

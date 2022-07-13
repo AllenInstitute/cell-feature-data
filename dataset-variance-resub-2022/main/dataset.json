@@ -1,0 +1,60 @@
+{
+  "title": "hiPSC Single-Cell Image Dataset",
+  "version": "2022.1",
+  "name": "variance_resub",
+  "image": "variance_resub.png",
+  "description": "This is the full dataset described in the paper: Integrated intracellular organization and its variations in human iPS cells.",
+  "userData": {
+    "isNew": true,
+    "inReview": true,
+    "totalCells": 215081,
+    "totalFOVs": 18000,
+    "totalTaggedStructures": 25
+  },
+  "featureDefsPath": "feature_defs.json",
+  "featuresDataPath": "cell_feature_analysis.json",
+  "viewerSettingsPath": "images.json",
+  "albumPath": "albums",
+  "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-fish.1/Cell-Viewer_Thumbnails",
+  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-fish_1",
+  "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-fish.1/Cell-Viewer_Thumbnails",
+  "xAxis": {
+    "default": "cell-volume",
+    "exclude": ["cell-line"]
+  },
+  "yAxis": {
+    "default": "dna-volume",
+    "exclude": ["cell-line"]
+  },
+  "colorBy": {
+    "default": "cell-line"
+  },
+  "groupBy": {
+    "default": "cell-line"
+  },
+  "featuresDisplayOrder": [],
+  "featuresDataOrder": [
+    "cell-line",
+    "cell-height",
+    "cell-volume",
+    "cell-surface-area",
+    "dna-height",
+    "dna-volume",
+    "dna-surface-area",
+    "intracellular-structure-volume",
+    "anaphase-segmentation-complete",
+    "interphase-or-mitosis",
+    "interphase-and-mitotic-stages",
+    "shape-mode-1",
+    "shape-mode-2",
+    "shape-mode-3",
+    "shape-mode-4",
+    "shape-mode-5",
+    "shape-mode-6",
+    "shape-mode-7",
+    "shape-mode-8",
+    "outlier",
+    "baseline",
+    "sphere"
+  ]
+}
