@@ -15,9 +15,9 @@
   "featuresDataPath": "cell_feature_analysis.json",
   "viewerSettingsPath": "images.json",
   "albumPath": "albums",
-  "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-fish.1/Cell-Viewer_Thumbnails",
-  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-fish_1",
-  "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-fish.1/Cell-Viewer_Thumbnails",
+  "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
+  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellviewer-2-0",
+  "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
   "xAxis": {
     "default": "cell-volume",
     "exclude": ["cell-line"]
