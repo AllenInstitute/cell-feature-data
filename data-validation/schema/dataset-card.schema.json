@@ -18,6 +18,9 @@
         "description": {
             "$ref": "definitions.schema.json#/definitions/description"
         },
+        "extra": {
+            "$ref": "definitions.schema.json#/definitions/extra"
+        },
         "image": {
             "$ref": "definitions.schema.json#/definitions/processed-image"
         },

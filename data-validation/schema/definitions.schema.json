@@ -50,6 +50,11 @@
             "description": "Description of the dataset",
             "type": "string"
         },
+        "extra": {
+            "title": "Extra",
+            "description": "Extra text to display on the card with a callout box",
+            "type": "string"
+        },
         "link": {
             "title": "Link (deprecated)",
             "description": "Link to website displaying the dataset",

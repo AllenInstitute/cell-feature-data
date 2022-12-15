@@ -22,7 +22,7 @@ const releaseDataset = async () => {
 
     } else if (megaset && sub_dataset) {
         if (!megaset) {
-            console.error("No dataset to update")
+            console.error("No dataset to update, use dataset id, not the folder name")
             process.exit(1)
         }
         datasets = [sub_dataset]
