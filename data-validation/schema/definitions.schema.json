@@ -20,6 +20,11 @@
             "description": "Name of the group (no version number). Lowercase with underscores.",
             "type": "string"
         },
+        "index": {
+            "title": "Dataset index",
+            "description": "Index of dataset in a megaset.",
+            "type": "number"
+        },
         "publication": {
             "title": "Publication",
             "description": "Publication data",

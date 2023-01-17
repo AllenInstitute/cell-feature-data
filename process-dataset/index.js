@@ -97,11 +97,12 @@ const processMegaset = async () => {
         // Unpack individual datasets and save data as megasetInfo.datasets and to datasetJsons
         megasetInfo.datasets = await Promise.all(
             // Read in individual datasets from the sub-folders listed in topLevelJson.datasets
-            topLevelJson.datasets.map(async (datasetFolder) => {
+            topLevelJson.datasets.map(async (datasetFolder, index) => {
                 const datasetReadFolder = `${inputFolder}/${datasetFolder}`
                 const datasetJson = await readDatasetJson(datasetReadFolder);
                 // Need to save the path to the dataset sub-folder for later processing steps
                 datasetJson.datasetReadFolder = datasetReadFolder;
+                datasetJson.index = index;
                 return datasetJson;
             })
         ).then(datasetJsonArr => {

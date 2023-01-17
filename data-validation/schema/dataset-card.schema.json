@@ -32,6 +32,9 @@
         },
         "production": {
             "$ref": "definitions.schema.json#/definitions/production"
+        },
+        "index": {
+            "$ref": "definitions.schema.json#/definitions/index"
         }
     },
     "required": [
