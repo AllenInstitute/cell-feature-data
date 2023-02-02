@@ -10,13 +10,13 @@ const PROTEIN_DISPLAY_NAME_KEY = require('../constants').PROTEIN_DISPLAY_NAME_KE
 const CELL_LINE_DEF_STRUCTURE_KEY = require('../constants').CELL_LINE_DEF_STRUCTURE_KEY;
 const TEMP_LOCAL_FILE_INFO_JSON = require("../constants").TEMP_LOCAL_FILE_INFO_JSON;
 
-const uploadFileInfo = async (firebaseHandler, readFolder, uploadFileInfo) => {
+const uploadFileInfo = async (firebaseHandler, readFolder, skipUpload) => {
     console.log("uploading file info...")
     const data = await fsPromises.readFile(`${readFolder}/${TEMP_LOCAL_FILE_INFO_JSON}`);
     const json = JSON.parse(data);
     const startingJson = json;
     const writeBatch = async () => {
-        if (uploadFileInfo) {
+        if (skipUpload) {
             return
         }
         const batchOfData = startingJson.splice(0, 498); // max is 500, at most a batch of this size will have 2 cell lines to upload

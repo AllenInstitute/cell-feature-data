@@ -8,7 +8,7 @@ const {
 
 
 class FirebaseHandler {
-    constructor(id, name, megasetName="") {
+    constructor(id, name, megasetName = "") {
         this.id = id;
         this.datasetName = name;
         this.megasetName = megasetName;
@@ -48,8 +48,8 @@ class FirebaseHandler {
             doc => doc.data()
         )
         const datasets = document.datasets;
-        datasets[this.id] = {...datasets[this.id], ...data}
-        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.megasetName).update({datasets})
+        datasets[this.id] = { ...datasets[this.id], ...data }
+        return firestore.collection(this.datasetDescriptionEndpoint).doc(this.megasetName).update({ datasets })
     }
 
     updateManifest(data) {
@@ -81,6 +81,29 @@ class FirebaseHandler {
     }
 
     checkFeatureExists(feature) {
+        const subCheck = (newValue, parentKey, changedFeatures, dbFeature) => {
+            if (typeof newValue == "object") {
+                for (const subKey in newValue) {
+                    if (Object.hasOwnProperty.call(newValue, subKey)) {
+                        const subValue = newValue[subKey];
+                        if (typeof subValue == "object") {
+                            return subCheck(subValue, subKey, changedFeatures, dbFeature[subKey])
+                        } else {
+                            if (!isEqual(dbFeature[subKey], subValue)) {
+                                if (!changedFeatures[parentKey]) {
+                                    changedFeatures[parentKey] = {}
+                                }
+                                changedFeatures[parentKey][subKey] = dbFeature[subKey]
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (!isEqual(dbFeature, newValue)) {
+                    changedFeatures[parentKey] = dbFeature
+                }
+            }
+        }
         return firestore.collection(this.featureDefEndpoint).doc(feature.key).get()
             .then(snapshot => {
                 if (snapshot.exists) {
@@ -89,9 +112,7 @@ class FirebaseHandler {
                     for (const key in feature) {
                         if (Object.hasOwnProperty.call(feature, key)) {
                             const newValue = feature[key];
-                            if (!isEqual(dbFeature[key], newValue)) {
-                                changedFeatures[key] = dbFeature[key]
-                            }
+                            subCheck(newValue, key, changedFeatures, dbFeature[key])
                         }
                     }
                     if (isEmpty(changedFeatures)) {
@@ -111,7 +132,7 @@ class FirebaseHandler {
 
     updateFeatureCount(feature, option, count) {
         const update = {
-            [`options.${option}.count`] : count
+            [`options.${option}.count`]: count
         }
         return firestore.collection(this.featureDefEndpoint).doc(feature).update(update)
     }

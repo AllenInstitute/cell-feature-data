@@ -11,6 +11,8 @@ const {
     FILE_INFO_KEYS,
     TEMP_LOCAL_CELL_FEATURE_JSON,
     TEMP_LOCAL_FILE_INFO_JSON,
+    DEFAULT_TRANSFORM,
+    REQUIRED_FILE_INFO_KEYS
 } = require("../constants");
 
 
@@ -35,14 +37,29 @@ const formatAndWritePerCellJsons = async (firebaseHandler, readFolder, outFolder
     const counts = {}
     for (let index = 0; index < json.length; index++) {
         const cellData = json[index];
-        if (cellData.file_info.length !== FILE_INFO_KEYS.length) {
-            console.error("file info in not in expected format")
+        let fileInfoKeys;
+        if (cellData.file_info.length === REQUIRED_FILE_INFO_KEYS.length) {
+            fileInfoKeys = REQUIRED_FILE_INFO_KEYS
+        } else if (cellData.file_info.length === FILE_INFO_KEYS.length) {
+            fileInfoKeys = FILE_INFO_KEYS
+        } else {
+            console.error("file info array is the wrong length")
             process.exit(1)
         }
+
         const fileInfo = cellData.file_info.reduce((acc, cur, index) => {
-            acc[FILE_INFO_KEYS[index]] = cur;
+            const key = fileInfoKeys[index];
+            let value = cur;
+            if (key === "transform") {
+                value = {
+                    ...DEFAULT_TRANSFORM,
+                    ...cur
+                }
+            }
+            acc[key] = value;
             return acc;
         }, {});
+
 
         const categoryValue = cellData.features[defaultGroupByIndex];
         const groupBy = find(featureDefs, {

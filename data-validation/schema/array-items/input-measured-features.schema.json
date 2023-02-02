@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "array-items/input-measured-features.schema.json",
+    "title": "The measured features and fileInfo for one image",
+    "description": "Per data point object. The measured features JSON is an array of these objects.",
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+        "file_info": {
+            "description": "Ordered array of file info: [id, parentId, id of default group, thumbnail path, volume viewer path, parent thumbnail path, parent volume viewer path]",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 7,
+            "maxItems": 7
+        },
+        "features": {
+            "description": "Ordered array of measured features. Needs to match the order of featuresDataOrder",
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "string",
+                        "pattern": "[NaN]"
+                    }
+                ]
+            }
+        }
+    },
+    "required": [
+        "file_info",
+        "features"
+    ]
+}

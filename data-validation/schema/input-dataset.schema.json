@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "input-dataset.schema.json",
     "title": "Cell Feature Dataset Handoff Specification",
     "type": "object",
@@ -24,7 +24,7 @@
             "description": "File that contains the measured analysis values, which will drive the plot. It is an array of measured features",
             "type": "array",
             "items": {
-                "$ref": "input-measured-features.schema.json"
+                "$ref": "array-items/input-measured-features.schema.json"
             }
         },
         "images": {

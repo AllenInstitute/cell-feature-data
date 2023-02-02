@@ -10,8 +10,6 @@ const uploadDatasetImage = require("./steps/upload-dataset-image");
 
 const FirebaseHandler = require('../firebase/firebase-handler');
 
-const TEMP_FOLDER = "./data";
-
 const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, megasetName) => {
     const {
         name,
@@ -40,6 +38,11 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
     const defaultGroupByIndex = datasetJson.featuresDataOrder.indexOf(defaultGroupBy);
 
     const featureDefsData = await readFeatureData();
+
+    const TEMP_FOLDER = "./data/" + id;
+
+    await fsPromises.mkdir(TEMP_FOLDER, { recursive: true });
+
     // 1. upload dataset description and manifest
     const manifestRef = await uploadManifest(firebaseHandler, datasetJson, featureDefsData);
     // 2. check dataset feature defs for new features, upload them if needed

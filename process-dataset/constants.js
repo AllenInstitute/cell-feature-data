@@ -11,15 +11,25 @@ const GENE_FULL_NAME_KEY = "GeneId_FullName";
 const TEMP_LOCAL_FILE_INFO_JSON = "file-info.json";
 const TEMP_LOCAL_CELL_FEATURE_JSON = "cell-feature-analysis.json";
 const DATASET_DESCRIPTIONS = "dataset-descriptions";
-const FILE_INFO_KEYS = [
+const REQUIRED_FILE_INFO_KEYS = [
     CELL_ID_KEY,
     FOV_ID_KEY,
     "groupBy",
     "thumbnailPath",
     "volumeviewerPath",
     "fovThumbnailPath",
-    "fovVolumeviewerPath"
+    "fovVolumeviewerPath",
 ]
+const FILE_INFO_KEYS = [
+    ...REQUIRED_FILE_INFO_KEYS, 
+    "transform"
+]
+
+const DEFAULT_TRANSFORM = {
+    translation: [0, 0, 0],
+    rotation: [0, 0, 0]
+}
+
 module.exports = {
     CELL_ID_KEY,
     CELL_LINE_NAME_KEY,
@@ -35,5 +45,7 @@ module.exports = {
     TEMP_LOCAL_FILE_INFO_JSON,
     TEMP_LOCAL_CELL_FEATURE_JSON,
     GENE_FULL_NAME_KEY, 
-    GENE_NAME_KEY
+    GENE_NAME_KEY,
+    DEFAULT_TRANSFORM,
+    REQUIRED_FILE_INFO_KEYS
 }

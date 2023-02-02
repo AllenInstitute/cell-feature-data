@@ -33,6 +33,27 @@
         "fovVolumeviewerPath": {
             "description": "Path to the fov 3d data",
             "type": "string"
+        },
+        "transform": {
+            "description": "Transform to apply to the cell",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "translation": {
+                    "description": "Translation to apply to the cell",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "rotation": {
+                    "description": "Rotation to apply to the cell, as XYZ Euler angles in radians",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            }
         }
     },
     "required": [
