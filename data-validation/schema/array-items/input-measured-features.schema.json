@@ -10,10 +10,35 @@
             "description": "Ordered array of file info: [id, parentId, id of default group, thumbnail path, volume viewer path, parent thumbnail path, parent volume viewer path]",
             "type": "array",
             "items": {
-                "type": "string"
+                "anyOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rotation": {
+                                "type": "array",
+                                "maxItems": 3,
+                                "minItems": 3,
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "translation": {
+                                "type": "array",
+                                "maxItems": 3,
+                                "minItems": 3,
+                                "items": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                ]
             },
             "minItems": 7,
-            "maxItems": 7
+            "maxItems": 8
         },
         "features": {
             "description": "Ordered array of measured features. Needs to match the order of featuresDataOrder",

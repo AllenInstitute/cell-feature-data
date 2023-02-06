@@ -3,8 +3,8 @@ const {
     find,
     map,
 } = require("lodash");
-const StreamZip = require('node-stream-zip');
 
+const { readPossibleZippedFile } = require("../../utils");
 const schemas = require("../../data-validation/full-schema");
 const dataPrep = require("../../data-validation/data-prep");
 const {
@@ -19,19 +19,7 @@ const {
 const formatAndWritePerCellJsons = async (firebaseHandler, readFolder, outFolder, featureDataFileName, featureDefs, defaultGroupBy, defaultGroupByIndex) => {
 
     console.log("writing out file info json...")
-    let json;
-    try {
-        const data = await fsPromises.readFile(`${readFolder}/${featureDataFileName}`);
-        json = JSON.parse(data)
-    } catch (error) {
-        const fileName = featureDataFileName.replace(".json", ".zip");
-        console.log("reading zip file", `${readFolder}/${fileName}`)
-        const zip = new StreamZip.async({ file: `${readFolder}/${fileName}` });
-        const data = await zip.entryData(`${featureDataFileName}`);
-        json = JSON.parse(data)
-        await zip.close();
-    }
-
+    const json = await readPossibleZippedFile(readFolder, featureDataFileName)
     const measuredFeaturesJson = [];
     const fileInfoJson = [];
     const counts = {}

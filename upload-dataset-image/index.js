@@ -3,14 +3,10 @@ const upload = require("../aws");
 const args = process.argv.slice(2);
 console.log('Received: ', args);
 
+const { readDatasetJson } = require("../utils");
 const FirebaseHandler = require('../firebase/firebase-handler');
 
 const datasetReadFolder = args[0];
-
-const readDatasetInfo = async () => {
-    const data = await fsPromises.readFile(`${datasetReadFolder}/dataset.json`)
-    return JSON.parse(data)
-}
 
 const readImage = async (imageFileName) => {
     return fsPromises.readFile(`${datasetReadFolder}/${imageFileName}`)
@@ -28,7 +24,7 @@ const uploadDatasetImage = async () => {
             console.log("COULDN'T READ DIRECTORY:", error)
         })
 
-    const datasetJson = await readDatasetInfo();
+    const datasetJson = await readDatasetJson(datasetReadFolder);
     const {
         name,
         version,

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "8"
+    "node": "16"
   },
   "directories": {
     "lib": "lib"
@@ -16,7 +16,8 @@
     "release-dataset": "node release-dataset",
     "prepublish-docs": "cd ./data-validation && make docs",
     "publish-docs": "gh-pages -d dist",
-    "postpublish-docs": "cd ./data-validation && make clean"
+    "postpublish-docs": "cd ./data-validation && make clean",
+    "validate-datasets": "node ./data-validation/check-input-datasets.js"
   },
   "repository": {
     "type": "git",

@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "input-dataset.schema.json",
     "title": "Cell Feature Dataset Handoff Specification",
+    "description": "all the files needed for handoff",
     "type": "object",
     "additionalProperties": false,
     "properties": {
@@ -20,12 +21,7 @@
             }
         },
         "measured-features": {
-            "title": "Measured values `features.json`",
-            "description": "File that contains the measured analysis values, which will drive the plot. It is an array of measured features",
-            "type": "array",
-            "items": {
-                "$ref": "array-items/input-measured-features.schema.json"
-            }
+            "$ref": "input-measured-features-doc.schema.json"
         },
         "images": {
             "title": "3D Viewer settings `images.json`",

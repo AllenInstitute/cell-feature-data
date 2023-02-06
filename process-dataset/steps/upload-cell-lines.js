@@ -1,4 +1,4 @@
-const fsPromises = require('fs').promises;
+const { readAndParseFile } = require("../../utils");
 const {
     mapKeys
 } = require('lodash');
@@ -7,11 +7,10 @@ const {
     CELL_LINE_DEF_NAME_KEY
 } = require("../constants");
 
-const formatCellLineDefs = (readFolder, cellLineDefFileName) => (
-    fsPromises.readFile(`${readFolder}/${cellLineDefFileName}`)
-    .then((data) => JSON.parse(data))
-    .then((json) => json.map((ele) => mapKeys(ele, (value, key) => key.replace('/', '_'))))
-)
+const formatCellLineDefs = async (readFolder, cellLineDefFileName) => {
+    const json = await readAndParseFile(`${readFolder}/${cellLineDefFileName}`)
+    return json.map((ele) => mapKeys(ele, (value, key) => key.replace('/', '_')))
+}
 
 const uploadCellLines = async (firebaseHandler, readFolder, cellLineDefFileName) => {
     console.log("uploading cell lines..." )

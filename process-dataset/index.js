@@ -156,7 +156,7 @@ const processMegaset = async () => {
     await Promise.all(datasetIds.map(async (id) => {
         await processSingleDataset(id, datasetJsons[id], shouldSkipFileInfoUpload, megasetInfo.name)
     }));
-
+    console.log("finished all datasets")
     return process.exit(0);
 }
 

@@ -1,5 +1,4 @@
-const fsPromises = require('fs').promises;
-
+const { readAndParseFile } = require("../utils");
 const uploadManifest = require("./steps/upload-manifest");
 const uploadFeatureDefs = require("./steps/upload-feature-defs");
 const formatAndWritePerCellJsons = require("./steps/write-per-cell-jsons");
@@ -31,8 +30,7 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
         }
     }
     const readFeatureData = async () => {
-        const data = await fsPromises.readFile(`${datasetReadFolder}/${fileNames.featureDefs}`)
-        return JSON.parse(data)
+        return await readAndParseFile(`${datasetReadFolder}/${fileNames.featureDefs}`)
     }
     const defaultGroupBy = datasetJson.groupBy.default;
     const defaultGroupByIndex = datasetJson.featuresDataOrder.indexOf(defaultGroupBy);
@@ -64,12 +62,14 @@ const processSingleDataset = async (id, datasetJson, shouldSkipFileInfoUpload, m
         ...awsLocation,
         viewerSettingsPath: awsViewerSettingsLocation
     }
-    console.log("updating manifest", updateToManifest)
+    console.log("updating dataset doc")
     await firebaseHandler.updateDatasetDoc({
         ...manifestRef,
         ...awsImageLocation,
     })
-    await firebaseHandler.updateManifest(updateToManifest)
+    
+    console.log("updating manifest", updateToManifest)
+    await firebaseHandler.updateManifest(updateToManifest);
 }
 
 module.exports = processSingleDataset;

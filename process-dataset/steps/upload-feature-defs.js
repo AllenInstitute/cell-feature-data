@@ -1,4 +1,3 @@
-const prompt = require('prompt');
 const map = require("lodash").map;
 const uniq = require("lodash").uniq;
 const filter = require("lodash").filter;
@@ -24,27 +23,7 @@ const uploadFeatureDefs = async (firebaseHandler, featureDefs) => {
             valid,
             error
         } = dataPrep.validate(feature, schemas.featureDef);
-        const diffToDatabase = await firebaseHandler.checkFeatureExists(validatedFeature)
-        if (diffToDatabase && valid) {
-            prompt.start();
-            console.log(`feature "${feature.key}" is already in db`)
-            for (const key in diffToDatabase) {
-                if (Object.hasOwnProperty.call(diffToDatabase, key)) {
-                    const element = diffToDatabase[key];
-                    console.log(`${key} DB VALUE: ${JSON.stringify(element)}, NEW VALUE: ${JSON.stringify(validatedFeature[key])}`)
-                }
-            }
-            console.log("Do you want to over write what is in the DB? (Y/N)")
-            const {
-                shouldWrite
-            } = await prompt.get(['shouldWrite']);
-            if (shouldWrite.toLowerCase() === "y") {
-                await firebaseHandler.addFeature(validatedFeature)
-            }
-
-
-
-        } else if (valid) {
+        if (valid) {
             await firebaseHandler.addFeature(validatedFeature)
         } else {
             console.log(error);
