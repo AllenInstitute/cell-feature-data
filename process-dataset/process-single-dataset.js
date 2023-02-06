@@ -1,3 +1,4 @@
+const fsPromises = require("fs").promises;
 const { readAndParseFile } = require("../utils");
 const uploadManifest = require("./steps/upload-manifest");
 const uploadFeatureDefs = require("./steps/upload-feature-defs");
