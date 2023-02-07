@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "megaset-card.schema.json",
+    "title": "Megaset Card",
+    "description": "Data needed to render a megaset card",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "datasets": {
+            "$ref": "definitions.schema.json#/definitions/processed-datasets"
+        },
+        "dateCreated": {
+            "$ref": "definitions.schema.json#/definitions/processed-dateCreated"
+        },
+        "name": {
+            "$ref": "definitions.schema.json#/definitions/name"
+        },
+        "production": {
+            "$ref": "definitions.schema.json#/definitions/production"
+        },
+        "title": {
+            "$ref": "definitions.schema.json#/definitions/group-title"
+        },
+        "publications": {
+            "title": "Publications",
+            "description": "Publications associated with the group",
+            "type": "array",
+            "items": {
+                "$ref": "definitions.schema.json#/definitions/publication"
+            }
+        }
+    },
+    "required": [
+        "datasets",
+        "dateCreated",
+        "name",
+        "production",
+        "title"
+    ]
+}

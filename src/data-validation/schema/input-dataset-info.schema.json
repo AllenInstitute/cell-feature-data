@@ -1,0 +1,104 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "input-dataset-info.schema.json",
+    "title": "Input dataset info `dataset.json`",
+    "description": "File containing the data needed to process a dataset. If single dataset, should be at the highest folder level. If one of many in a group of datasets, should be in a subfolder pointed to by the megaset JSON `datasets` array. Should be named `dataset.json`",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "title": {
+            "$ref": "definitions.schema.json#/definitions/dataset-title"
+        },
+        "name": {
+            "$ref": "definitions.schema.json#/definitions/name"
+        },
+        "version": {
+            "$ref": "definitions.schema.json#/definitions/version"
+        },
+        "description": {
+            "$ref": "definitions.schema.json#/definitions/description"
+        },
+        "image": {
+            "$ref": "definitions.schema.json#/definitions/input-image"
+        },
+        "link": {
+            "$ref": "definitions.schema.json#/definitions/link"
+        },
+        "userData": {
+            "$ref": "definitions.schema.json#/definitions/userData"
+        },
+        "production": {
+            "$ref": "definitions.schema.json#/definitions/production"
+        },
+        "featuresDataPath": {
+            "$ref": "definitions.schema.json#/definitions/input-featuresDataPath"
+        },
+        "featureDefsPath": {
+            "$ref": "definitions.schema.json#/definitions/input-featureDefsPath"
+        },
+        "viewerSettingsPath": {
+            "$ref": "definitions.schema.json#/definitions/input-viewerSettingsPath"
+        },
+        "albumPath": {
+            "$ref": "definitions.schema.json#/definitions/input-albumPath"
+        },
+        "thumbnailRoot": {
+            "$ref": "definitions.schema.json#/definitions/thumbnailRoot"
+        },
+        "downloadRoot": {
+            "$ref": "definitions.schema.json#/definitions/downloadRoot"
+        },
+        "volumeViewerDataRoot": {
+            "$ref": "definitions.schema.json#/definitions/volumeViewerDataRoot"
+        },
+        "xAxis": {
+            "title": "xAxis settings",
+            "description": "Settings for the x axis",
+            "type": "object",
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
+        },
+        "yAxis": {
+            "title": "yAxis settings",
+            "description": "Settings for the y axis",
+            "type": "object",
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
+        },
+        "colorBy": {
+            "title": "Color settings",
+            "description": "Settings for the color by menu",
+            "type": "object",
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
+        },
+        "groupBy": {
+            "title": "Grouping settings",
+            "description": "Settings for the grouping menu",
+            "type": "object",
+            "$ref": "definitions.schema.json#/definitions/selection-settings"
+        },
+        "featuresDisplayOrder": {
+            "$ref": "definitions.schema.json#/definitions/featuresDisplayOrder"
+        },
+        "featuresDataOrder": {
+            "$ref": "definitions.schema.json#/definitions/featuresDataOrder"
+        }
+    },
+    "required": [
+        "title",
+        "version",
+        "name",
+        "image",
+        "description",
+        "featuresDataPath",
+        "viewerSettingsPath",
+        "albumPath",
+        "thumbnailRoot",
+        "downloadRoot",
+        "volumeViewerDataRoot",
+        "xAxis",
+        "yAxis",
+        "groupBy",
+        "colorBy",
+        "featuresDisplayOrder",
+        "featuresDataOrder"
+    ]
+}
