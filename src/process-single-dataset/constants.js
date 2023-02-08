@@ -30,10 +30,13 @@ const DEFAULT_TRANSFORM = {
     rotation: [0, 0, 0]
 }
 
+const DATA_FOLDER_NAME = "data"
+
 module.exports = {
     CELL_ID_KEY,
     CELL_LINE_NAME_KEY,
     DATASET_DESCRIPTIONS,
+    DATA_FOLDER_NAME,
     FOV_ID_KEY,
     PROTEIN_NAME_KEY,
     PROTEIN_NAME_KEY,

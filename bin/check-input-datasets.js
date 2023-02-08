@@ -1,30 +1,31 @@
 const fsPromises = require("fs").promises;
 const Ajv = require("ajv").default;
 
+const { DATA_FOLDER_NAME } = require("../src/process-single-dataset/constants");
 const {
   readDatasetJson,
   readAndParseFile,
   readPossibleZippedFile,
-} = require("../utils");
-const dataPrep = require("./data-prep");
+} = require("../src/utils");
+const dataPrep = require("../src/data-validation/data-prep");
 
 // referenced partial schemas
 const refSchemas = [
-  require("./schema/definitions.schema.json"),
-  require("./schema/discrete-feature-options.schema.json"),
-  require("./schema/array-items/discrete-feature-option.schema.json"),
-  require("./schema/array-items/file-info.schema.json"),
-  require("./schema/array-items/input-measured-features.schema.json"),
+  require("../src/data-validation/schema/definitions.schema.json"),
+  require("../src/data-validation/schema/discrete-feature-options.schema.json"),
+  require("../src/data-validation/schema/array-items/discrete-feature-option.schema.json"),
+  require("../src/data-validation/schema/array-items/file-info.schema.json"),
+  require("../src/data-validation/schema/array-items/input-measured-features.schema.json"),
 ];
 
 // Schemas that describe the handoff files that define a dataset or a
 // collection of datasets.
-const inputMegaset = require("./schema/input-megaset.schema.json");
-const inputDatasetInfo = require("./schema/input-dataset-info.schema.json");
-const inputMeasuredFeatures = require("./schema/input-measured-features-doc.schema.json");
-const inputDataSet = require("./schema/input-dataset.schema.json");
-const inputImages = require("./schema/images.schema.json");
-const featureDef = require("./schema/feature-def.schema.json");
+const inputMegaset = require("../src/data-validation/schema/input-megaset.schema.json");
+const inputDatasetInfo = require("../src/data-validation/schema/input-dataset-info.schema.json");
+const inputMeasuredFeatures = require("../src/data-validation/schema/input-measured-features-doc.schema.json");
+const inputDataSet = require("../src/data-validation/schema/input-dataset.schema.json");
+const inputImages = require("../src/data-validation/schema/images.schema.json");
+const featureDef = require("../src/data-validation/schema/feature-def.schema.json");
 
 const INPUT_DATASET_SCHEMA = [
   ...refSchemas,
@@ -94,10 +95,9 @@ const unpackInputDataset = async (datasetReadFolder) => {
 
 const validateDatasets = () => {
   fsPromises
-    .readdir("./data")
+    .readdir(`./${DATA_FOLDER_NAME}`)
     .then(async (files) => {
       const foldersToCheck = [];
-
       let hasError = false;
       const checkSingleDatasetInput = async (datasetFolder) => {
         const inputDataset = await unpackInputDataset(datasetFolder);
@@ -113,11 +113,11 @@ const validateDatasets = () => {
 
       for (const name of files) {
         try {
-          const subFiles = await fsPromises.readdir(name);
+          const subFiles = await fsPromises.readdir(`./${DATA_FOLDER_NAME}/${name}`);
           if (subFiles.includes("dataset.json")) {
-            foldersToCheck.push(name);
+            foldersToCheck.push(`./${DATA_FOLDER_NAME}/${name}`);
           }
-        } catch (error) {}
+        } catch (error) {console.log(error)}
       }
       for (const datasetFolder of foldersToCheck) {
         const topLevelJson = await readDatasetJson(datasetFolder);
@@ -147,7 +147,7 @@ const validateDatasets = () => {
         console.log("\x1b[31m");
         throw Error("Validation failed");
       }
-    });
+    }).catch(console.log)
 };
 
 validateDatasets();

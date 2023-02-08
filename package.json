@@ -17,7 +17,7 @@
     "prepublish-docs": "cd src/data-validation && make docs",
     "publish-docs": "gh-pages -d dist",
     "postpublish-docs": "cd src/data-validation && make clean",
-    "validate-datasets": "node src/data-validation/check-input-datasets.js"
+    "validate-datasets": "node bin/check-input-datasets.js"
   },
   "repository": {
     "type": "git",
