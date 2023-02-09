@@ -6,11 +6,11 @@ TARGETS = ../docs/$(DATABASE_SPEC).adoc ../docs/${HANDOFF_SPEC}.adoc
 
 WETZEL = ../wetzel/bin/wetzel.js
 
-SCHEMALINK = ../data-validation/schema
+SCHEMALINK = ../src/data-validation/schema
 
+# generated files that will be git ignored
 EMBEDINPUTSCHEMA = ../docs/DatasetHandoffSchema.adoc
 INPUTREF = ../docs/DatasetHandoffRef.adoc
-
 EMBEDDATABASESCHEMA = ../docs/DatabaseSchema.adoc
 DATABASEREF = ../docs/DatabaseRef.adoc
 
@@ -23,11 +23,11 @@ ADOCHTMLOPTS = -a stylesheet=khronos.css -a sectanchors
 
 input-docs:
 	$(WETZEL) -n -a=cqo -m=a -w -p "$(SCHEMALINK)" -e "$(EMBEDINPUTSCHEMA)" \
-		schema/input-dataset.schema.json > $(INPUTREF)
+		../src/data-validation/schema/input-dataset.schema.json > $(INPUTREF)
 
 database-docs:
 	$(WETZEL) -n -a=cqo -m=a -w -p "$(SCHEMALINK)" -e "$(EMBEDDATABASESCHEMA)" \
-		schema/database.schema.json > $(DATABASEREF)
+		../src/data-validation/schema/database.schema.json > $(DATABASEREF)
 
 convert-to-html:
 	$(ASCIIDOCTOR) -D ../dist ${TARGETS}
