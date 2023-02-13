@@ -14,7 +14,7 @@
     "process-dataset": "node bin/process-dataset",
     "upload-image": "node bin/upload-dataset-image",
     "release-dataset": "node bin/release-dataset",
-    "prepublish-docs": "cd bin && make docs",
+    "prepublish-docs": "make docs",
     "publish-docs": "gh-pages -d dist",
     "postpublish-docs": "cd src/data-validation && make clean",
     "validate-datasets": "node bin/check-input-datasets.js"
