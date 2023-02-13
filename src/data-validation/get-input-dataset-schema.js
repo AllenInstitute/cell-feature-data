@@ -19,12 +19,12 @@ const featureDef = require("./schema/feature-def.schema.json");
 
 const INPUT_DATASET_SCHEMA = [
   ...refSchemas,
-  inputImages,
-  featureDef,
   inputMegaset,
   inputDatasetInfo,
   inputMeasuredFeatures,
   inputDataSet,
+  inputImages,
+  featureDef,
 ];
 
 const getInputDatasetSchema = () => {
