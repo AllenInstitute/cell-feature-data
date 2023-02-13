@@ -27,8 +27,14 @@ const INPUT_DATASET_SCHEMA = [
   inputDataSet,
 ];
 
-module.exports = new Ajv({
-  coerceTypes: true,
-  removeAdditional: true,
-  schemas: INPUT_DATASET_SCHEMA,
-});
+const getInputDatasetSchema = () => {
+  return new Ajv({
+    coerceTypes: true,
+    removeAdditional: true,
+    schemas: INPUT_DATASET_SCHEMA,
+  });
+};
+
+module.exports = {
+  getInputDatasetSchema
+};
