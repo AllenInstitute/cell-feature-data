@@ -1,9 +1,11 @@
 const fsPromises = require("fs").promises;
-const { getInputDatasetSchema } = require("../src/data-validation/get-input-dataset-schema");
+const {
+  getInputDatasetSchema,
+} = require("../src/data-validation/get-input-dataset-schema");
 const { DATA_FOLDER_NAME } = require("../src/process-single-dataset/constants");
 const { readDatasetJson } = require("../src/utils");
 const dataPrep = require("../src/data-validation/data-prep");
-const unpackInputDataset = require("../src/process-single-dataset/steps/unpack-input-dataset");
+const unpackInputDataset = require("../src/data-validation/unpack-input-dataset");
 
 // referenced partial schemas
 const INPUT_DATASET_SCHEMA_FILE = "input-dataset.schema.json";

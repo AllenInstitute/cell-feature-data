@@ -2,7 +2,7 @@ const {
   readDatasetJson,
   readAndParseFile,
   readPossibleZippedFile,
-} = require("../../utils");
+} = require("../utils");
 
 const unpackInputDataset = async (datasetReadFolder) => {
   const datasetJson = await readDatasetJson(datasetReadFolder);
