@@ -1,0 +1,572 @@
+[
+  {
+    "displayName": "Cell age",
+    "description": "hiPSC-derived cardiomyocyte cell age in days.",
+    "tooltip": "hiPSC-derived cardiomyocyte cell age in days.",
+    "unit": "day",
+    "key": "cell-age",
+    "discrete": true,
+    "options": {
+      "1": {
+        "color": "#0098EA",
+        "name": "D18"
+      },
+      "2": {
+        "color": "#FFB2FF",
+        "name": "D25"
+      },
+      "3": {
+        "color": "#9D02D7",
+        "name": "D32"
+      }
+    }
+  },
+  {
+    "displayName": "Expert score mean",
+    "description": "Mean expert score of level of sarcomeric z-disk organization of each cell (1 is least organized; 5 is most organized).",
+    "tooltip": "Mean expert score of level of sarcomeric z-disk organization of each cell (1 is least organized; 5 is most organized).",
+    "unit": "",
+    "key": "expert-score",
+    "discrete": false
+  },
+  {
+    "displayName": "Combined organizational score",
+    "description": "Sarcomeric z-disk organizational score calculated using linear regression of expert scores as a function of 11 cell features fit on training dataset of expert scored cells.",
+    "tooltip": "Sarcomeric z-disk organizational score calculated using linear regression of expert scores as a function of 11 cell features fit on training dataset of expert scored cells.",
+    "unit": "",
+    "key": "cos",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area organized z-disks",
+    "description": "Fraction of cell area covered by organized z-disks, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by organized z-disks, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-zdisk",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area organized puncta",
+    "description": "Fraction of cell area covered by organized puncta, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by organized puncta, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-orgpuncta",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area disorganized puncta",
+    "description": "Fraction of cell area covered by disorganized puncta, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by disorganized puncta, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-disorgpuncta",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area fibers",
+    "description": "Fraction of cell area covered by fibers, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by fibers, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-fibers",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area diffuse/other",
+    "description": "Fraction of cell area covered by diffuse/other, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by diffuse/other, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-diffuse",
+    "discrete": false
+  },
+  {
+    "displayName": "Fraction area background",
+    "description": "Fraction of cell area covered by background, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "tooltip": "Fraction of cell area covered by background, one of the five local patterns classified by the machine learning based alpha-actinin-2 pattern classifier.",
+    "unit": "\u00b5m\u00b2",
+    "key": "area-background",
+    "discrete": false
+  },
+  {
+    "displayName": "Max coefficient of variation",
+    "description": "Maximum coefficient of variation is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "tooltip": "Maximum coefficient of variation is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "unit": "",
+    "key": "max-cov",
+    "discrete": false
+  },
+  {
+    "displayName": "Peak height",
+    "description": "Peak height is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "tooltip": "Peak height is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "unit": "",
+    "key": "peak-height",
+    "discrete": false
+  },
+  {
+    "displayName": "Peak distance",
+    "description": "Peak distance is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "tooltip": "Peak distance is one of three key Haralick correlation based metrics of global sarcomere structure alignment.",
+    "unit": "\u00b5m",
+    "key": "peak-distance",
+    "discrete": false
+  },
+  {
+    "displayName": "Alpha-actinin-2 protein density",
+    "description": "Alpha-actinin-2 protein density in 2D segmented cell.",
+    "tooltip": "Alpha-actinin-2 protein density in 2D segmented cell.",
+    "unit": "a.u. x10\u00b6",
+    "key": "protein-density",
+    "discrete": false
+  },
+  {
+    "displayName": "Cell area",
+    "description": "2D segmented cell area.",
+    "tooltip": "2D segmented cell area.",
+    "unit": "\u00b5m\u00b2",
+    "key": "cell-area",
+    "discrete": false
+  },
+  {
+    "displayName": "Cell aspect ratio",
+    "description": "2D segmented cell aspect ratio.",
+    "tooltip": "2D segmented cell aspect ratio.",
+    "unit": "",
+    "key": "cell-aspect",
+    "discrete": false
+  },
+  {
+    "displayName": "Experiment",
+    "description": "Differentiation experiment encompassing all plates and wells setup and replated on a given day.",
+    "tooltip": "Differentiation experiment encompassing all plates and wells setup and replated on a given day.",
+    "unit": "",
+    "key": "diff-exp",
+    "discrete": true,
+    "options": {
+      "1": {
+        "name": "Exp1",
+        "color": "#1f77b4"
+      },
+      "2": {
+        "name": "Exp2",
+        "color": "#ff7f0e"
+      },
+      "3": {
+        "name": "Exp3",
+        "color": "#2ca02c"
+      },
+      "4": {
+        "name": "Exp4",
+        "color": "#d62728"
+      },
+      "5": {
+        "name": "Exp5",
+        "color": "#9467bd"
+      },
+      "6": {
+        "name": "Exp6",
+        "color": "#8c564b"
+      },
+      "7": {
+        "name": "Exp7",
+        "color": "#e377c2"
+      }
+    }
+  },
+  {
+    "displayName": "Plate",
+    "description": "Differentiation plate barcode.",
+    "tooltip": "Differentiation plate barcode.",
+    "unit": "barcode",
+    "key": "plate-barcode",
+    "discrete": true,
+    "options": {
+      "1": {
+        "name": "5500000013",
+        "color": "#dd4a4c"
+      },
+      "2": {
+        "name": "5500000014",
+        "color": "#f98e52"
+      },
+      "3": {
+        "name": "5500000172",
+        "color": "#fed481"
+      },
+      "4": {
+        "name": "5500000171",
+        "color": "#ffffbe"
+      },
+      "5": {
+        "name": "5500000075",
+        "color": "#d6ee9b"
+      },
+      "6": {
+        "name": "5500000322",
+        "color": "#86cfa5"
+      },
+      "7": {
+        "name": "5500000323",
+        "color": "#3d95b8"
+      }
+    }
+  },
+  {
+    "displayName": "Well",
+    "description": "Differentiation well.",
+    "tooltip": "Differentiation well.",
+    "unit": "well",
+    "key": "well",
+    "discrete": true,
+    "options": {
+      "1": {
+        "name": "5500000013-B2",
+        "color": "#ab0f45"
+      },
+      "2": {
+        "name": "5500000013-B3",
+        "color": "#ba2049"
+      },
+      "3": {
+        "name": "5500000013-B4",
+        "color": "#c9314c"
+      },
+      "4": {
+        "name": "5500000013-B5",
+        "color": "#d63f4f"
+      },
+      "5": {
+        "name": "5500000013-C2",
+        "color": "#de4c4b"
+      },
+      "6": {
+        "name": "5500000013-C3",
+        "color": "#e75948"
+      },
+      "7": {
+        "name": "5500000013-C4",
+        "color": "#ef6645"
+      },
+      "8": {
+        "name": "5500000013-C5",
+        "color": "#f57245"
+      },
+      "9": {
+        "name": "5500000014-B2",
+        "color": "#f7844e"
+      },
+      "10": {
+        "name": "5500000014-B3",
+        "color": "#fa9656"
+      },
+      "11": {
+        "name": "5500000014-B4",
+        "color": "#fca85e"
+      },
+      "12": {
+        "name": "5500000014-B5",
+        "color": "#fdb567"
+      },
+      "13": {
+        "name": "5500000014-C2",
+        "color": "#fdc372"
+      },
+      "14": {
+        "name": "5500000014-C3",
+        "color": "#fed07e"
+      },
+      "15": {
+        "name": "5500000014-C4",
+        "color": "#fede89"
+      },
+      "16": {
+        "name": "5500000014-C5",
+        "color": "#fee695"
+      },
+      "17": {
+        "name": "5500000172-B2",
+        "color": "#feefa3"
+      },
+      "18": {
+        "name": "5500000172-B3",
+        "color": "#fff7b2"
+      },
+      "19": {
+        "name": "5500000172-B4",
+        "color": "#ffffbe"
+      },
+      "20": {
+        "name": "5500000172-B5",
+        "color": "#f9fcb5"
+      },
+      "21": {
+        "name": "5500000172-C2",
+        "color": "#f2faaa"
+      },
+      "22": {
+        "name": "5500000172-C3",
+        "color": "#ebf7a0"
+      },
+      "23": {
+        "name": "5500000172-C4",
+        "color": "#e4f498"
+      },
+      "24": {
+        "name": "5500000172-C5",
+        "color": "#d3ed9c"
+      },
+      "25": {
+        "name": "5500000171-B2",
+        "color": "#c3e79f"
+      },
+      "26": {
+        "name": "5500000171-B3",
+        "color": "#b3e0a2"
+      },
+      "27": {
+        "name": "5500000171-B4",
+        "color": "#a4daa4"
+      },
+      "28": {
+        "name": "5500000171-B5",
+        "color": "#91d3a4"
+      },
+      "29": {
+        "name": "5500000171-C2",
+        "color": "#7ecca5"
+      },
+      "30": {
+        "name": "5500000171-C3",
+        "color": "#6bc4a5"
+      },
+      "31": {
+        "name": "5500000171-C4",
+        "color": "#5eb9a9"
+      },
+      "32": {
+        "name": "5500000171-C5",
+        "color": "#50a9af"
+      },
+      "33": {
+        "name": "5500000075-B3",
+        "color": "#4199b6"
+      },
+      "34": {
+        "name": "5500000322-B2",
+        "color": "#3389bd"
+      },
+      "35": {
+        "name": "5500000322-B5",
+        "color": "#3b7cb7"
+      },
+      "36": {
+        "name": "5500000323-B2",
+        "color": "#486cb0"
+      },
+      "37": {
+        "name": "5500000323-B5",
+        "color": "#545ca8"
+      }
+    }
+  },
+  {
+    "displayName": "MYH6 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "myh6-density",
+    "discrete": false
+  },
+  {
+    "displayName": "MYH7 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "myh7-density",
+    "discrete": false
+  },
+  {
+    "displayName": "HPRT1 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "hprt1-density",
+    "discrete": false
+  },
+  {
+    "displayName": "COL2A1 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "col2a1-density",
+    "discrete": false
+  },
+  {
+    "displayName": "TCAP transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "tcap-density",
+    "discrete": false
+  },
+  {
+    "displayName": "BAG3 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "bag3-density",
+    "discrete": false
+  },
+  {
+    "displayName": "ATP2A2 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "atp2a2-density",
+    "discrete": false
+  },
+  {
+    "displayName": "H19 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "h19-density",
+    "discrete": false
+  },
+  {
+    "displayName": "NKX2-5 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "nkx25-density",
+    "discrete": false
+  },
+  {
+    "displayName": "CNTN5 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "cntn5-density",
+    "discrete": false
+  },
+  {
+    "displayName": "MEF2C transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "mef2c-density",
+    "discrete": false
+  },
+  {
+    "displayName": "MYL7 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "myl7-density",
+    "discrete": false
+  },
+  {
+    "displayName": "PLN transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "pln-density",
+    "discrete": false
+  },
+  {
+    "displayName": "PRSS35 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "prss35-density",
+    "discrete": false
+  },
+  {
+    "displayName": "BMPER transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "bmper-density",
+    "discrete": false
+  },
+  {
+    "displayName": "VCAN transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "vcan-density",
+    "discrete": false
+  },
+  {
+    "displayName": "ACTN2 transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "actn2-density",
+    "discrete": false
+  },
+  {
+    "displayName": "TTN transcript density",
+    "description": "Transcript density in 2D segemented cells.",
+    "tooltip": "Transcript density in 2D segemented cells.",
+    "unit": "count/\u00b5m\u00b2",
+    "key": "ttn-density",
+    "discrete": false
+  },
+  {
+    "displayName": "ACTN2 transcript count",
+    "description": "Transcript count in 2D segemented cells.",
+    "tooltip": "Transcript count in 2D segemented cells.",
+    "unit": "count",
+    "key": "actn2-count",
+    "discrete": false
+  },
+  {
+    "displayName": "RNA FISH Targets",
+    "description": "Pair of gene transcripts assayed by RNA fluorescence in situ hybridization (RNA FISH)",
+    "tooltip": "Pair of gene transcripts assayed by RNA fluorescence in situ hybridization (RNA FISH)",
+    "unit": "",
+    "key": "rna-fish-targets",
+    "discrete": true,
+    "options": {
+      "0": {
+        "color": "#FF7F0E",
+        "name": "HPRT1-COL2A1"
+      },
+      "1": {
+        "color": "#1F77B4",
+        "name": "MYH6-MYH7"
+      },
+      "2": {
+        "color": "#2CA02C",
+        "name": "ATP2A2-H19"
+      },
+      "3": {
+        "color": "#D62728",
+        "name": "TCAP-BAG3"
+      },
+      "4": {
+        "color": "#9467BD",
+        "name": "NKX25-CNTN5"
+      },
+      "5": {
+        "color": "#8C564B",
+        "name": "MEF2C-MYL7"
+      },
+      "6": {
+        "color": "#E377C2",
+        "name": "PLN-PRSS35"
+      },
+      "7": {
+        "color": "#7F7F7F",
+        "name": "BMPER-VCAN"
+      },
+      "8": {
+        "color": "#BCBD22",
+        "name": "ACTN2-TTN"
+      },
+      "9": {
+        "color": "#17BECF",
+        "name": "TTN-ACTN2"
+      }
+    }
+  }
+]

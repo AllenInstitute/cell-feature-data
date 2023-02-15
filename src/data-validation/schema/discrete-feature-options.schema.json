@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "discrete-feature-options.schema.json",
+    "title": "Discrete feature options",
+    "description": "Mapping of numeral key in the analysis to category names. There should be one key value pair for each category of a discrete feature. For example, if the feature is a boolean, and the numeral data is either `0` or `1`, there should be two option mappings.",
+    "type": "object",
+    "patternProperties": {
+        "^\\d{1,}$": {
+            "$ref": "array-items/discrete-feature-option.schema.json"
+        }
+    }
+}

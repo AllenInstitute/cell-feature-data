@@ -3,8 +3,7 @@
 node_modules
 */node_modules
 .env
-data/**/cell-feature-analysis.json
-data/**/file-info.json
+tmp/
 dataset-*/cell_feature_analysis.json
 dataset-*/cell-feature-analysis.json
 *.log
