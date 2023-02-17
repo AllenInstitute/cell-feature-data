@@ -12,7 +12,7 @@ if (notProduction) {
 
   ref = require("./production-creds");
 }
-const { FIREBASE_ID, FIREBASE_EMAIL, FIREBASE_DB_URL, FIREBASE_TOKEN } = ref;
+const { FIREBASE_TOKEN, FIREBASE_ID, FIREBASE_DB_URL,FIREBASE_EMAIL } = ref;
 const firebasekey = FIREBASE_TOKEN.replace(/\\n/g, "\n");
 
 var app = admin.initializeApp({
