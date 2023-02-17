@@ -34,9 +34,8 @@ STAGING_FIREBASE_EMAIL=
 
 # used if NODE_ENV === "dev"
 DEV_FIREBASE_TOKEN= project settings/service accounts/generate new private key
-DEV_FIREBASE_EMAIL= project settings/services accounts/firebase service account 
 DEV_FIREBASE_ID= project settings/general/project ID
-DEV_FIREBASE_DB_URL= "https://`DEV_FIREBASE_ID`.firebaseapp.com"
+DEV_FIREBASE_EMAIL= project settings/services accounts/firebase service account 
 ```
 > To access `AWS`, `production`, or `staging`, please contact the development team for the necessary credentials 
 
