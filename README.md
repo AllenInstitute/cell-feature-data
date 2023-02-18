@@ -2,37 +2,46 @@
 Clone or fork this repo
 run `npm i`
 
+## Setup
+### A glance of cloud firestore  
+- [documentation + tutorial](https://firebase.google.com/docs/firestore) 
+- [get started](https://firebase.google.com/docs/firestore/quickstart)
+  
+### Set up a dev database
+- choose Test mode in your security rules 
+- add your required secret tokens to .env file 
+- set NODE_ENV="dev" in .env file
+> Please refer to the `Needed in .env file` section for obtaining tokens  
+
+### Three database options:
+- `dev`: developer's personal testing database, the default option for development. Create your own credentials to access. 
+- `staging`: group testing || for scientists to review 
+- `production`: group production 
 
 ### Needed in .env file:
 ```
-NODE_ENV="production"
+NODE_ENV= "production" || "staging" || "dev"
+AWS_SECRET=
+AWS_ID=
+
 # used if NODE_ENV === "production"
-FIREBASE_API_KEY=
-FIREBASE_AUTH_DOMAIN=
-FIREBASE_DB_URL=
-FIREBASE_ID=
-STORAGE_BUCKET=
-MESSAGING_SENDER_ID=
 FIREBASE_TOKEN=
 FIREBASE_EMAIL=
 
-# used if NODE_ENV !== "production"
-TESTING_FIREBASE_API_KEY=
-TESTING_FIREBASE_AUTH_DOMAIN=
-TESTING_FIREBASE_DB_URL=
-TESTING_FIREBASE_ID=
-TESTING_STORAGE_BUCKET=
-TESTING_MESSAGING_SENDER_ID=
-TESTING_FIREBASE_TOKEN=
-TESTING_FIREBASE_EMAIL=
+# used if NODE_ENV === "staging"
+STAGING_FIREBASE_TOKEN= 
+STAGING_FIREBASE_EMAIL=
 
-AWS_SECRET=
-AWS_ID=
+# used if NODE_ENV === "dev"
+DEV_FIREBASE_TOKEN= project settings/service accounts/generate new private key
+DEV_FIREBASE_ID= project settings/general/project ID
+DEV_FIREBASE_EMAIL= project settings/services accounts/firebase service account 
 ```
+> To access `AWS`, `production`, or `staging`, please contact the development team for the necessary credentials 
+
 # To process a dataset:
 
-## Setup
-### Expected files in a dataset directory:
+## Expected files in a dataset directory:
 - `dataset.json`: a json file with metadata about the dataset and the names of the other files, using the keys listed below
 - featureDefsPath: path to a json describing the measured features in this dataset, *the order of this document has to match the order of the values in the `featuresData` file. Also if no displayOrder is given it will be used as the display order on the website. *
 - featuresDataPath: path to a json listing the per cell data
