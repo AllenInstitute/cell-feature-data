@@ -1,0 +1,21 @@
+name: Process dataset 
+
+on: 
+  workflow_dispatch:
+    inputs: 
+      dataset-folder:
+        description: "Enter the relative path to the new dataset"
+        required: true
+
+jobs: 
+  process_dataset: 
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v3
+      - name: Load .env file
+        uses: tecnico-digital/setup-dotenv@v1 # not sure about the version
+        with: 
+          path: .env
+      - name: Run process-dataset script
+        if: env.NODE_ENV == "staging" 
+        run: npm run process-dataset -- "${{ github.event.inputs.dataset-folder }}"
