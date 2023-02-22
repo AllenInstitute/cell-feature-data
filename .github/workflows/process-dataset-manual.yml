@@ -11,11 +11,9 @@ jobs:
   process_dataset: 
     runs-on: ubuntu-latest
     steps: 
+      env:
+        NODE_ENV: "staging"
+        STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
       - uses: actions/checkout@v3
-      - name: Load .env file
-        uses: tecnico-digital/setup-dotenv@v1 # not sure about the version
-        with: 
-          path: .env
       - name: Run process-dataset script
-        if: env.NODE_ENV == "staging" 
         run: npm run process-dataset -- "${{ github.event.inputs.dataset-folder }}"
