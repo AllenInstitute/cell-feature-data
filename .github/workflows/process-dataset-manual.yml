@@ -1,4 +1,4 @@
-name: Process dataset 
+name: Upload dataset to staging DB
 
 on: 
   workflow_dispatch:
