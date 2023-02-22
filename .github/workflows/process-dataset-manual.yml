@@ -11,9 +11,9 @@ jobs:
   process_dataset: 
     runs-on: ubuntu-latest
     steps: 
-      env:
-        NODE_ENV: "staging"
-        STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
       - uses: actions/checkout@v3
       - name: Run process-dataset script
+        env:
+          NODE_ENV: "staging"
+          STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
         run: npm run process-dataset -- "${{ github.event.inputs.dataset-folder }}"
