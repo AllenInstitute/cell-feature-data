@@ -22,5 +22,4 @@ jobs:
           node-version: 16.x
       - run: npm ci
       - name: Run process-dataset script
-
         run: npm run process-dataset -- "${{ github.event.inputs.dataset-folder }}"
