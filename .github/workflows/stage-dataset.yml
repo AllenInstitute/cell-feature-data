@@ -1,7 +1,6 @@
 name: Upload dataset to staging DB
 
 on:
-  push:
   workflow_dispatch:
     inputs: 
       dataset-folder:
