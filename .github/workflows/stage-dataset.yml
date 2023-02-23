@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+          STAGING_FIREBASE_TOKEN: $STAGING_FIREBASE_TOKEN
       - run: npm ci
       - name: Run process-dataset script
         env: 
