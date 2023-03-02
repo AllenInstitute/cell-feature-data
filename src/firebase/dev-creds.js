@@ -21,10 +21,15 @@ let FIREBASE_DB_URL;
 let FIREBASE_EMAIL;
 
 if (staging) {
-  if (!STAGING_CONFIG.token || !STAGING_CONFIG.email) {
-    console.error("You need a secret token to use the staging database");
+  if (!STAGING_CONFIG.token) {
+    console.error("You need a secret token STAGING_FIREBASE_TOKEN to use the staging database");
     process.exit(1);
   }
+  if (!STAGING_CONFIG.email) {
+    console.error("You need a secret email STAGING_FIREBASE_EMAIL to use the staging database");
+    process.exit(1);  
+  }
+
   FIREBASE_TOKEN = STAGING_CONFIG.token;
   FIREBASE_ID = STAGING_CONFIG.projectId;
   FIREBASE_DB_URL = STAGING_CONFIG.url;
