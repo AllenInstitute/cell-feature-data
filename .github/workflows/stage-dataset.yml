@@ -29,4 +29,4 @@ jobs:
           node-version: 16.x
       - run: npm ci
       - name: Process dataset
-      - run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} --skip-per-cell-upload=${{ github.event.inputs.skip-per-cell-upload }}
+        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} --skip-per-cell-upload=${{ github.event.inputs.skip-per-cell-upload }}
