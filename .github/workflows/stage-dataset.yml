@@ -6,6 +6,10 @@ on:
       dataset-folder:
         description: "Enter the relative path to the new dataset"
         required: true
+      skip-per-cell-upload:
+        type: boolean
+        description: "Set to true if not updating file-info (takes a long time)"
+        default: false
 
 jobs: 
   process_dataset: 
@@ -24,4 +28,4 @@ jobs:
           STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
           AWS_SECRET: ${{ secrets.AWS_SECRET }}
           AWS_ID: ${{ secrets.AWS_ID }}
-        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }}
+        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} ${{ github.event.inputs.dataset-folder }}
