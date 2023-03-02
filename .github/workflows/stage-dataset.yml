@@ -11,9 +11,7 @@ jobs:
   process_dataset: 
     name: Process Dataset
     runs-on: ubuntu-latest
-    env:
-      NODE_ENV: "staging"
-      STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
+
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node
@@ -22,4 +20,7 @@ jobs:
           node-version: 16.x
       - run: npm ci
       - name: Run process-dataset script
-        run: npm run process-dataset -- "${{ github.event.inputs.dataset-folder }}"
+        env:
+          NODE_ENV: "staging"
+          STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
+        run: export STAGING_FIREBASE_TOKEN=${{ secrets.STAGING_FIREBASE_TOKEN }} && npm run process-dataset ${{ github.event.inputs.dataset-folder }}
