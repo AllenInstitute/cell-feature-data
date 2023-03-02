@@ -22,4 +22,4 @@ jobs:
         env:
           NODE_ENV: "staging"
           STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
-        run: STAGING_FIREBASE_TOKEN=${{ secrets.STAGING_FIREBASE_TOKEN }} && npm run process-dataset ${{ github.event.inputs.dataset-folder }}
+        run: STAGING_FIREBASE_TOKEN=${{ secrets.STAGING_FIREBASE_TOKEN }} node bin/process-dataset ${{ github.event.inputs.dataset-folder }}
