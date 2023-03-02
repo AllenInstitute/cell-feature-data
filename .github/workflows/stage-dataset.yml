@@ -29,4 +29,4 @@ jobs:
           STAGING_FIREBASE_EMAIL: ${{ secrets.STAGING_FIREBASE_EMAIL }}
           AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} ${{ github.event.inputs.dataset-folder }} == "true
+        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} ${{ github.event.inputs.dataset-folder }}
