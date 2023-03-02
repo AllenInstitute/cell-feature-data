@@ -26,12 +26,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 16.
       - run: npm ci
-      - name: Process dataset with skip file info upload
-        if: ${{ github.event.inputs.dataset-folder == true}}
-        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} true
-      - name: Process dataset with file info upload
-        if: ${{ github.event.inputs.dataset-folder == false}}
-        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }}
-
+      - name: Process dataset
+      - run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} ${{ string(github.event.inputs.skip-per-cell-upload) }}
