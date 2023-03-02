@@ -22,4 +22,4 @@ jobs:
           node-version: 16.x
       - run: npm ci
       - name: Run process-dataset script
-        run: STAGING_FIREBASE_TOKEN=${{ secrets.STAGING_FIREBASE_TOKEN }} npm run process-dataset -- "${{ github.event.inputs.dataset-folder }}"
+        run: STAGING_FIREBASE_TOKEN=${{ secrets.STAGING_FIREBASE_TOKEN }} && npm run process-dataset ${{ github.event.inputs.dataset-folder }}
