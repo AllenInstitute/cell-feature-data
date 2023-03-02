@@ -19,14 +19,14 @@ jobs:
       NODE_ENV: "staging"
       STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
       STAGING_FIREBASE_EMAIL: ${{ secrets.STAGING_FIREBASE_EMAIL }}
-      AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET: ${{ secrets.CFE_AWS_SECRET }}
+      AWS_ID: ${{ secrets.CFE_AWS_ID }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.
+          node-version: 16.x
       - run: npm ci
       - name: Process dataset
-      - run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} ${{ string(github.event.inputs.skip-per-cell-upload) }}
+      - run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} --skip-per-cell-upload=${{ github.event.inputs.skip-per-cell-upload }}
