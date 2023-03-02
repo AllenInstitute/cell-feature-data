@@ -15,6 +15,12 @@ jobs:
   process_dataset: 
     name: Process Dataset
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: "staging"
+      STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
+      STAGING_FIREBASE_EMAIL: ${{ secrets.STAGING_FIREBASE_EMAIL }}
+      AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node
@@ -22,11 +28,10 @@ jobs:
         with:
           node-version: 16.x
       - run: npm ci
-      - name: Run process-dataset script
-        env:
-          NODE_ENV: "staging"
-          STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
-          STAGING_FIREBASE_EMAIL: ${{ secrets.STAGING_FIREBASE_EMAIL }}
-          AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} ${{ ${{ github.event.inputs.dataset-folder }} == 'true'}} }}
+      - name: Process dataset with skip file info upload
+        if: ${{ github.event.inputs.dataset-folder == 'true'}}
+        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} true
+      - name: Process dataset with file info upload
+        if: ${{ github.event.inputs.dataset-folder == 'false'}}
+        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }}
+
