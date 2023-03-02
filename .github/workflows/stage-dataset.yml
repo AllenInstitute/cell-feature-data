@@ -29,9 +29,9 @@ jobs:
           node-version: 16.x
       - run: npm ci
       - name: Process dataset with skip file info upload
-        if: ${{ github.event.inputs.dataset-folder == 'true'}}
+        if: ${{ github.event.inputs.dataset-folder == true}}
         run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} true
       - name: Process dataset with file info upload
-        if: ${{ github.event.inputs.dataset-folder == 'false'}}
+        if: ${{ github.event.inputs.dataset-folder == false}}
         run: npm run process-dataset ${{ github.event.inputs.dataset-folder }}
 
