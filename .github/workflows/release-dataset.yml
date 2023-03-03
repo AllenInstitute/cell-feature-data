@@ -5,9 +5,16 @@ on:
     branches: 
       - main
     inputs: 
-      dataset-folder:
-        description: "Enter the relative path to the new dataset"
-        required: true
+      megaset-name:
+        description: "Enter the name of the megaset to release every dataset within"
+        required: false
+      contained-dataset-id: 
+        description: "Enter the ID in the format [NAME]_v[VERSION] to release a single dataset contained within a megaset"
+        required: false
+      standalone-dataset-id: 
+        description: "Enter the ID in the format [NAME]_v[VERSION] to release a single standalone dataset"
+        required: false
+      
 
 jobs: 
   release_dataset: 
@@ -16,6 +23,9 @@ jobs:
     env:
       NODE_ENV: "production"
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      FIREBASE_EMAIL: ${{ secrets.FIREBASE_EMAIL }}
+      AWS_SECRET: ${{ secrets.CFE_AWS_SECRET }}
+      AWS_ID: ${{ secrets.CFE_AWS_ID }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node
@@ -24,6 +34,5 @@ jobs:
           node-version: 16.x
       - run: npm ci
       - name: Run release-dataset script
-        env: 
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: npm run release-dataset -- "${{ github.event.inputs.dataset-folder }}"
+        run: 
+          TODO: add conditional statements for different inputs 
