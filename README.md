@@ -1,3 +1,5 @@
+[![Dataset validation](https://github.com/allen-cell-animated/cell-feature-data/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/allen-cell-animated/cell-feature-data/actions/workflows/validate.yml)
+
 # Contributing: 
 Clone or fork this repo
 run `npm i`
