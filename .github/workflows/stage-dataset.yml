@@ -8,7 +8,7 @@ on:
         required: true
       skip-per-cell-upload:
         type: boolean
-        description: "Set to true if not updating file-info (takes a long time)"
+        description: "Set to true if not updating file-info (save some processing time)"
         default: false
 
 
