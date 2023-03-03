@@ -29,9 +29,5 @@ jobs:
         with:
           node-version: 16.x
       - run: npm ci
-      - name: Process dataset with skip file info upload
-        if: ${{ github.event.inputs.skip-per-cell-upload == 'true' }}
-        run: node process-dataset ${{ github.event.inputs.dataset-folder }} true
-      - name: Process dataset with file info upload
-        if: ${{ github.event.inputs.skip-per-cell-upload == 'false' }}
-        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }}
+      - name: Process dataset
+        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} ${{ github.event.inputs.skip-per-cell-upload}}
