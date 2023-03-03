@@ -1,0 +1,66 @@
+{
+  "title": "hiPSC Single-Cell Image Dataset",
+  "version": "2021.1",
+  "name": "aics_hipsc",
+  "dateCreated": "Jan 1, 2021",
+  "image": "card-cover-dataset-2-0.png",
+  "description": "Through improved cell and nuclear segmentation methods, this dataset contains 5x the number of single-cell images and includes 5 new fluorescently-labeled structures. To learn more about the robust intracellular organization found in this dataset, please see our recent article in bioRxiv.",
+  "extra": "Final version of this dataset will be released when associated paper (in review) is published",
+  "publications": [
+    {
+      "title": "Robust integrated intracellular organization of the human iPS cell: where, how much, and how variable",
+      "url": "https://www.biorxiv.org/content/10.1101/2020.12.08.415562v2",
+      "citation": "bioRxiv, 2021"
+    }
+  ],
+  "userData": {
+    "isNew": false,
+    "inReview": false,
+    "totalCells": 216062,
+    "totalFOVs": 18186,
+    "totalTaggedStructures": 25
+  },
+  "featureDefsPath": "feature_defs.json",
+  "featuresDataPath": "cell_feature_analysis.json",
+  "viewerSettingsPath": "images.json",
+  "albumPath": "albums",
+  "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
+  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellviewer-2-0",
+  "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
+  "xAxis": {
+    "default": "cell-volume",
+    "exclude": ["cell-line"]
+  },
+  "yAxis": {
+    "default": "dna-volume",
+    "exclude": ["cell-line"]
+  },
+  "colorBy": {
+    "default": "cell-line"
+  },
+  "groupBy": {
+    "default": "cell-line"
+  },
+  "featuresDisplayOrder": [],
+  "featuresDataOrder": [
+    "cell-line",
+    "cell-height",
+    "cell-volume",
+    "cell-surface-area",
+    "dna-height",
+    "dna-volume",
+    "dna-surface-area",
+    "intracellular-structure-volume",
+    "anaphase-segmentation-complete",
+    "interphase-or-mitosis",
+    "interphase-and-mitotic-stages",
+    "shape-mode-1",
+    "shape-mode-2",
+    "shape-mode-3",
+    "shape-mode-4",
+    "shape-mode-5",
+    "shape-mode-6",
+    "shape-mode-7",
+    "shape-mode-8"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+    "title": "WTC-11 hiPSC Single-Cell Image Dataset v1",
+    "name": "variance_nature",
+    "dateCreated": "Jul 13, 2022",
+    "publications": [
+        {
+            "title": "Integrated intracellular organization and its variations in human iPS cells",
+            "url": "https://www.nature.com/articles/s41586-022-05563-7",
+            "citation": "Nature, January 2023"
+        }
+    ],
+    "datasets": [
+        "main",
+        "edges",
+        "i1m1",
+        "i2m2"
+    ]
+}

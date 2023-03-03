@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "dataset-descriptions",
+    "title": "Dataset Description Collection",
+    "description": "Endpoint that gets called first to load all the available datasets. Each DATASET_ID maps to a megaset card",
+    "type": "object",
+    "patternProperties": {
+        "^(\\w{1,})_(v\\d{4}.\\d{1,}|\\w{1,})$": {
+            "$ref": "megaset-card.schema.json"
+        }
+    }
+}

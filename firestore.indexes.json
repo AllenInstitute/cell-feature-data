@@ -1,0 +1,100 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "cell-file-info",
+      "fieldPath": "CellId",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "anaphasesegmentationcomplete",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "apicalproximity",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "cellheight",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "cellsegmentation",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "cellsurfacearea",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "cellularsurfacearea",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "cellularvolume",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "cellvolume",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "dnaheight",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "dnasurfacearea",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "dnavolume",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "intefphaseandmitosis",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "interphaseandmitosis",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "interphaseandmitoticstages",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "intracellularstructurevolume",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "nuclearsurfacearea",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "nuclearvolume",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "measured-features-values",
+      "fieldPath": "radialproximity",
+      "indexes": []
+    }
+  ]
+}

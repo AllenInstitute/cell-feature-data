@@ -1,0 +1,73 @@
+{
+  "title": "hiPSC-derived Cardiomyocyte Live Dataset",
+  "version": "2021.1",
+  "name": "cellsystems_live",
+  "image": "thumb_livecardio.png",
+  "description": "This dataset is one of the two datasets accompanying the Cell Systems manuscript. This one presents live-captured FOVs of cardiomyocytes at different timepoints. For more information please click on the link below to access the manuscript.",
+  "userData": {
+    "isNew": true,
+    "inReview": false,
+    "totalCells": 18045,
+    "totalFOVs": 1696,
+    "totalTaggedStructures": 1
+  },
+  "featureDefsPath": "feature_defs.json",
+  "featuresDataPath": "cell_feature_analysis_live.json",
+  "viewerSettingsPath": "images.json",
+  "albumPath": "albums",
+  "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-live.1/Cell-Viewer_Thumbnails",
+  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellsystems-2021-live_1",
+  "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/cellsystems-2021-live.1/Cell-Viewer_Thumbnails",
+  "xAxis": {
+    "default": "expert-score"
+  },
+  "yAxis": {
+    "default": "cos"
+  },
+  "colorBy": {
+    "default": "cell-age"
+  },
+  "groupBy": {
+    "default": "cell-age"
+  },
+  "featuresDisplayOrder": [
+    "cell-age",
+    "expert-score",
+    "cos",
+    "area-zdisk",
+    "area-orgpuncta",
+    "area-disorgpuncta",
+    "area-fibers",
+    "area-diffuse",
+    "area-background",
+    "max-cov",
+    "peak-height",
+    "peak-distance",
+    "protein-density",
+    "cell-area",
+    "cell-aspect",
+    "diff-exp",
+    "plate-barcode",
+    "well"
+  ],
+  "featuresDataOrder": [
+    "cell-age",
+    "expert-score",
+    "cos",
+    "area-zdisk",
+    "area-orgpuncta",
+    "area-disorgpuncta",
+    "area-fibers",
+    "area-diffuse",
+    "area-background",
+    "max-cov",
+    "peak-height",
+    "peak-distance",
+    "protein-density",
+    "cell-area",
+    "cell-aspect",
+    "diff-exp",
+    "plate-barcode",
+    "well"
+  ]
+}

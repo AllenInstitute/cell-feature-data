@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "input-dataset.schema.json",
+    "title": "Cell Feature Dataset Handoff Specification",
+    "description": "all the files needed for handoff",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "megaset": {
+            "$ref": "input-megaset.schema.json"
+        },
+        "dataset": {
+            "$ref": "input-dataset-info.schema.json"
+        },
+        "feature-defs": {
+            "title": "Feature definitions `feature-defs.json`",
+            "description": "File that describes the measured feature definitions. Is an array of feature definitions.",
+            "type": "array",
+            "items": {
+                "$ref": "feature-def.schema.json"
+            }
+        },
+        "measured-features": {
+            "$ref": "input-measured-features-doc.schema.json"
+        },
+        "images": {
+            "title": "3D Viewer settings `images.json`",
+            "description": "File that contains the 3D viewer settings. These are settings consistent with the type of images being displayed.",
+            "$ref": "images.schema.json"
+        }
+    },
+    "required": [
+        "dataset",
+        "feature-defs",
+        "measured-features"
+    ]
+}

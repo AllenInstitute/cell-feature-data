@@ -1,0 +1,69 @@
+{
+  "_from": "wetzel",
+  "_id": "wetzel@0.2.3",
+  "_inBundle": false,
+  "_integrity": "sha512-eDu1nhDS0WSSMtkuG1Mgi4Vb8UqFW3pTod6csfJsYmTtyWJhSkogbDPxWQ0dzEUz5qZXdsnOeLFM4MBlYlXQtw==",
+  "_location": "/wetzel",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "wetzel",
+    "name": "wetzel",
+    "escapedName": "wetzel",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/wetzel/-/wetzel-0.2.3.tgz",
+  "_shasum": "414f9860800bc9223b56b04f7eb1418181f9f069",
+  "_spec": "wetzel",
+  "_where": "/Users/meganriel-mehan/dev/allen-inst/cell-feature-data",
+  "author": {
+    "name": "Patrick Cozzi, Ed Mackey, Howard Wolosky, and other contributors",
+    "url": "https://twitter.com/pjcozzi"
+  },
+  "bin": {
+    "wetzel": "bin/wetzel.js"
+  },
+  "bugs": {
+    "url": "https://github.com/CesiumGS/wetzel/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "jsonpointer": "^4.1.0",
+    "minimist": "1.1.0"
+  },
+  "deprecated": false,
+  "description": "Generate Markdown or AsciiDoctor documentation from JSON Schema",
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "mocha": "^8.2.1"
+  },
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib"
+  },
+  "homepage": "https://github.com/CesiumGS/wetzel",
+  "keywords": [
+    "json schema",
+    "markdown",
+    "asciidoctor"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "wetzel",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CesiumGS/wetzel.git"
+  },
+  "scripts": {
+    "test": "mocha",
+    "test-bail": "mocha -b"
+  },
+  "version": "0.2.3"
+}

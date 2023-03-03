@@ -1,0 +1,72 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "database-schema",
+    "title": "Cell Feature Database Specification",
+    "description": "Structure of the data stored in firebase and AWS",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "dataset-descriptions": {
+            "$ref": "dataset-descriptions.schema.json"
+        },
+        "manifests": {
+            "description": "Collection of manifests for each published dataset.",
+            "type": "object",
+            "patternProperties": {
+                "^(\\w{1,})_(v\\d{4}.\\d{1,}|\\w{1,})$": {
+                    "type": "object",
+                    "$ref": "manifest.schema.json"
+                }
+            }
+        },
+        "dataset-data": {
+            "$id": "dataset-data",
+            "description": "High level data for a dataset, ie not per cell data",
+            "type": "object",
+            "properties": {
+                "feature-definitions": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^(\\w{1,})_(v\\d{4}.\\d{1,}|\\w{1,})$": {
+                            "type": "object",
+                            "$feature-key": {
+                                "$ref": "feature-def.schema.json"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "cell-data": {
+            "description": "Per cell data",
+            "$id": "cell-data",
+            "type": "object",
+            "patternProperties": {
+                "^(\\w{1,})_(v\\d{4}.\\d{1,}|\\w{1,})$": {
+                    "type": "object",
+                    "properties": {
+                        "cell-file-info": {
+                            "type": "object",
+                            "description": "Per cell mapping of file info",
+                            "patternProperties": {
+                                "^\\d{1,}$": {
+                                    "$ref": "array-items/file-info.schema.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "measured-features": {
+            "$ref": "measured-features.schema.json"
+        }
+    },
+    "required": [
+        "dataset-descriptions",
+        "manifests",
+        "dataset-data",
+        "cell-data",
+        "measured-features"
+    ]
+}
