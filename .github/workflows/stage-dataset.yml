@@ -6,6 +6,10 @@ on:
       dataset-folder:
         description: "Enter the relative path to the new dataset"
         required: true
+      skip-per-cell-upload:
+        type: boolean
+        description: "Set to true to skip the file-info upload (save some processing time)"
+        default: false
 
 jobs: 
   process_dataset: 
@@ -14,6 +18,9 @@ jobs:
     env:
       NODE_ENV: "staging"
       STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
+      STAGING_FIREBASE_EMAIL: ${{ secrets.STAGING_FIREBASE_EMAIL }}
+      AWS_SECRET: ${{ secrets.CFE_AWS_SECRET }}
+      AWS_ID: ${{ secrets.CFE_AWS_ID }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node
@@ -21,7 +28,5 @@ jobs:
         with:
           node-version: 16.x
       - run: npm ci
-      - name: Run process-dataset script
-        env: 
-          STAGING_FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
-        run: npm run process-dataset -- "${{ github.event.inputs.dataset-folder }}"
+      - name: Process dataset
+        run: npm run process-dataset ${{ github.event.inputs.dataset-folder }} ${{ github.event.inputs.skip-per-cell-upload}
