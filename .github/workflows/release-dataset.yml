@@ -1,4 +1,4 @@
-name: Publish dataset to production DB
+name: Release dataset to production DB
 
 on:
   workflow_dispatch:
@@ -8,11 +8,8 @@ on:
       megaset-name:
         description: "Enter the name of the megaset to release every dataset within"
         required: false
-      contained-dataset-id: 
-        description: "Enter the ID in the format [NAME]_v[VERSION] to release a single dataset contained within a megaset"
-        required: false
-      standalone-dataset-id: 
-        description: "Enter the ID in the format [NAME]_v[VERSION] to release a single standalone dataset"
+      dataset-id: 
+        description: "Enter the ID in the format [NAME]_v[VERSION] to release a single dataset"
         required: false
       
 
@@ -33,40 +30,12 @@ jobs:
         with:
           node-version: 16.x
       - run: npm ci
-      - name: Run release-dataset script
-        run: |
-          if: ${{ github.event.inputs.megaset-name }} && ${{ github.event.inputs.contained-dataset-id }}
-            npm run release-dataset ${{ github.event.inputs.megaset-name }} ${{ github.event.inputs.contained-dataset-id }}
-          elif [ -n "${{ github.event.inputs.megaset-name }}" ]; then
-            npm run release-dataset ${{ github.event.inputs.megaset-name }}
-          elif [ -n "${{ github.event.inputs.standalone-dataset-id }}" ]; then
-            npm run release-dataset ${{ github.event.inputs.standalone-dataset-id }}
-          else
-            echo "Error: either megaset name or dataset ID must be specified"
-            exit 1
-          fi
       - name: Release every dataset in a megaset
-        if: ${{ github.event.inputs.megaset-name == 'true' }} && ${{ github.event.inputs.contained-dataset-id == 'false' }}
+        if: ${{ github.event.inputs.megaset-name == 'true' }} && ${{ github.event.inputs.dataset-id == 'false' }}
         run: npm run release-dataset ${{ github.event.inputs.megaset-name }}
       - name: Release a dataset contained within a megaset
-        if: ${{ github.event.inputs.megaset-name == 'true' }} && ${{ github.event.inputs.contained-dataset-id == 'true' }}
+        if: ${{ github.event.inputs.megaset-name == 'true' }} && ${{ github.event.inputs.dataset-id == 'true' }}
         run: npm run release-dataset ${{ github.event.inputs.megaset-name }} ${{ github.event.inputs.contained-dataset-id }}
       - name: Release a dataset that is not part of a megaset
-        if: ${{ github.event.inputs.megaset-name == 'false' }} && ${{ github.event.inputs.standalone-dataset-id == 'true' }}
+        if: ${{ github.event.inputs.megaset-name == 'false' }} && ${{ github.event.inputs.dataset-id == 'true' }}
         run: npm run release-dataset ${{ github.event.inputs.megaset-name }} ${{ github.event.inputs.standalone-dataset-id }}
-      - name: Error out if input variables are conflict   
-        if: ${{ github.event.inputs.megaset-name == 'true' }} && ${{ github.event.inputs.standalone-dataset-id == 'true' }}
-        run: | 
-          echo "Error: cannot specify both a megaset and a standalone dataset ID. Please provide only one of these inputs."
-          exit 1
-      - name: Error out if no input variables are specified 
-        if: ${{ !github.event.inputs.megaset-name && !github.event.inputs.contained-dataset-id && !github.event.inputs.standalone-dataset-id }}
-        run: | 
-          echo "Error: either megaset name, contained dataset ID, or standalone dataset ID must be specified"
-          exit 1
-      - name: Error out if no specified megaset for a contained dataset ID
-        if: ${{ github.event.inputs.megaset-name == 'false' }} && ${{ github.event.inputs.contained-dataset-id == 'true' }}
-        run: |
-          echo "Error: the contained dataset ID cannot be specified without a specified megaset."
-          exit 1
-      
