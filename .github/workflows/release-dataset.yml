@@ -7,10 +7,12 @@ on:
     inputs: 
       megaset-name:
         description: "Enter the name of the megaset to release every dataset within"
-        required: false
+        type: string
+        default: ""
       dataset-id: 
         description: "Enter the ID in the format [NAME]_v[VERSION] to release a single dataset"
-        required: false
+        type: string
+        default: ""
       
 
 jobs: 
@@ -30,12 +32,5 @@ jobs:
         with:
           node-version: 16.x
       - run: npm ci
-      - name: Release every dataset in a megaset
-        if: ${{ github.event.inputs.megaset-name == 'true' }} && ${{ github.event.inputs.dataset-id == 'false' }}
-        run: npm run release-dataset ${{ github.event.inputs.megaset-name }}
-      - name: Release a dataset contained within a megaset
-        if: ${{ github.event.inputs.megaset-name == 'true' }} && ${{ github.event.inputs.dataset-id == 'true' }}
-        run: npm run release-dataset ${{ github.event.inputs.megaset-name }} ${{ github.event.inputs.contained-dataset-id }}
-      - name: Release a dataset that is not part of a megaset
-        if: ${{ github.event.inputs.megaset-name == 'false' }} && ${{ github.event.inputs.dataset-id == 'true' }}
-        run: npm run release-dataset ${{ github.event.inputs.megaset-name }} ${{ github.event.inputs.standalone-dataset-id }}
+      - name: Release dataset
+        run: npm run release-dataset ${{ github.event.inputs.megaset-name }} ${{ github.event.inputs.dataset-id }}
