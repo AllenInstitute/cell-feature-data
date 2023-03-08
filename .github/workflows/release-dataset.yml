@@ -1,0 +1,41 @@
+name: Release dataset to production DB
+
+on:
+  workflow_dispatch:
+    inputs: 
+      megaset-name:
+        description: "Enter the name of the megaset to release every dataset within"
+        type: string
+        default: ""
+      dataset-id: 
+        description: "Enter the ID in the format [NAME]_v[VERSION] to release a single dataset"
+        type: string
+        default: ""
+      database:
+        type: choice
+        default: "staging"
+        options: 
+        - staging
+        - production
+      
+
+jobs:
+  release_dataset: 
+    if: github.ref == 'refs/heads/main'
+    name: Release Dataset
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: ${{ github.event.inputs.database }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      FIREBASE_EMAIL: ${{ secrets.FIREBASE_EMAIL }}
+      AWS_SECRET: ${{ secrets.CFE_AWS_SECRET }}
+      AWS_ID: ${{ secrets.CFE_AWS_ID }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - run: npm ci
+      - name: Release dataset
+        run: npm run release-dataset ${{ github.event.inputs.megaset-name }} ${{ github.event.inputs.dataset-id }}
