@@ -1,5 +1,5 @@
 const fsPromises = require('fs').promises;
-const upload = require("../../../aws");
+const upload = require("../../src/aws");
 const args = process.argv.slice(2);
 console.log('Received: ', args);
 

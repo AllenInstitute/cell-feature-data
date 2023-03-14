@@ -1,4 +1,4 @@
-const { readAndParseFile } = require("../utils");
+const { readAndParseFile } = require("../../utils");
 const {
     mapKeys
 } = require('lodash');

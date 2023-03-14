@@ -1,6 +1,6 @@
 const {
     firestore
-} = require('../../../firebase/setup-firebase');
+} = require('../../src/firebase/setup-firebase');
 
 const args = process.argv.slice(2);
 console.log('Received: ', args);
