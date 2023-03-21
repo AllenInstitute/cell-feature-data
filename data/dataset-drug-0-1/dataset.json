@@ -1,0 +1,50 @@
+{
+  "title": "Drug Image Dataset",
+  "version": "0.1",
+  "name": "drug_data",
+  "dateCreated": "March 21, 2023",
+  "image": "",
+  "description": "Drug Data.",
+  "extra": "Final version of this dataset will be released when associated paper (in review) is published",
+  "publications": [
+  ],
+  "userData": {
+    "isNew": false,
+    "inReview": false,
+    "totalFOVs": 395,
+    "totalTaggedStructures": 1
+  },
+  "featureDefsPath": "feature_defs.json",
+  "featuresDataPath": "cell_feature_analysis.json",
+  "viewerSettingsPath": "images.json",
+  "albumPath": "albums",
+  "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
+  "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellviewer-2-0",
+  "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
+  "xAxis": {
+    "default": "cell-volume",
+    "exclude": ["cell-line"]
+  },
+  "yAxis": {
+    "default": "dna-volume",
+    "exclude": ["cell-line"]
+  },
+  "colorBy": {
+    "default": "cell-line"
+  },
+  "groupBy": {
+    "default": "cell-line"
+  },
+  "featuresDisplayOrder": [],
+  "featuresDataOrder": [
+    "CellLine",
+    "CellLineId",
+    "Gene",
+    "Structure",
+    "WellName",
+    "ProteinId/Name",
+    "treatment_group",
+    "time_point",
+    "concentration"
+  ]
+}
