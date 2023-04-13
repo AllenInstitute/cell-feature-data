@@ -2,7 +2,7 @@
   "title": "Drug Image Dataset",
   "version": "0.1",
   "name": "drug_data",
-  "dateCreated": "March 21, 2023",
+  "dateCreated": "April 13, 2023",
   "image": "",
   "description": "Drug Data.",
   "extra": "Final version of this dataset will be released when associated paper (in review) is published",
@@ -38,13 +38,13 @@
   "featuresDisplayOrder": [],
   "featuresDataOrder": [
     "CellLine",
-    "CellLineId",
     "Gene",
+    "Objective",
     "Structure",
-    "WellName",
-    "ProteinId/Name",
+    "Protein_Name",
     "treatment_group",
     "time_point",
-    "concentration"
+    "concentration",
+    "drug_label"
   ]
 }
