@@ -21,20 +21,6 @@
   "thumbnailRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
   "downloadRoot": "https://files.allencell.org/api/2.0/file/download?collection=cellviewer-2-0",
   "volumeViewerDataRoot": "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v2.0.0/Cell-Viewer_Thumbnails",
-  "xAxis": {
-    "default": "cell-volume",
-    "exclude": ["cell-line"]
-  },
-  "yAxis": {
-    "default": "dna-volume",
-    "exclude": ["cell-line"]
-  },
-  "colorBy": {
-    "default": "cell-line"
-  },
-  "groupBy": {
-    "default": "cell-line"
-  },
   "featuresDisplayOrder": [],
   "featuresDataOrder": [
     "CellLine",
